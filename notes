@@ -1,0 +1,59 @@
+/* -------------  Donor wall ----------------- */
+
+<script>
+$( document ).ready(function() {
+	
+	$('div.summary-item').each(function() {
+		var wall = $('div.summary-excerpt');
+		var flag = false;
+		// remove comments
+		var data = wall.find('p').html().replace(/\/\*(.|\n)*\*\//g, ''); 
+		$('div.data').append(data);
+		var lines = data.split('<br>');   // lines is an array of strings
+		for (var j = 0; j < lines.length; j++) {
+			line = lines[j].trim();
+			var test = line.split('//');
+			if (test.length) {line = test[0];}
+			// have line and not comment
+			if (line && line.substr(0,2) != '//') {
+				// group heading 
+				if (line.substr(0,1) == '#') {
+					line = line.substr(1).trim();
+					wall.append('<div class=heading>' + line + '</div>');
+					flag = true; 
+				}
+				else if (!flag) {
+					wall.append('<div class=note>' + line + '</div>');
+				}
+				// Donor name
+				else {
+					wall.append('<div class=donor>' + line + '</div>');
+				}
+			}
+		}
+	})
+});
+</script>
+
+Include summary list item for blog donors wall, Excerpt should be 
+Note: create continuation lines with shift-enter
+
+Updated March 2014
+# $1,000,000 & above
+
+Anonymous
+Phil & Lyn Jenkins
+National Science Foundation
+
+# $500,000 - $999,999
+
+Anonymous
+The Kresge Foundation
+Institute of Museum and Library Services
+
+# $250,000 - $499,999
+
+Anonymous
+Flint Ink Foundation
+Jesse James Estate
+
