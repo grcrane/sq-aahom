@@ -70,3 +70,87 @@ Anonymous
 Flint Ink Foundation
 Jesse James Estate
 
+-------------------------  Special boxes ----------------------------- 12/3/20
+
+home_copy
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  /*background-color:#aaa;*/
+}
+.buttoncolumn {
+  width: 180px;  
+}
+  
+.buttoncolumn a {
+  width: 100%;
+  }
+  
+.textcolumn {
+  width: calc(100% - 180px);
+}
+
+.row:not(:first-child) {
+  margin-top: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row {
+  display: flex;
+}
+.innerRow {
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  }
+  
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style>
+<div class="row innerRow">
+  <div class="buttoncolumn column" >
+    <div class="image-button sqs-dynamic-text" style="font-size: 26.9%;" data-width-percentage="26.9" id="yui_3_17_2_1_1607025480042_12708">
+  <div class="image-button-inner" id="yui_3_17_2_1_1607025480042_12707">
+    <a href="" id="yui_3_17_2_1_1607025480042_12706">Families</a>
+  </div>
+</div>
+   
+  </div>
+  <div class="textcolumn column">
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+
+  </div>
+</div>
+<div class="row innerRow">
+  <div class="buttoncolumn column">
+    <div class="image-button sqs-dynamic-text" style="font-size: 26.9%;" data-width-percentage="26.9" id="yui_3_17_2_1_1607025480042_12708">
+  <div class="image-button-inner" id="yui_3_17_2_1_1607025480042_12707">
+    <a href="" id="yui_3_17_2_1_1607025480042_12706">Educators</a>
+  </div>
+</div>
+   
+  </div>
+  <div class="textcolumn column">
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+
+  </div>
+</div>
+
