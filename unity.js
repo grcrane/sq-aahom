@@ -147,3 +147,39 @@ $( document ).ready(function() {
         }
     });
 });
+
+/* ------------------------------------------------------------------- */
+/* Donor Wall                                                          */
+/* ------------------------------------------------------------------- */
+
+function do_donor_wall() {
+    $('div.summary-item').each(function() {
+        var wall = $('div.summary-excerpt');
+        var flag = false;
+        // remove comments
+        var data = wall.find('p').html().replace(/\/\*(.|\n)*\*\//g, ''); 
+        $('div.data').append(data);
+        var lines = data.split('<br>');   // lines is an array of strings
+        for (var j = 0; j < lines.length; j++) {
+            line = lines[j].trim();
+            var test = line.split('//');
+            if (test.length) {line = test[0];}
+            // have line and not comment
+            if (line && line.substr(0,2) != '//') {
+                // group heading 
+                if (line.substr(0,1) == '#') {
+                    line = line.substr(1).trim();
+                    wall.append('<div class=heading>' + line + '</div>');
+                    flag = true; 
+                }
+                else if (!flag) {
+                    wall.append('<div class=note>' + line + '</div>');
+                }
+                // Donor name
+                else {
+                    wall.append('<div class=donor>' + line + '</div>');
+                }
+            }
+        }
+    })
+}
