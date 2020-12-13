@@ -184,3 +184,66 @@ function do_donor_wall() {
         }
     })
 }
+
+/* ------------------------------------------------------------------- */
+/* Home page flip boxes                                                */
+/* ------------------------------------------------------------------- */
+
+var columnIndex = 1; 
+function flip_carousel() {
+  var i;
+  var numColumns = $('.newcolumn').length;
+  if (columnIndex > numColumns) { columnIndex = 1;}
+  var background = $('.newcolumn:nth-child(' + +columnIndex + ') .flip-card-front');
+  columnIndex++;
+  var t = background.find('img.active').index();
+  myIndex =  t + 1;
+  var x = background.find('img');
+  if (myIndex >= x.length) {
+    myIndex = 0
+  }
+  x.removeClass("active");
+  background.find('img').eq(myIndex).addClass("active");
+  myIndex++;
+  setTimeout(flip_carousel, 5000);
+}
+
+function resizeFlipBoxes() {
+  var boxwidth = ($('#flexbox').width());
+  var parentwidth = ($('html').width());
+  if (parentwidth >= 801) {
+    var f = ($('#flexbox').width());
+    var c = $('.newcolumn').length; 
+    var pwidth = (100/c)-5;
+    $('.newcolumn').width(pwidth + '%');
+    var w = $('.f1_container').width();
+    w = f/c;
+    $('.f1_container').height(w + 'px').width(w +'px');
+  }
+  else {
+    $('.flip-card').width(boxwidth + 'px').height(boxwidth + 'px');
+  }
+  
+  var w = $('.f1_container').width();
+  var fontsize = w/12;
+  var lheight = fontsize + 4;
+  var box = $("#flexbox .flip-card-back p.message");
+  $(box).css('font-size',fontsize + 'px') 
+    .css('line-height',lheight + 'px')
+    .css('line-height',lheight + 'px')
+    .css('height',(lheight*5) + 'px')
+    .css('max-height',(lheight*5) + 'px');
+
+}
+
+function setup_flipboxes() {
+  $('.newcolumn .flip-card-front img:first-child')
+    .addClass("active");
+  resizeFlipBoxes();
+  setTimeout(flip_carousel, 5000);
+
+  $( window ).resize(function() {
+    resizeFlipBoxes();
+  }); 
+  
+}
