@@ -247,3 +247,107 @@ function setup_flipboxes() {
   }); 
   
 }
+
+/* ----------------------------------------------------------- */
+/* Process the ajax request to get spreadsheet data            */
+/* ----------------------------------------------------------- */
+
+function get_spreadsheet(theurl) {
+  var result = "";
+  $.ajax({
+      url: theurl,
+      dataType: 'text',
+      async: false,
+      success: function(data) {
+          i = data.indexOf('(');
+          j = data.lastIndexOf(')');
+          data = data.substr(i + 1, j - 1 - i);
+
+          var data = JSON.parse(data);
+          result = data;
+      }
+  });
+  return result;
+}
+
+/* ----------------------------------------------------------- */
+/* Get data from spreadsheet a build flipcards html            */
+/* ----------------------------------------------------------- */
+
+function build_flipcards(file_id = null) {
+
+  if (!file_id) {
+    // default to the Unity flipcard spreadsheet
+    var file_id = '1wEfSb4Dnjz-eNEayaNiiws3ta1ZEueiQyG5-BTWSXag';
+  }
+  var url = 'https://docs.google.com/spreadsheets/u/0/d/'
+    + file_id + '/gviz/tq?tqx=&tq=' + escape('SELECT * ORDER BY A, B');
+  
+  var cardlist = get_spreadsheet(url);
+  var cards = cardlist.table.rows;
+
+  var prevcard = ''; 
+  var images = [];
+  var cardnumber = '';
+  var label = 'More Info';
+  var message = 'See more info';
+  var caption = 'VISIT'; 
+  var link = '#'; 
+  cards.forEach(function(item, key) {
+    cardnumber = item.c[0].v;
+    itemtype = item.c[1].v;
+    itemtype = itemtype.toLowerCase();
+    if (Number.isInteger(cardnumber)) { 
+      if (prevcard != cardnumber) {
+        if (prevcard != '') {
+          process_card_info(images, caption, label, message); 
+        }
+        images = [];
+        caption = 'TEST';
+        label = 'More Info';
+        link = '#';
+        message = 'See more info';
+        prevcard = cardnumber;
+      }
+      if (itemtype == 'image') {
+        images.push(item.c[2].v);
+      }
+      if (itemtype == 'caption') {
+        caption = item.c[2].v;
+      }
+      if (itemtype == 'message') {
+        message = item.c[2].v;
+      }
+      if (itemtype == 'label') {
+        label = item.c[2].v;
+      }
+      if (itemtype == 'link') {
+        link = item.c[2].v;
+      }
+    }
+  })
+  if (cardnumber != '') {
+    //process_card_info(images, caption, label, message);
+    var str = 
+    '  <div class=newcolumn>\n' +
+    '   <div class="f1_container flip-card">\n' +
+    '    <div class="f1_card flip-card-inner" class="shadow">\n' +
+    '     <div class="front face flip-card-front">\n';
+    images.forEach(function(img, key) {
+      str = str + 
+    '      <img src="' + img + '"/>\n';
+    })
+    str = str + 
+    '      <div class="labelText">' + caption + '</div>\n' +
+    '     </div>\n' +
+    '     <div class="back face center flip-card-back">\n' +
+    '      <p class="message">' + message + '</p>\n' +
+    '      <p class="link">\n' +
+    '      <a href="/visit">' + label + '</a></p>\n' +
+    '     </div>\n' +
+    '    </div>\n' +
+    '   </div>\n' +
+    '  </div>\n';
+    $('.flex-container').append(str);
+  }
+}
