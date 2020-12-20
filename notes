@@ -7,91 +7,109 @@ Raw
 https://raw.githubusercontent.com/grcrane/sq-aahom/main/unity.js
 https://raw.githubusercontent.com/grcrane/sq-aahom/main/style.css
 
-cdn
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/grcrane/sq-aahom@main/unity.js"></script>
-<link rel='stylesheet' href="https://cdn.jsdelivr.net/gh/grcrane/sq-aahom@main/style.css" />
+cdn (12/20/20)
+<link rel='stylesheet' href="https://cdn.jsdelivr.net/gh/grcrane/sq-aahom@f103642/style.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/grcrane/sq-aahom@eda272a/unity.js"></script>
 
-/* ------------- Front page flip boxes ---------- */
+/* ---------------------------------------------- */
+/* flip boxes                                     */
+/* ---------------------------------------------- */
 
-<a href="/programs-list/experience/programs/video-clip-diy-lava-lamps" class="summary-read-more-link">Read More &#8594;</a>
-
------------- VISIT
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd288dc1067083635293d8c/1607633118070/boy_with_magnifier.png
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd5088089566e781f2c9623/1607796864989/water1.png
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd5085bab777271766c4524/1607796828131/water2.png
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd50855d654060362a54c62/1607796822563/parent_and_kids.png
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd5083fdf2f0204c2139155/1607796800475/two_boys.png
-
------------- LEARN
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd50df889566e781f2d470b/1607798265258/bus.png
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd50dff96ed101a3e1e6f28/1607798271938/Lisa.png
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd50e09de5b1220c008aa32/1607798282687/summer_reading1.png
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd28b0b618580786d796555/1607633676364/summer_reading2.png
-
------------- SUPPORT
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd28d657003f8470987e38d/1607634277791/photo_news.png
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd50f41df2f0204c21492ea/1607798601167/cubes.jpg
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd510469264095525b1cb85/1607798856037/volunteers.jpeg
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd51064102ca46975c16536/1607798886215/Toyota+volunteers5.jpg
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd51079491a58544aef75e1/1607798905775/setup.jpg
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd51099e5ac58289600a4ad/1607798937725/Toyota+volunteers2.jpg
-
-https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fd510af154d727871c9b627/1607798959197/Growing+Together1.jpg
-
-/* -------------  Donor wall ----------------- */
+** page code
 
 <script>
 $( document ).ready(function() {
-	
-	$('div.summary-item').each(function() {
-		var wall = $('div.summary-excerpt');
-		var flag = false;
-		// remove comments
-		var data = wall.find('p').html().replace(/\/\*(.|\n)*\*\//g, ''); 
-		$('div.data').append(data);
-		var lines = data.split('<br>');   // lines is an array of strings
-		for (var j = 0; j < lines.length; j++) {
-			line = lines[j].trim();
-			var test = line.split('//');
-			if (test.length) {line = test[0];}
-			// have line and not comment
-			if (line && line.substr(0,2) != '//') {
-				// group heading 
-				if (line.substr(0,1) == '#') {
-					line = line.substr(1).trim();
-					wall.append('<div class=heading>' + line + '</div>');
-					flag = true; 
-				}
-				else if (!flag) {
-					wall.append('<div class=note>' + line + '</div>');
-				}
-				// Donor name
-				else {
-					wall.append('<div class=donor>' + line + '</div>');
-				}
-			}
-		}
-	})
+  var file_id = '1wEfSb4Dnjz-eNEayaNiiws3ta1ZEueiQyG5-BTWSXag';
+  build_flipcards(file_id); // build the html
+  setup_flipboxes(); // resize and setup flipboxes
 });
 </script>
+<div id=flexbox>
+  <div class="flex-container sampleClass">
+  </div>
+</div>
 
-Include summary list item for blog donors wall, Excerpt should be 
-Note: create continuation lines with shift-enter
+** Sample Spreadsheet 
+
+https://docs.google.com/spreadsheets/d/1wEfSb4Dnjz-eNEayaNiiws3ta1ZEueiQyG5-BTWSXag/edit#gid=0
+
+/* ---------------------------------------------- */
+/* Banner Gallery Slideshow                       */
+/* ---------------------------------------------- */
+
+** page code
+
+<script>
+$( document ).ready(function() {
+    doGalleryShow();
+})
+</script>
+
+** Gallery Section
+
+Include a SquareSpace Gallery Section right after
+header image section.   Configure with images
+
+/* ---------------------------------------------- */
+/* Accordian                                      */
+/* ---------------------------------------------- */
+
+** page code
+
+<span class=accordian>
+#### General Information & Hours
+
+- We're located at 1831 Traver Road on the north side of Ann Arbor, right next to Leslie Park Golf Course. Traver Road can be reached from Barton Drive (to our west) which is easily accessed from M-14 (Exit 4) or Plymouth Road (south of us).
+...
+
+/* ---------------------------------------------- */
+/* Filter checkboxes                              */
+/* ---------------------------------------------- */
+
+** page code
+
+<script>
+$( document ).ready(function() {
+    // initialize based on current checkboxes
+    filter_values();
+});
+</script>
+<div id="filterContainer">
+<div class="flexBox">
+    <div class="filterGroup">
+        <span>Museum</span>
+        <ul>
+            <li><input type="checkbox" value="Ann+Arbor" name="museum"><span>Ann Arbor Hands-On</span></li>
+            <li><input type="checkbox" value="Leslie+Center" name="museum"><span>Leslie Science</span></li>
+            <li><input type="checkbox" value="Yankee" name="museum"><span>Yankee Air</span></li>
+            <li><input type="checkbox" value="Experience" name="museum"><span>Experience Center</span></li>
+        </ul>
+    </div>
+ </div>
+</div>
+
+** Notes
+
+Include one or more summary blocks on the page.
+Must include category as primary metadata.
+Categories assigned must match checkbox value.
+All checkboxes with same "name=" will be considered radio 
+
+/* ---------------------------------------------- */
+/* Donor Wall                                     */
+/* ---------------------------------------------- */
+
+** page code
+<script>
+$( document ).ready(function() {
+  do_donor_wall(); 
+});
+</script> 
+
+** Notes
+
+Add a blog section to page, limit by category
+Blog entry excerpt should follow this format:
 
 Updated March 2014
 # $1,000,000 & above
@@ -105,335 +123,5 @@ National Science Foundation
 Anonymous
 The Kresge Foundation
 Institute of Museum and Library Services
+...
 
-# $250,000 - $499,999
-
-Anonymous
-Flint Ink Foundation
-Jesse James Estate
-
--------------------------  Special boxes ----------------------------- 12/10/20
-
-<script>
-  $( document ).ready(function() {
-
-    function resizeit() {
-    
-      //var winsize = $('body').width();
-      var boxwidth = ($('#flexbox').width());
-      var parentwidth = ($('html').width());
-      //alert(boxwidth + " " + parentwidth);
-      if (parentwidth >= 801) {
-        var f = ($('#flexbox').width());
-        var c = $('.newcolumn').length; 
-        var pwidth = (100/c)-5;
-        $('.newcolumn').width(pwidth + '%');
-        var w = $('.f1_container').width();
-        w = f/c;
-        $('.f1_container').height(w + 'px').width(w +'px');
-      }
-      else {
-        $('.flip-card').width(boxwidth + 'px').height(boxwidth + 'px');
-      }
-      
-      var w = $('.f1_container').width();
-      var fontsize = w/12;
-      var lheight = fontsize + 4;
-      var box = $("#flexbox .flip-card-back p.message");
-      $(box).css('font-size',fontsize + 'px') 
-        .css('line-height',lheight + 'px')
-        .css('line-height',lheight + 'px')
-        .css('height',(lheight*5) + 'px')
-        .css('max-height',(lheight*5) + 'px');
-  
-    }
-
-    resizeit();
-
-    $( window ).resize(function() {
-      resizeit();
-    }); 
-    
-  });
-
-</script>
-<style>
-  
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  font-size: 1em;
-  text-align: center;
-  justify-content: space-between;
-}
-
-div.front.face img {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  transition: 1s;
-  top: 0;
-  left: 0;
-}
-
-.captionText {
-  padding: 10px;
-  font-size: .8em;
-  
-}
-
-.newcolumn {
-  position: relative;
-  width: 30%;
-}
-
-.labelText {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-  color: white;
-  font-style:italic;
-  font-size: 2em;
-}
-
-.infoText {
-  font-size: .8em;
-  text-align: center;
-  font-style: italic;
-}
-
-.info.button a {
-  padding: 7px;
-  padding-top: 7px;
-  padding-top: 7px;
-  border: 1px solid black;
-  text-decoration: none;
-  margin-top: 5px;
-  padding-top: 5px;
-  background: white;
-  border-radius: 10px;
-}
-
-.flip-card {
-  background-color: transparent;
-  width: 300px;
-  height: 200px;
-  border: 1px solid #f1f1f1;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
-}
-
-/* This container is needed to position the front and back side */
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-
-/* Do an horizontal flip when you move the mouse over the flip box container */
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Position the front and back side */
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden;
-  z-index: 0;
-}
-
-/* Style the front side (fallback if image is missing) */
-.flip-card-front {
-  background-color: #bbb;
-  color: black;
-}
-
-/* Style the back side */
-.flip-card-back {
-  background-color: dodgerblue;
-  color: white;
-  transform: rotateY(180deg);
-}
-
-#flexbox .back.face p a {
-    border: 1px solid black;
-    padding: 10px;
-    border-radius: 10px;
-    background: gray;
-    color: white;
-    text-decoration: none;
-}
-  
-div.buttoncolumn {
-  margin-top: 10px;
-}
-
-#flexbox {
-  width: 100%;
-  margin: 0 auto;
-}
-
-#flexbox .flip-card-back p.messsage {
-  font-size: 1.2em;
-  
-}
-
-#flexbox .flip-card-back p.link {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  width: 100%;
-  bottom: 10px;
-}
-
-#flexbox .flip-card-back p.message {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  line-height: 25px;
-  height: 100px;
-  max-height: 100px;
-  font-size: 22px;
-  -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;
-  margin: 5%;
-}
-
-@media (max-width: 800px) {
-  .flex-container {
-    flex-direction: column;
-  }
-  #flexbox, .newcolumn {
-    width: 100%;
-  }
-
-  #flexbox .newcolumn:not(:first-child) {
-    margin-top: 20px;
-  }
-}
-</style>
-<div id=flexbox>
-<div class="flex-container sampleClass">
-
-  <div class=newcolumn>
-    <div class="f1_container flip-card">
-      <div class="f1_card flip-card-inner" class="shadow">
-        <div class="front face flip-card-front">
-          <img src="https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fccb8308a55f2188b744334/1607252016952/family_cropped.jpg"/>
-          <div class="labelText">VISIT</div>
-        </div>
-        <div class="back face center flip-card-back">
-          <p class="message">If you are looking for activies and programs the whole family, or individuals can enjoy, check out our "Family" page here. <p class="link"><a href="/family">More Info</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="buttoncolumn column">
-      <div class="image-button sqs-dynamic-text" style="font-size: 26.9%;" data-width-percentage="26.9" id="yui_3_17_2_1_1607025480042_12708">
-        <div class="image-button-inner" id="yui_3_17_2_1_1607025480042_12707">
-          <a href="/family">VISIT</a>
-        </div>
-      </div>  
-    </div>
-
-  </div>
-
-  
-  <div class=newcolumn>
-    <div class="f1_container flip-card">
-      <div class="f1_card flip-card-inner" class="shadow">
-        <div class="front face flip-card-front">
-          <img src="https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fcc5981a87f9f1b19cf2672/1607227777964/educator_cropped.jpg"/>
-          <div class="labelText">LEARN</div>
-        </div>
-        <div class="back face center flip-card-back">
-          <p class="message">Educators can find valuable programs, projects and documentation to help in and out of the classroom. <p class="link"><a href="/educator">More Info</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="buttoncolumn column">
-      <div class="image-button sqs-dynamic-text" style="font-size: 26.9%;" data-width-percentage="26.9" id="yui_3_17_2_1_1607025480042_12708">
-        <div class="image-button-inner" id="yui_3_17_2_1_1607025480042_12707">
-          <a href="/educator">LEARN</a>
-        </div>
-      </div>  
-    </div>
-
-  </div>
-
-  <div class=newcolumn>
-    <div class="f1_container flip-card">
-      <div class="f1_card flip-card-inner" class="shadow">
-        <div class="front face flip-card-front">
-          <img src="https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/t/5fcc597b05ddc9599d175233/1607227771593/partner_cropped.jpg"/>
-          <div class="labelText">SUPPORT</div>
-        </div>
-        <div class="back face center flip-card-back">
-          <p class="message">Check this out if you are interested in becomeing a Unity Partner or would like to find out more about ways to give. <p class="link"><a href="/partners-and-donations">More Info</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="buttoncolumn column">
-      <div class="image-button sqs-dynamic-text" style="font-size: 26.9%;" data-width-percentage="26.9" id="yui_3_17_2_1_1607025480042_12708">
-        <div class="image-button-inner" id="yui_3_17_2_1_1607025480042_12707">
-          <a href="/partners-and-donations">SUPPORT</a>
-        </div>
-      </div>  
-    </div>
-  </div>
-</div>
-
-/* ------------ donor wall 12/12/20
-
-<script>
-$( document ).ready(function() {
-  
-  $('div.summary-item').each(function() {
-    var wall = $('div.summary-excerpt');
-    var flag = false;
-    // remove comments
-    var data = wall.find('p').html().replace(/\/\*(.|\n)*\*\//g, ''); 
-    $('div.data').append(data);
-    var lines = data.split('<br>');   // lines is an array of strings
-    for (var j = 0; j < lines.length; j++) {
-      line = lines[j].trim();
-      var test = line.split('//');
-      if (test.length) {line = test[0];}
-      // have line and not comment
-      if (line && line.substr(0,2) != '//') {
-        // group heading 
-        if (line.substr(0,1) == '#') {
-          line = line.substr(1).trim();
-          wall.append('<div class=heading>' + line + '</div>');
-          flag = true; 
-        }
-        else if (!flag) {
-          wall.append('<div class=note>' + line + '</div>');
-        }
-        // Donor name
-        else {
-          wall.append('<div class=donor>' + line + '</div>');
-        }
-      }
-    }
-  })
-});
-</script>
-
--------------  is in iframe from advanced footer
-
-<script>
-  var isInIFrame = (window.location != window.parent.location);
-if(isInIFrame==true && window.name == 'xyz'){
-    alert('iframe ' + window.name + " " + window.location);
-}
-</script>
