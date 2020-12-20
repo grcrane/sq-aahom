@@ -300,6 +300,7 @@ function process_card_info(images, caption, label, message) {
 
 function build_flipcards(file_id = null) {
 
+
   if (!file_id) {
     // default to the Unity flipcard spreadsheet
     var file_id = '1wEfSb4Dnjz-eNEayaNiiws3ta1ZEueiQyG5-BTWSXag';
