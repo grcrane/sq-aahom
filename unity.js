@@ -353,4 +353,5 @@ function build_flipcards(file_id = null) {
   })
   if (cardnumber != '') {
     process_card_info(images, caption, label, message);
+  }
 }
