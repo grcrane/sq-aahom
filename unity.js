@@ -270,6 +270,30 @@ function get_spreadsheet(theurl) {
   return result;
 }
 
+function process_card_info(images, caption, label, message) {
+    var str = 
+    '  <div class=newcolumn>\n' +
+    '   <div class="f1_container flip-card">\n' +
+    '    <div class="f1_card flip-card-inner" class="shadow">\n' +
+    '     <div class="front face flip-card-front">\n';
+    images.forEach(function(img, key) {
+      str = str + 
+    '      <img src="' + img + '"/>\n';
+    })
+    str = str + 
+    '      <div class="labelText">' + caption + '</div>\n' +
+    '     </div>\n' +
+    '     <div class="back face center flip-card-back">\n' +
+    '      <p class="message">' + message + '</p>\n' +
+    '      <p class="link">\n' +
+    '      <a href="/visit">' + label + '</a></p>\n' +
+    '     </div>\n' +
+    '    </div>\n' +
+    '   </div>\n' +
+    '  </div>\n';
+    $('.flex-container').append(str);
+  }
+
 /* ----------------------------------------------------------- */
 /* Get data from spreadsheet a build flipcards html            */
 /* ----------------------------------------------------------- */
@@ -327,27 +351,5 @@ function build_flipcards(file_id = null) {
     }
   })
   if (cardnumber != '') {
-    //process_card_info(images, caption, label, message);
-    var str = 
-    '  <div class=newcolumn>\n' +
-    '   <div class="f1_container flip-card">\n' +
-    '    <div class="f1_card flip-card-inner" class="shadow">\n' +
-    '     <div class="front face flip-card-front">\n';
-    images.forEach(function(img, key) {
-      str = str + 
-    '      <img src="' + img + '"/>\n';
-    })
-    str = str + 
-    '      <div class="labelText">' + caption + '</div>\n' +
-    '     </div>\n' +
-    '     <div class="back face center flip-card-back">\n' +
-    '      <p class="message">' + message + '</p>\n' +
-    '      <p class="link">\n' +
-    '      <a href="/visit">' + label + '</a></p>\n' +
-    '     </div>\n' +
-    '    </div>\n' +
-    '   </div>\n' +
-    '  </div>\n';
-    $('.flex-container').append(str);
-  }
+    process_card_info(images, caption, label, message);
 }
