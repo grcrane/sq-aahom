@@ -284,15 +284,21 @@ function process_card_info(images, caption, label, message) {
     '      <div class="labelText">' + caption + '</div>\n' +
     '     </div>\n' +
     '     <div class="back face center flip-card-back">\n' +
-    '      <p class="message">' + message + '</p>\n' +
-    '      <p class="link">\n' +
-    '      <a href="/visit">' + label + '</a></p>\n' +
+    '      <a href="#">\n' +
+    '      <div>\n' +
+    '        <div class=centerBack>\n' +
+    '          <div class="labelText">' + caption + '</div>\n' +
+    '          <div class="dividerBack"></div>\n' +
+    '          <div class="backContent">\n' + message + 
+    '          </div>\n' +
+    '        </div>\n' +
+    '      </div>\n' +
+    '      </a>\n' +
     '     </div>\n' +
-    '    </div>\n' +
     '   </div>\n' +
     '  </div>\n';
-    $('.flex-container').append(str);
-  }
+  $('.flex-container').append(str);
+}
 
 /* ----------------------------------------------------------- */
 /* Get data from spreadsheet a build flipcards html            */

@@ -511,6 +511,45 @@ div.buttoncolumn {
     margin: 5%;
 }
 
+#flexbox.v2 .flip-card-back {
+  background-color: rgb(102, 102, 102);
+  color: white;
+}
+#flexbox.v2 .centerBack {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+#flexbox.v2 .centerBack .labelText {
+  position: relative;
+  color: inherit;
+}
+#flexbox.v2 .backContent {
+  font-size: 22px;
+  padding: 0 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+#flexbox.v2 .flip-card-back a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: inherit;
+}
+#flexbox.v2 .dividerBack {
+  width: 10%;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  margin: 16px auto 12px;
+}
+
 @media (max-width: 800px) {
     .flex-container {
         flex-direction: column;
