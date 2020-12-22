@@ -107,8 +107,15 @@ function filter_showvals () {
         $('div.summary-item').css('display','none');
     }
 
+    // make sure ids only has unique values
+    var t = [];
+    for(var x = 0; x < ids.length; x++){
+        if(t.indexOf(ids[x]) == -1) {t.push(ids[x]);}
+    }
+    ids = t;
+
     $('div.summary-item').each(function(index, value) {
-        xidsx = [...ids]; // copy the array of checked items
+        xidsx = ids; // copy the array of checked items
         $(this).find('div.summary-content div.summary-metadata-container div.summary-metadata span.summary-metadata-item--cats a').filter(function (index2) {
             var t = this.href.indexOf('?category=');
             var i = xidsx.indexOf(this.href.substr(t+10));
@@ -224,6 +231,14 @@ function resizeFlipBoxes() {
     $('.flip-card').width(boxwidth + 'px').height(boxwidth + 'px');
   }
   
+  var x = $("#flexbox .flip-card-back .backContent").position();
+  //alert("Top: " + x.top + " Left: " + x.left);
+  var h = $("#flexbox .flip-card-back").height();
+  h = (h/2) - x.top; // backContent starts at 50% from top
+  var lineh = $("#flexbox .flip-card-back .backContent").css('line-height').replace('px', '');
+  var lines = h/lineh >> 0;  // round down with sign-propogation
+  $('#flexbox.v2 .backContent').css("-webkit-line-clamp", lines.toString());
+  /*
   var w = $('.f1_container').width();
   var fontsize = w/12;
   var lheight = fontsize + 4;
@@ -233,6 +248,7 @@ function resizeFlipBoxes() {
     .css('line-height',lheight + 'px')
     .css('height',(lheight*5) + 'px')
     .css('max-height',(lheight*5) + 'px');
+  */
 
 }
 

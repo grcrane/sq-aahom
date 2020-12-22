@@ -528,10 +528,10 @@ div.buttoncolumn {
   color: inherit;
 }
 #flexbox.v2 .backContent {
-  font-size: 22px;
+  font-size: 15px;
   padding: 0 20px;
   display: -webkit-box;
-  -webkit-line-clamp: 10;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -548,6 +548,28 @@ div.buttoncolumn {
   border-bottom-width: 3px;
   border-bottom-style: solid;
   margin: 16px auto 12px;
+}
+
+/* replace object-fit:cover because of IE problems */
+div.section-background div.mySlides img,
+div.front.face img { 
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  /*right: 50%;
+  transform: translate(50%, 0);*/
+  /*object-fit: none;*/
+}
+
+/* replace object-fit:cover because of IE problems */
+div.section-background div.mySlides img,
+div.front.face img {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; 
 }
 
 @media (max-width: 800px) {
