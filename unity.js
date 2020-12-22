@@ -237,7 +237,7 @@ function resizeFlipBoxes() {
   h = (h/2) - x.top; // backContent starts at 50% from top
   var lineh = $("#flexbox .flip-card-back .backContent").css('line-height').replace('px', '');
   var lines = h/lineh >> 0;  // round down with sign-propogation
-  lines = (w-80)/lineh >> 0; 
+  lines = (w-100)/lineh >> 0; 
   $('#flexbox.v2 .backContent').css("-webkit-line-clamp", lines.toString());
   console.log("Top: " + x.top + " Left: " + x.left + " h=" + h + " w=" + w + " lineh=" + lineh + " lines=" + lines);
   /*
