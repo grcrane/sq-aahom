@@ -232,12 +232,13 @@ function resizeFlipBoxes() {
   }
   
   var x = $("#flexbox .flip-card-back .backContent").position();
-  //alert("Top: " + x.top + " Left: " + x.left);
+  
   var h = $("#flexbox .flip-card-back").height();
   h = (h/2) - x.top; // backContent starts at 50% from top
   var lineh = $("#flexbox .flip-card-back .backContent").css('line-height').replace('px', '');
   var lines = h/lineh >> 0;  // round down with sign-propogation
   $('#flexbox.v2 .backContent').css("-webkit-line-clamp", lines.toString());
+  console.log("Top: " + x.top + " Left: " + x.left + " h=" + h + " lineh=" + lineh + " lines=" + lines);
   /*
   var w = $('.f1_container').width();
   var fontsize = w/12;
