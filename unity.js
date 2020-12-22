@@ -230,28 +230,9 @@ function resizeFlipBoxes() {
   else {
     $('.flip-card').width(boxwidth + 'px').height(boxwidth + 'px');
   }
-  
-  var x = $("#flexbox .flip-card-back .backContent").position();
-  
-  var h = $("#flexbox .flip-card-back").height();
-  h = (h/2) - x.top; // backContent starts at 50% from top
   var lineh = $("#flexbox .flip-card-back .backContent").css('line-height').replace('px', '');
-  var lines = h/lineh >> 0;  // round down with sign-propogation
-  lines = (w-100)/lineh >> 0; 
+  var lines = (w-100)/lineh >> 0; // round down with sign-propogation
   $('#flexbox.v2 .backContent').css("-webkit-line-clamp", lines.toString());
-  console.log("Top: " + x.top + " Left: " + x.left + " h=" + h + " w=" + w + " lineh=" + lineh + " lines=" + lines);
-  /*
-  var w = $('.f1_container').width();
-  var fontsize = w/12;
-  var lheight = fontsize + 4;
-  var box = $("#flexbox .flip-card-back p.message");
-  $(box).css('font-size',fontsize + 'px') 
-    .css('line-height',lheight + 'px')
-    .css('line-height',lheight + 'px')
-    .css('height',(lheight*5) + 'px')
-    .css('max-height',(lheight*5) + 'px');
-  */
-
 }
 
 function setup_flipboxes() {
