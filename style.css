@@ -61,7 +61,6 @@ body[data-menu-overlay-theme-switcher="true"]:not(.header--menu-open)
 /* Filter checkboxes for programs, events                              */
 /* ------------------------------------------------------------------- */
 
-// Filter flexbox
 #filterContainer .flexBox {
     display: flex;
     flex-wrap: wrap;
