@@ -95,7 +95,8 @@ function filter_showvals () {
     // get an array of checked items
     var ids = [];
     var xidsx = [];
-    $('#filterContainer input[type=checkbox]:checked')
+    $('#filterContainer input[type=checkbox]:checked, ' +
+        '#filterContainer input[type=radio]:checked')
       .each(function() {
         if(this.value) {ids.push(this.value); }
     });
