@@ -320,7 +320,7 @@ form#selectOptions input {
 /* Donor wall                                       */
 /* ------------------------------------------------ */
 
-div.summary-excerpt div.heading {
+#donorWall div.heading {
   white-space: pre-wrap;
   background: #f39732;
   padding: 10px;
@@ -329,13 +329,13 @@ div.summary-excerpt div.heading {
   margin: 10px 0;
 }
 
-div.summary-excerpt div.donor {
+#donorWall div.donor {
 }
 
-div.summary-excerpt div.note {
+#donorWall div.note {
   font-style: italic;
 }
-
+/*
 div.wall {
   width: 80%;
   margin: 0 auto;
@@ -346,6 +346,7 @@ div.summary-excerpt p {
 div.summary-title a {
   font-weight: bold;
 }
+*/
 
 /* ------------------------------------------------ */
 /* Flex boxes                                       */
