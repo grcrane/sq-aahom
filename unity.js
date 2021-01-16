@@ -78,8 +78,8 @@ function filter_values () {
     filter_showvals();
 
     // Process a checkbox selection 
-    $('#filterContainer input[type=checkbox]').on('change', function(e) {
-        console.log('change=' + this.value);
+    $('#filterContainer input[type=checkbox], ' +
+        '#filterContainer input[type=radio]').on('change', function(e) {
         var name = $(this).attr('name');
         if (name) {
         $('#filterContainer input[type=checkbox][name=' + name + ']')
