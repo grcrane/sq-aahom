@@ -30,7 +30,7 @@ function doGalleryShow() {
         var imgtemp = $(this).find('img');
         var imgcap = $(this).find('figcaption p.gallery-caption-content').text();
         var caplink = $(this).find('a').first().attr('href');
-        if (caplink) {
+        if (caplink && imgcap) {
             imgcap = '<a href="' + caplink + '">' + imgcap + '</a>';
         }
         if (imgcap) { imgcap = '<div class="slideCaption">' + imgcap + '</div>';}
@@ -68,26 +68,29 @@ function doGalleryShow() {
     setTimeout(carousel, 8000);
   }
   
-  /* ------------------------------------------------------------------- */
+/* ------------------------------------------------------------------- */
 /* Filter checklist values                                             */
 /* ------------------------------------------------------------------- */ 
 
+var catloc =  'div.summary-content ' + 
+    'div.summary-metadata-container ' + 
+    'div.summary-metadata ' + 
+    'span.summary-metadata-item--cats a';
+
+
 function filter_values () {
+
+    $(catloc).addClass('filterCat');
 
     // initialize based on current checkboxes
     filter_showvals();
 
     // Process a checkbox selection 
     $('#filterContainer input[type=checkbox], ' +
-        '#filterContainer input[type=radio]').on('change', function(e) {
-        var name = $(this).attr('name');
-        if (name) {
-        $('#filterContainer input[type=checkbox][name=' + name + ']')
-         .not(this).attr('checked',false);
-        }
+    '#filterContainer input[type=radio]')
+    .on('change', function(e) {
         filter_showvals();
     })
-
 }
 
 function filter_showvals () {
@@ -97,11 +100,11 @@ function filter_showvals () {
     var xidsx = [];
     $('#filterContainer input[type=checkbox]:checked, ' +
         '#filterContainer input[type=radio]:checked')
-      .each(function() {
+        .each(function() {
         if(this.value) {ids.push(this.value); }
     });
-
-    $('div.summary-content div.summary-metadata-container div.summary-metadata span.summary-metadata-item--cats a').removeClass('active');
+   
+    $(catloc).removeClass('active');
 
     // if we have anything checked then start with everything hidden
     if (ids.length) {
@@ -116,9 +119,8 @@ function filter_showvals () {
     ids = t;
 
     $('div.summary-item').each(function(index, value) {
-        //xidsx = ids; 
         var xidsx = ids.slice(); // copy the array of checked items
-        $(this).find('div.summary-content div.summary-metadata-container div.summary-metadata span.summary-metadata-item--cats a').filter(function (index2) {
+        $(this).find(catloc).filter(function (index2) {
             var t = this.href.indexOf('?category=');
             var i = xidsx.indexOf(this.href.substr(t+10));
             if ( i >= 0) {
@@ -134,7 +136,7 @@ function filter_showvals () {
             $(this).css('display','block');
         }
     });
-}  
+}    
 
 /* ------------------------------------------------------------------- */
 /* Accordian                                                           */
