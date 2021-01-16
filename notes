@@ -102,9 +102,13 @@ All checkboxes with same "name=" will be considered radio
 ** page code
 <script>
 $( document ).ready(function() {
-  do_donor_wall(); 
+    // initialize based on current checkboxes
+    var file_id = '1Euo2kWx3lMC60XIAE7oUgXjEjoXkktFU3cW3YpZKLKw'; // grcrane319 
+    do_donor_wall2(file_id);
 });
-</script> 
+</script>
+<h2>Donor Wall</h2>
+<div  class="summary-excerpt" id="donorWall"></div>
 
 ** Notes
 
