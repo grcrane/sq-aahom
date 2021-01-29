@@ -209,8 +209,8 @@ div.slideCaption {
    display: block;
   }
 
-.item-pagination-link {
-    display: none;
+h2.item-pagination-title {
+  font-size: 1.2em;
 }
 
 /* ------------------------------------------------ */
