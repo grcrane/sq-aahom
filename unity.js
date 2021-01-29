@@ -5,6 +5,17 @@
 
 function doGalleryShow() {
 
+    /* Don't do the fancy gallery if we are in IE 11 or earlier */
+    /*
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf('MSIE '); // IE 10 and older
+    var trident = ua.indexOf('Trident/'); // IE 11
+    if (msie > 0 || trident > 0) {
+        var gallery = $('#page  article:first-child section.gallery-section').first().find('figure');
+        gallery.closest('section').css('display', 'none'); 
+        return;
+    }
+    */
     // get some selectors and data 
     var background = $('#page article:first-child section:first-child div.section-background');
     var gallery = $('#page  article:first-child section.gallery-section').first().find('figure');
@@ -14,8 +25,8 @@ function doGalleryShow() {
         return false;
     } 
 
-    // Don't need the initial template image anymore.
-    background.find('img').remove();
+    // Hide the initial template, not needed.
+    background.find('img').css('display','none');
 
     // https://stackoverflow.com/questions/326069/how-to-identify-if-a-webpage-is-being-loaded-inside-an-iframe-or-directly-into-t
     // See if we are editing the SquareSpace page, if so hide the gallery section
