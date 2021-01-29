@@ -128,4 +128,16 @@ Anonymous
 The Kresge Foundation
 Institute of Museum and Library Services
 ...
+------------ Spreadsheet formulas --------------------
 
+-- Summer Camp spreadsheet (1/24/21)
+
+-- Column M.  Look in sheet "Camps", 
+-- For match of this sheet, column D, return look sheet column b (2)
+
+=ArrayFormula(IF(ROW(J:J)=1,"Title",IFERROR(VLOOKUP(D1:D,Camps!$A$2:$C,2,FALSE))))
+
+-- Column N.  Look in sheet "Camps", 
+-- For match of this sheet, column D, return look sheet column b (2)
+
+=ArrayFormula(IF(ROW(K:K)=1,"Excerpt",IFERROR(VLOOKUP(D1:D,Camps!$A$2:$C,3,FALSE))))
