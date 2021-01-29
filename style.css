@@ -551,7 +551,7 @@ div.buttoncolumn {
 }
 
 /* replace object-fit:cover because of IE problems */
-div.section-background div.mySlides img,
+
 div.front.face img { 
   width: auto;
   height: auto;
@@ -564,7 +564,7 @@ div.front.face img {
 }
 
 /* replace object-fit:cover because of IE problems */
-div.section-background div.mySlides img,
+
 div.front.face img {
   top: 0;
   left: 0;
