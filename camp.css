@@ -1,0 +1,71 @@
+#container {
+	width: 1000px;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  /*border: 1px solid black;*/
+}
+th, td {
+	border: 1px solid black;
+}
+th {
+  text-align: center;
+  width: calc(100%/8);
+}
+td {
+  height: 100px;
+  vertical-align: middle;
+  padding: 5px;
+}
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+tr.groups {
+	height: 100px;
+}
+
+td, th {
+	background: rgb(215,215,215);
+}
+
+th.environmental, td.environmental,
+th.env, td.env {
+	background: #6c8f3b;
+	color: white;
+}
+th.stem, td.stem {
+	background: #2159a8;
+	color: white;
+}
+th.environmental a, td.environmental a,
+th.env a, td.env a,
+th.stem a, td.stem a {
+	color: white;
+}
+
+
+th.label, tr.label th, tr.label td, td.label, tr td:first-child, tr td.gray {
+	background: #827b7c;
+	color: white;
+}
+tr {
+	text-align: center;
+}
+tr td.cool {
+	background: rgb(55,34,40);
+}
+a {
+	text-decoration: none;
+}
+.ui-tooltip {
+	padding: 10px 20px;
+	color: black;
+	border-radius: 20px;
+}
+th.blankbox {
+	background: none;
+	border: none;
+}

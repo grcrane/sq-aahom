@@ -141,3 +141,41 @@ Institute of Museum and Library Services
 -- For match of this sheet, column D, return look sheet column b (2)
 
 =ArrayFormula(IF(ROW(K:K)=1,"Excerpt",IFERROR(VLOOKUP(D1:D,Camps!$A$2:$C,3,FALSE))))
+
+
+------------ CAMP body ------------------------------
+
+<div id="container">
+  <div style="overflow-x:auto;">
+<table>
+  <thead>
+    <tr class="groups">
+      <th class="blankbox">&nbsp;</th>
+      <th class="environmental" colspan=5>Environmental Education</th>
+      <th class="stem" colspan=2>STEM Education</th>
+    </tr>
+    <tr class=label>
+      <th>Week</th>
+      <th>Dates</th>
+      <th>Tykes (4-5)</th>
+      <th>K/1</th>
+      <th>2/3</th>
+      <th>4/5</th>
+      <th>2/3</th>
+      <th>4/5</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+
+</div>
+
+---------- CAMP JS -------------------------------
+
+$( document ).ready(function() {
+    var file_id = '14CwA2z_TuhDNtYTXDFdHJBzuu6qZQUqLk9Ua_nqcPso'; // grcrane319 
+    do_camp_list(file_id);
+    $( document ).tooltip();
+});
