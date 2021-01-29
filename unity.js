@@ -62,11 +62,11 @@ function doGalleryShow() {
 
     // start the slideshow
     
-    carousel();
+    gallerycarousel();
 }
   
   var myIndex = 0;
-  function carousel() {
+  function gallerycarousel() {
     var i;
     var background = $('#page article:first-child section:first-child div.section-background');
     var x = background.find('.mySlides');
@@ -76,7 +76,7 @@ function doGalleryShow() {
     x.removeClass("opaque");
     background.find('div.mySlides').eq(myIndex).addClass("opaque");
     myIndex++;
-    setTimeout(carousel, 8000);
+    setTimeout(gallerycarousel, 8000);
   }
   
 /* ------------------------------------------------------------------- */
