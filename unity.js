@@ -284,7 +284,7 @@ function get_spreadsheet(theurl) {
   return result;
 }
 
-function process_card_info(images, caption, label, message) {
+function process_card_info(link,images, caption, label, message) {
     var str = 
     '  <div class=newcolumn>\n' +
     '   <div class="f1_container flip-card">\n' +
@@ -298,7 +298,7 @@ function process_card_info(images, caption, label, message) {
     '      <div class="labelText">' + caption + '</div>\n' +
     '     </div>\n' +
     '     <div class="back face center flip-card-back">\n' +
-    '      <a href="#">\n' +
+    '      <a href="' + link + '">\n' +
     '      <div>\n' +
     '        <div class=centerBack>\n' +
     '          <div class="labelText">' + caption + '</div>\n' +
@@ -345,7 +345,7 @@ function build_flipcards(file_id = null) {
     if (Number.isInteger(cardnumber)) { 
       if (prevcard != cardnumber) {
         if (prevcard != '') {
-          process_card_info(images, caption, label, message); 
+          process_card_info(link,images, caption, label, message); 
         }
         images = [];
         caption = 'TEST';
