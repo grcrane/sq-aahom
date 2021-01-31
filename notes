@@ -17,6 +17,18 @@ cdn (12/20/20)
 
 ** page code
 
+<style>
+ #flexbox.v2 .backContent {
+    font-size: 15px;
+    -webkit-line-clamp: 5;
+  }
+ 
+ #flexbox.v2 div.centerBack .labelText {
+   left: unset;
+   top: unset;
+   transform: unset;
+  }
+</style>
 <script>
 $( document ).ready(function() {
   var file_id = '1wEfSb4Dnjz-eNEayaNiiws3ta1ZEueiQyG5-BTWSXag';
@@ -24,7 +36,7 @@ $( document ).ready(function() {
   setup_flipboxes(); // resize and setup flipboxes
 });
 </script>
-<div id=flexbox>
+<div id=flexbox class="v2">
   <div class="flex-container sampleClass">
   </div>
 </div>
