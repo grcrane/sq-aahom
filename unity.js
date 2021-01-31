@@ -372,6 +372,6 @@ function build_flipcards(file_id = null) {
     }
   })
   if (cardnumber != '') {
-    process_card_info(images, caption, label, message);
+    process_card_info(link,images, caption, label, message);
   }
 }
