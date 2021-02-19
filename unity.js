@@ -213,7 +213,7 @@ function do_donor_wall_new(file_id) {
     var sheet = 'DonorWall';
 
     var url = 'https://docs.google.com/spreadsheets/u/0/d/'
-    + file_id + '/gviz/tq?sheet=' + sheet + '&tqx=out:json&tq=' + escape('SELECT A, B, C, D, E ORDER BY A DESC');
+    + file_id + '/gviz/tq?sheet=' + sheet + '&tqx=out:json&headers=1&tq=' + escape('SELECT A, B, C, D, E ORDER BY A DESC');
 
     var spreadSheetLink = 'https://docs.google.com/spreadsheets/d/' + file_id + '/edit';
 
