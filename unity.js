@@ -1,25 +1,60 @@
-/* ------------------------------------------------------------------- */
-/* Slideshow gallery                                                   */
-/* ------------------------------------------------------------------- */
+/* files included 
 
+common.css
+gallery.css
+iconbar.css
+flipbox3.css
+hours.css
+faqs2.css
+teamboxes2.css
+filter.css
+donor.css
+
+common.js
+gallery.js
+iconbar.js
+flipbox3.js
+hours.js
+faqs2.js
+teamboxes2.js
+filter.js
+donor.js
+
+*/ 
+
+/* ----------------------------------------------------------- */
+/* Process the ajax request to get spreadsheet data            */
+/*    04/10/2021 - initial                                     */
+/* ----------------------------------------------------------- */
+
+function get_spreadsheet(theurl) {
+  var result = "";
+  $.ajax({
+      url: theurl,
+      dataType: 'text',
+      async: false,
+      success: function(data) {
+          i = data.indexOf('(');
+          j = data.lastIndexOf(')');
+          data = data.substr(i + 1, j - 1 - i);
+
+          var data = JSON.parse(data);
+          result = data;
+      }
+  });
+  return result;
+}
+
+/* ----------------------------------------------------------- */
+/* Slideshow gallery                                           */
+/* ----------------------------------------------------------- */
 
 function doGalleryShow() {
 
-    /* Don't do the fancy gallery if we are in IE 11 or earlier */
-    /*
-    var ua = window.navigator.userAgent;
-    var msie = ua.indexOf('MSIE '); // IE 10 and older
-    var trident = ua.indexOf('Trident/'); // IE 11
-    if (msie > 0 || trident > 0) {
-        var gallery = $('#page  article:first-child section.gallery-section').first().find('figure');
-        gallery.closest('section').css('display', 'none'); 
-        return;
-    }
-    */
     // get some selectors and data 
     var background = $('#page article:first-child section:first-child div.section-background');
-    var gallery = $('#page  article:first-child section.gallery-section').first().find('figure');
-
+    var gallery = $('#page  article:first-child section.gallery-section').first().find('figure.gallery-grid-item');
+    
     // If no gallery found so abort
     if (gallery.length == 0) {
         return false;
@@ -62,11 +97,11 @@ function doGalleryShow() {
 
     // start the slideshow
     
-    gallerycarousel();
+    galleryCarousel();
 }
   
   var myGalIndex = 0;
-  function gallerycarousel() {
+  function galleryCarousel() {
     var i;
     var background = $('#page article:first-child section:first-child div.section-background');
     var x = background.find('.mySlides');
@@ -76,9 +111,395 @@ function doGalleryShow() {
     x.removeClass("opaque");
     background.find('div.mySlides').eq(myGalIndex).addClass("opaque");
     myGalIndex++;
-    setTimeout(gallerycarousel, 8000);
+    setTimeout(galleryCarousel, 8000);
   }
+
+/*-------------------------------------------------------------*/
+/* Icon Bar                                                    */
+/*    04/17/2021 - initial                                     */
+/*-------------------------------------------------------------*/
+
+var iconsFor = ['aahom','leslie','unity','yankee']; 
+var icons = [
+'https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/60316dbd7dd52d12ad920e7f/605f4857363da23de8d99653/1616857176038/aahom.png?format=2500w',
+'https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/60316dbd7dd52d12ad920e7f/605f48565689961a0425d469/1616857174314/lsnc.png',
+'https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/60316dbd7dd52d12ad920e7f/605f48578926120327029e3f/1616857176069/uil.png',
+'https://static1.squarespace.com/static/5f73ca8db43a982332ef42a7/60316dbd7dd52d12ad920e7f/605f485760b0890b8760c9d1/1616857176070/yam.png'
+]
+function showIconBar(sticky = true, iconID = 'iconBar') {
+  var temp = '<ul class="iconBarFlex">';
+  icons.forEach(function(item,key) {
+    temp += '<li class="flex-item"><img src="' + item + '"></li>\n';
+  })
+  temp += '</ul>\n';
+  $('#' + iconID).html(temp); 
+  if (sticky) {
+    var s = $('article:first-of-type section:first-of-type div.content-wrapper div.content');
+    var h = s.height();
+    h = parseInt(h) + 100; 
+    s.height(h + 'px'); 
+    $('#' + iconID).addClass('sticky');
+    $('#' + iconID).appendTo('#page article:first-of-type section:first-of-type div.section-background');
+        $('div.mySlides div.slideCaption').css('bottom','100px');
+  } 
+}
+
+/* ----------------------------------------------------------- */
+/* Flipbox3 - Home page flip boxes                             */
+/*    04/10/2021 - initial                                     */
+/* ----------------------------------------------------------- */
+
+var columnIndex = 1; 
+
+function flipCardResize3() {
+  var fontsize = parseInt($('#flexbox.v3 .backContent').css('font-size'));
+  var height = parseInt($('#flexbox.v3 div.newcolumn .flip-card').css('height'));
+  var lineheight = fontsize * 1.2;
+  var lines = parseInt(height / lineheight);
+  //alert(fontsize + ' ' + height + ' ' + lineheight + ' ' + lines); 
+  $('#flexbox.v3 .backContent').css("-webkit-line-clamp", lines.toString());
+  $('#flexbox.v3 .backContent').css("line-height", lineheight + 'px');
+}
+
+function flip_carousel3() {
+  var i;
+  var numColumns = $('.newcolumn').length;
+  if (columnIndex > numColumns) { columnIndex = 1;}
+  var background = $('.newcolumn:nth-child(' + +columnIndex + ') .flip-card-front');
+  columnIndex++;
+  var t = background.find('img.active').index();
+  myIndex =  t + 1;
+  var x = background.find('img');
+  if (myIndex >= x.length) {
+    myIndex = 0
+  }
+  x.removeClass("active");
+  background.find('img').eq(myIndex).addClass("active");
+  myIndex++;
+  setTimeout(flip_carousel3, 5000);
+}
+
+function process_card_info3(link,images, caption, label, message) {
+    var str = 
+    '  <div class=newcolumn>\n' +
+    '   <div class="f1_container flip-card">\n' +
+    '    <div class="f1_card flip-card-inner" class="shadow">\n' +
+    '     <div class="front face flip-card-front">\n';
+    images.forEach(function(img, key) {
+      str = str + 
+    '      <img src="' + img + '"/>\n';
+    })
+    str = str + 
+    '      <div class="labelText">' + caption + '</div>\n' +
+    '     </div>\n' +
+    '     <div class="back face center flip-card-back">\n' +
+    '      <a href="' + link + '">\n' +
+    '      <div>\n' +
+    '        <div class=centerBack>\n' +
+    '          <div class="labelText">' + caption + '</div>\n' +
+    '          <div class="dividerBack"></div>\n' +
+    '          <div class="backContent">\n' + message + 
+    '          </div>\n' +
+    '        </div>\n' +
+    '      </div>\n' +
+    '      </a>\n' +
+    '     </div>\n' +
+    '   </div>\n' +
+    '  </div>\n';
+  $('.flex-container').append(str);
+}
+
+/* ----------------------------------------------------------- */
+/* Get data from spreadsheet a build flipcards html            */
+/* ----------------------------------------------------------- */
+
+function build_flipcards3(boxNumber = '1', file_id = null, sheet = null) {
+
+
+  if (!file_id) {
+    file_id = '1wEfSb4Dnjz-eNEayaNiiws3ta1ZEueiQyG5-BTWSXag';
+  }
+  if (!sheet) {
+    sheet = 'Cards2';
+  }
+  var where = 'SELECT * WHERE A=' + boxNumber + ' ORDER BY A, B';
+  var url = 'https://docs.google.com/spreadsheets/u/0/d/'
+    + file_id + '/gviz/tq?tqx=&sheet=' + sheet + 
+    '&headers=1&tq=' + escape(where);
+
+  var cardlist = get_spreadsheet(url);
+  var cards = cardlist.table.rows;
+  console.log(cards);
+
+  var prevcard = ''; 
+  cards.forEach(function(item, key) {
+    var images = [];
+    var cardnumber = '';
+    var label = 'More Info';
+    var message = 'See more info';
+    var caption = 'VISIT'; 
+    var link = '#'; 
+    var background = 'rgb(102,102,102)';
+    var color = 'white'; 
   
+    if (item.c[1] != null) {cardnumber = item.c[1].v;}
+    if (item.c[2] != null) {caption = item.c[2].v;}
+    if (item.c[3] != null) {label = item.c[3].v;}
+    if (item.c[4] != null) {link = item.c[4].v;}
+    if (item.c[5] != null) {background = item.c[5].v;}
+    if (item.c[6] != null) {color = item.c[6].v;}
+    if (item.c[7] != null) {message = item.c[7].v;}
+    for (var i = 8; i < 15; i++) {
+      if (item.c[i] != null) { images.push(item.c[i].v); }
+    };
+    process_card_info3(link,images, caption, label, message);
+  })   
+
+  $('div.front.face img:first-child')
+    .addClass("active");
+    $('')
+  setTimeout(flip_carousel3, 5000);
+
+  flipCardResize3();
+
+  $( window ).resize(function() {
+    flipCardResize3();
+  });
+}
+
+/*-------------------------------------------------------------*/
+/* Address/Hours/Admissions flex boxes                         */
+/*    04/10/2021 - initial                                     */
+/*-------------------------------------------------------------*/
+
+function showAddressInfo(museum = null,file_id = null, sheet = null) {
+  if (!file_id) {
+    file_id = '1eBU2TqbjAT0-PUkKVa0J9obsoyIBJ7ib_KJMQLNym8Y';
+  }
+  if (!sheet) {
+    sheet = 'Hours';
+  }
+  var where = ''; 
+  if (museum) {
+    where = ' WHERE lower(A) = lower("' + museum + '") ';
+  }
+  var url = 'https://docs.google.com/spreadsheets/u/0/d/'
+    + file_id + '/gviz/tq?tqx=out:json&sheet=' + sheet + 
+    '&headers=1&tq=' + escape('SELECT * ' + where + ' ORDER BY A, B LIMIT 1');
+  var colorClass = "museum" + museum.charAt(0).toUpperCase() + museum.slice(1);
+  $('#hoursContainer').html(out).addClass(colorClass); 
+  var addlist = get_spreadsheet(url);
+  var adds = addlist.table.rows;
+  var out = '<p>No data found</p>'; 
+  if (adds[0]) {
+    var item = adds[0];  
+    var namd = item.c[0].v;
+    
+    var add1 = (item.c[1] != null) ? item.c[1].v : 'unknown';
+    var text1 = (item.c[2] != null) ? item.c[2].v : 'unknown';
+    var add2 = (item.c[3] != null) ? item.c[3].v : 'unknown';
+    var text2 = (item.c[4] != null) ? item.c[4].v : 'unknown';
+    var add3 = (item.c[5] != null) ? item.c[5].v : 'unknown';
+    var text3 = (item.c[6] != null) ? item.c[6].v : 'unknown';
+    out = '<div>\n<h3>' + add1 + '</h3>\n' + text1 + '</div>\n';
+    out = out + '<div>\n<h3>' + add2 + '</h3>\n' + text2 + '</div>\n';
+    out = out + '<div>\n<h3>' + add3 + '</h3>\n' + text3 + '</div>\n';
+  } 
+  $('#hoursContainer').html(out).css('display','flex'); 
+  return; 
+}
+
+/*-------------------------------------------------------------*/
+/* Frequently Asked Questions, FAQS2                           */
+/*    04/11/2021 - initial                                     */
+/*-------------------------------------------------------------*/
+
+function do_faqs2(museums, collapsed = true, file_id = null, sheet = null) {
+
+    var listCol = 0;
+    var catCol = 1;
+    var hideCol = 2;
+    var questionCol = 3;
+    var answerCol = 4;
+    var tabLinks = ''; 
+    var out = '';
+    var activeli = 0;
+    var tabs = []; 
+    var mtabs = [
+      'unity',
+      'aahom',
+      'leslie',
+      'yankee',
+      'experience',
+      'challenger'];
+    var mtitles = [
+      'Unity in Learning','Ann Arbor Hands-On',
+      'Leslie Center','Yankee air Museum','Experience Center',
+      'Challenger Center'];
+
+    if (!file_id) {
+      file_id = '1f3G-ECzjt8p-czZNPyUQGXG8NND016Nue5QypQTf6PQ';
+    }
+    if (!sheet) {
+      var sheet = 'FAQS';
+    }
+
+    if (collapsed == true) {activeli = 'none';}
+
+    if ($(window).width() < 960) {
+      activeli = 'none';
+    }
+    if (!museums) {
+      museums = mtabs.join();
+    }
+    var theMuseums = museums.split(",");
+    theMuseums.forEach(function(item) {
+      console.log('museum=' + item.toLowerCase());
+      var i = mtabs.indexOf(item.toLowerCase());
+      console.log('index=' + i + ' title=' + mtitles[i]); 
+    });
+
+    var url = 'https://docs.google.com/spreadsheets/u/0/d/'
+    + file_id + '/gviz/tq?sheet=' + sheet + '&tqx=out:json&headers=1&tq=' + 
+    escape("SELECT A, B, C, D, E WHERE C != 'Yes'");
+    var spreadSheetLink = 'https://docs.google.com/spreadsheets/d/' + file_id + '/edit';
+    var faqlist = get_spreadsheet(url);
+    console.log(url);
+    // Test for some error conditions 
+    if(faqlist.length == 0) {
+        $('.faq_container').append('<br>Ooops.. unable to read spreadsheet</br>' +
+          '<p>url=' + url);
+        return;
+    }
+    if(theMuseums.length == 0) {
+        $('.faq_container').append('<br>Ooops.. No lists name provided</br>');
+        return;
+    }
+
+    // Loop for each tab 
+    var faqs = faqlist.table.rows;
+    theMuseums.forEach(function(item, key) {
+      var i = mtabs.indexOf(item.toLowerCase());
+      if (i) {
+        var val = item;
+        // camelcase css tag for background
+        var background = 'color' + item.charAt(0).toUpperCase() + item.slice(1).toLowerCase();
+        if (item.length>1) { val = mtitles[i];}
+        tabLinks = tabLinks + '<li class="' + background + '"><a href="#tabs-' + +(key+1) + '">' + val + '</a></li>\n'; 
+        var lookfor = item.toLowerCase();
+        
+        // Loop for the questions/answers in each tab 
+        out = out + '<div id="tabs-' + +(key+1) + '">\n<div class="accordian">\n'; 
+        faqs.forEach(function(item2, key2) {
+          if (item2.c[listCol] != null && item2.c[listCol].v.toLowerCase() == lookfor) {
+            out = out + '<h3 class="' + background + '">' + item2.c[questionCol].v + '</h3><div>\n';
+            out = out + '<p>' + item2.c[answerCol].v + '</p></div>\n';
+          }
+        });
+        out = out + '</div>\n</div>\n';
+      }
+
+      });
+      
+      out = '<div id="tabs"><ul>' + tabLinks + '</ul>' + out + '</div></div>\n';
+
+      $(out).appendTo('.faq_container');
+
+      // Initialize the accordian styles
+      $( ".accordian" ).accordion({
+        collapsible: true, active : activeli,
+        heightStyle: "content"
+      });
+
+      // Display the faqs
+      $( "#tabs" ).tabs();
+
+}
+
+/* ----------------------------------------------------------- */
+/* Team Boxes                                                  */
+/*    04/11/2021 - initial                                     */
+/* ----------------------------------------------------------- */ 
+
+function teamCardResize() {
+  var fontsize = parseInt($('.item_bio').css('font-size'));
+  var height = parseInt($('div.team_container div.item_box div.item_back').css('height'));
+  var padding = parseInt($('div.team_container div.item_box div.item_back div.item_bio').css('padding-top'));
+  height = height - (padding * 2); // allow for padding top and bottom
+  var lineheight = fontsize * 1.2;
+  var lines = parseInt(height / lineheight);
+  //alert(padding + " " + fontsize + ' ' + height + ' ' + lineheight + ' ' + lines); 
+  $('div.team_container div.item_box div.item_bio').css("-webkit-line-clamp", lines.toString());
+  $('div.team_container div.item_box').css("line-height", lineheight + 'px');
+}
+
+function do_team_members2(file_id = null, sheet = null) {
+
+    var firstCol = 0;
+    var lastCol = 1;
+    var orgCol = 2;
+    var groupCol = 3;
+    var titleCol = 4;
+    var hideCol = 5;
+    var imageCol = 6;
+    var bioCol = 7;
+    var linkCol = 8;
+     
+    if (!file_id) {
+      file_id = '1hiPd3cJMf_JOr3Z4RnR3XA6-Z927OSJhxJJgYXix448';
+    }
+    if (!sheet) {
+      var sheet = 'Members';
+    }
+
+    var url = 'https://docs.google.com/spreadsheets/u/0/d/'
+    + file_id + '/gviz/tq?sheet=' + sheet + '&tqx=out:json&headers=1&tq=' + escape("SELECT A, B, C, D, E, F, G, H, I WHERE F = 'No' ORDER BY B, A");
+
+    var teamlist = get_spreadsheet(url);
+    console.log(teamlist);
+    if(teamlist.length == 0) {
+        $('.team_container').append('<br>Ooops.. unable to read spreadsheet</br>');
+        return;
+    }
+    var out = ''; 
+    var teams = teamlist.table.rows;
+    var prevgroup = ''; 
+    teams.forEach(function(item, key) {
+        if (item.c[groupCol] != null) { // ignore blank lines
+            if (prevgroup != item.c[groupCol] || prevgroup == '') {
+              prevgroup = item.c[groupCol].v;
+            }
+            out = out + '<div class="item_box">';
+            out = out + '<div class="item_front">';
+            if (item.c[imageCol] != null) {
+              //var imgsrc = 'https://drive.google.com/uc?export=view&id=1VxokDflhs9p1sIYDYBX7HertCAcP4887'; 
+              out = out + '<img class="item_img" src="' + item.c[imageCol].v + '" alt="Example image">';
+            }
+            if (item.c[lastCol] != null && item.c[firstCol] != null) {
+              out = out + '<div class="item_name">' + 
+                item.c[firstCol].v + ' ' + item.c[lastCol].v;
+              if (item.c[titleCol] != null) {
+                out = out + '<div class="item_title">' + item.c[titleCol].v + '</div>';
+              }
+              out = out + '</div>';
+            }
+            out = out + '</div>'; // end front
+            out = out + '<div class="item_back">';
+            var biotext = 'No bio';
+            if (item.c[bioCol] != null) {
+              biotext = item.c[bioCol].v; }
+            out = out + '<div class="item_bio">' + biotext + '</div>';
+            out = out + '</div>'; // end back
+          out = out + '</div>';     
+        }
+    })
+    $('.team_container').append(out); 
+    teamCardResize();
+    $( window ).resize(function() {
+      teamCardResize();
+    });
+}
+
 /* ------------------------------------------------------------------- */
 /* Filter checklist values                                             */
 /* ------------------------------------------------------------------- */ 
@@ -150,28 +571,6 @@ function filter_showvals () {
 }    
 
 /* ------------------------------------------------------------------- */
-/* Accordian                                                           */
-/* ------------------------------------------------------------------- */
-
-$( document ).ready(function() {
-    $('p span.accordian').closest('.markdown-block').addClass('markdown-accordian');
-    $('.markdown-accordian .sqs-block-content h4').addClass('ui-closed').css('cursor','pointer');
-    $('.markdown-accordian .sqs-block-content h4').css('cursor','pointer');
-    $(".markdown-accordian .sqs-block-content h4").nextUntil("h4").slideToggle();
-    $(".markdown-accordian .sqs-block-content h4").click(function() {
-        var status = $(this).hasClass("ui-open");
-        $(".markdown-accordian .sqs-block-content h4").nextUntil("h4").slideUp();
-        $(".markdown-accordian .sqs-block-content h4").removeClass('ui-open');
-        $(".markdown-accordian .sqs-block-content h4").addClass('ui-closed');
-        if (status == false) {
-           $(this).nextUntil("h4").slideDown();
-           $(this).toggleClass('ui-closed ui-open');
-        }
-    });
-});
-
-
-/* ------------------------------------------------------------------- */
 /* Donor Wall                                                          */
 /* ------------------------------------------------------------------- */
 
@@ -200,7 +599,7 @@ function get_spreadsheet(theurl) {
   return result;
 }
 
-function do_donor_wall_new(file_id) {
+function do_donor_wall_new(file_id = null, sheet = null) {
 
     var colMin = 0;
     var colDonor = 1;
@@ -210,14 +609,21 @@ function do_donor_wall_new(file_id) {
     var footone = '';
     var foottwo = ''; 
     var notes = ''; 
-    var sheet = 'DonorWall';
 
-    var url = 'https://docs.google.com/spreadsheets/u/0/d/'
-    + file_id + '/gviz/tq?sheet=' + sheet + '&tqx=out:json&headers=1&tq=' + escape('SELECT A, B, C, D, E ORDER BY A DESC');
+    if (!file_id) {
+      file_id = '1Euo2kWx3lMC60XIAE7oUgXjEjoXkktFU3cW3YpZKLKw';
+    }
+    if (!sheet) {
+      var sheet = 'DonorWall';
+    }
 
     var spreadSheetLink = 'https://docs.google.com/spreadsheets/d/' + file_id + '/edit';
 
+    var url = 'https://docs.google.com/spreadsheets/u/0/d/'
+    + file_id + '/gviz/tq?sheet=' + sheet + '&tqx=out:json&headers=1&tq=' 
+    + escape('SELECT A, B, C, D, E ORDER BY A DESC');
     var donorlist = get_spreadsheet(url);
+    
     console.log(donorlist);
     if(donorlist.length == 0) {
         $('#donorWall').append('<br>Ooops.. unable to read spreadsheet</br>');
@@ -276,173 +682,4 @@ function do_donor_wall_new(file_id) {
     var link = '<p><a href="' + spreadSheetLink + '" target="_blank">(Edit/View spreadsheet data)</a></p>';
     $('#donorWall').append(footone).append(notes).append(data).append(link);
 
-}
-
-/* ------------------------------------------------------------------- */
-/* Home page flip boxes                                                */
-/* ------------------------------------------------------------------- */
-
-var columnIndex = 1; 
-function flip_carousel() {
-  var i;
-  var numColumns = $('.newcolumn').length;
-  if (columnIndex > numColumns) { columnIndex = 1;}
-  var background = $('.newcolumn:nth-child(' + +columnIndex + ') .flip-card-front');
-  columnIndex++;
-  var t = background.find('img.active').index();
-  myIndex =  t + 1;
-  var x = background.find('img');
-  if (myIndex >= x.length) {
-    myIndex = 0
-  }
-  x.removeClass("active");
-  background.find('img').eq(myIndex).addClass("active");
-  myIndex++;
-  setTimeout(flip_carousel, 5000);
-}
-
-function resizeFlipBoxes() {
-  var boxwidth = ($('#flexbox').width());
-  var parentwidth = ($('html').width());
-  if (parentwidth >= 801) {
-    var f = ($('#flexbox').width());
-    var c = $('.newcolumn').length; 
-    var pwidth = (100/c)-5;
-    $('.newcolumn').width(pwidth + '%');
-    var w = $('.f1_container').width();
-    w = f/c;
-    $('.f1_container').height(w + 'px').width(w +'px');
-  }
-  else {
-    $('.flip-card').width(boxwidth + 'px').height(boxwidth + 'px');
-  }
-  var lineh = $("#flexbox .flip-card-back .backContent").css('line-height').replace('px', '');
-  var lines = (w-100)/lineh >> 0; // round down with sign-propogation
-  $('#flexbox.v2 .backContent').css("-webkit-line-clamp", lines.toString());
-}
-
-function setup_flipboxes() {
-  $('.newcolumn .flip-card-front img:first-child')
-    .addClass("active");
-  resizeFlipBoxes();
-  setTimeout(flip_carousel, 5000);
-
-  $( window ).resize(function() {
-    resizeFlipBoxes();
-  }); 
-  
-}
-
-/* ----------------------------------------------------------- */
-/* Process the ajax request to get spreadsheet data            */
-/* ----------------------------------------------------------- */
-
-function get_spreadsheet(theurl) {
-  var result = "";
-  $.ajax({
-      url: theurl,
-      dataType: 'text',
-      async: false,
-      success: function(data) {
-          i = data.indexOf('(');
-          j = data.lastIndexOf(')');
-          data = data.substr(i + 1, j - 1 - i);
-
-          var data = JSON.parse(data);
-          result = data;
-      }
-  });
-  return result;
-}
-
-function process_card_info(link,images, caption, label, message) {
-    var str = 
-    '  <div class=newcolumn>\n' +
-    '   <div class="f1_container flip-card">\n' +
-    '    <div class="f1_card flip-card-inner" class="shadow">\n' +
-    '     <div class="front face flip-card-front">\n';
-    images.forEach(function(img, key) {
-      str = str + 
-    '      <img src="' + img + '"/>\n';
-    })
-    str = str + 
-    '      <div class="labelText">' + caption + '</div>\n' +
-    '     </div>\n' +
-    '     <div class="back face center flip-card-back">\n' +
-    '      <a href="' + link + '">\n' +
-    '      <div>\n' +
-    '        <div class=centerBack>\n' +
-    '          <div class="labelText">' + caption + '</div>\n' +
-    '          <div class="dividerBack"></div>\n' +
-    '          <div class="backContent">\n' + message + 
-    '          </div>\n' +
-    '        </div>\n' +
-    '      </div>\n' +
-    '      </a>\n' +
-    '     </div>\n' +
-    '   </div>\n' +
-    '  </div>\n';
-  $('.flex-container').append(str);
-}
-
-/* ----------------------------------------------------------- */
-/* Get data from spreadsheet a build flipcards html            */
-/* ----------------------------------------------------------- */
-
-function build_flipcards(file_id = null) {
-
-
-  if (!file_id) {
-    // default to the Unity flipcard spreadsheet
-    var file_id = '1wEfSb4Dnjz-eNEayaNiiws3ta1ZEueiQyG5-BTWSXag';
-  }
-  var url = 'https://docs.google.com/spreadsheets/u/0/d/'
-    + file_id + '/gviz/tq?tqx=&tq=' + escape('SELECT * ORDER BY A, B');
-  
-  var cardlist = get_spreadsheet(url);
-  var cards = cardlist.table.rows;
-
-  var prevcard = ''; 
-  var images = [];
-  var cardnumber = '';
-  var label = 'More Info';
-  var message = 'See more info';
-  var caption = 'VISIT'; 
-  var link = '#'; 
-  cards.forEach(function(item, key) {
-    cardnumber = item.c[0].v;
-    itemtype = item.c[1].v;
-    itemtype = itemtype.toLowerCase();
-    if (Number.isInteger(cardnumber)) { 
-      if (prevcard != cardnumber) {
-        if (prevcard != '') {
-          process_card_info(link,images, caption, label, message); 
-        }
-        images = [];
-        caption = 'TEST';
-        label = 'More Info';
-        link = '#';
-        message = 'See more info';
-        prevcard = cardnumber;
-      }
-      if (itemtype == 'image') {
-        images.push(item.c[2].v);
-      }
-      if (itemtype == 'caption') {
-        caption = item.c[2].v;
-      }
-      if (itemtype == 'message') {
-        message = item.c[2].v;
-      }
-      if (itemtype == 'label') {
-        label = item.c[2].v;
-      }
-      if (itemtype == 'link') {
-        link = item.c[2].v;
-      }
-    }
-  })
-  if (cardnumber != '') {
-    process_card_info(link,images, caption, label, message);
-  }
 }
