@@ -35,6 +35,18 @@ div.faq_container .colorChallenger.ui-state-active,
   color: white;
 }
 
+div.faq_container .colorYankee.ui-state-active,
+.museumSectionBreak.colorYankee{
+  background: rgb(246, 239, 205);
+  color: black;
+}
+
+.ui-state-active.colorYankee a, 
+.ui-state-active.colorYankee a:link, 
+.ui-state-active.colorYankee a:visited {
+    color: black;
+}
+
 .museumSectionBreak {
     text-align: center;
     white-space: normal;
