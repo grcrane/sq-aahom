@@ -152,13 +152,13 @@ function showIconBar(sticky = true, iconID = 'iconBar') {
 var columnIndex = 1; 
 
 function flipCardResize3() {
-  var fontsize = parseInt($('#flexbox.v3 .backContent').css('font-size'));
-  var height = parseInt($('#flexbox.v3 div.newcolumn .flip-card').css('height'));
+  var fontsize = parseInt($('#flexbox.v3 .backContent div').css('font-size'));
+  var height = parseInt($('#flexbox.v3 .backContent').css('height'));
   var lineheight = fontsize * 1.2;
   var lines = parseInt(height / lineheight);
   //alert(fontsize + ' ' + height + ' ' + lineheight + ' ' + lines); 
-  $('#flexbox.v3 .backContent').css("-webkit-line-clamp", lines.toString());
-  $('#flexbox.v3 .backContent').css("line-height", lineheight + 'px');
+  $('#flexbox.v3 .backContent div').css("-webkit-line-clamp", lines.toString());
+  $('#flexbox.v3 .backContent div').css("line-height", lineheight + 'px');
 }
 
 function flip_carousel3() {
@@ -194,14 +194,16 @@ function process_card_info3(link,images, caption, label, message) {
     '     </div>\n' +
     '     <div class="back face center flip-card-back">\n' +
     '      <a href="' + link + '">\n' +
-    '      <div>\n' +
+    
     '        <div class=centerBack>\n' +
-    '          <div class="labelText">' + caption + '</div>\n' +
-    '          <div class="dividerBack"></div>\n' +
-    '          <div class="backContent">\n' + message + 
+    '          <div class="topBox">\n' +
+    '             <div class="labelText">' + caption + '</div>\n' +
     '          </div>\n' +
+    '          <div class="backContent">\n<div>' + message + 
+    '          </div></div>\n' +
+    '          <div class="backLink"><span>Learn More</span></div>' +
     '        </div>\n' +
-    '      </div>\n' +
+   
     '      </a>\n' +
     '     </div>\n' +
     '   </div>\n' +
