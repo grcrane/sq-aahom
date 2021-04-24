@@ -479,6 +479,7 @@ article:first-of-type section:first-of-type div.content-wrapper div.content {
 
 #flexbox.v3 .centerBack div.backLink {
   flex-basis: 20%;
+  position: relative;
 }
 
 #flexbox.v3 .centerBack .labelText {
@@ -528,14 +529,14 @@ article:first-of-type section:first-of-type div.content-wrapper div.content {
 
 #flexbox.v3 .centerBack div.backLink span{
     position: absolute;
-    bottom: 20px;
     text-align: center;
     left: 0;
     right: 0;
     text-decoration: underline;
     font-style: italic;
     font-size: 1.2em;
-    
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 @media (max-width: 1100px) {
