@@ -453,7 +453,7 @@ article:first-of-type section:first-of-type div.content-wrapper div.content {
     opacity: ;
     background-color: rgba(256,256,256,.5);
     border-radius: 10px;
-    padding: 10px;
+    padding: 0 10px;
     color: black;
 }
 
