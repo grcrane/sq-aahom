@@ -201,11 +201,12 @@ h2.item-pagination-title {
 /* Icon Bar                                                    */
 /*    04/1/72021 - initial                                     */
 /* ----------------------------------------------------------- */
-
+/* moved to home space style code
 article:first-of-type section:first-of-type div.content-wrapper div.content {
     width: auto !important;
     /*min-height: 300px;*/
 }
+*/
 
 #iconBar,
 #iconBarFoot { 
