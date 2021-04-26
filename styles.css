@@ -214,7 +214,7 @@ body[data-menu-overlay-theme-switcher="true"]:not(.header--menu-open)
   
 @media (max-width: 640px) {
   .visitBoxesContainer .flexItem {
-    width: unset;
+    width: 100%;
     min-width: unset;
   }
 }
