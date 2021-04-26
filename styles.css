@@ -6,37 +6,43 @@
 /* For frequently asked questions */
 
 div.faq_container .colorUnity.ui-state-active,
-.museumSectionBreak.colorUnity {
+.museumSectionBreak.colorUnity,
+.colorUnity {
   background: rgb(64, 77, 92);
   color: white;
 }
 
 div.faq_container .colorAahom.ui-state-active,
-.museumSectionBreak.colorAahom {
+.museumSectionBreak.colorAahom,
+.colorAahom {
   background: rgb(233, 34, 49);
   color: white;
 }
 
 div.faq_container .colorLeslie.ui-state-active,
-.museumSectionBreak.colorLeslie {
+.museumSectionBreak.colorLeslie,
+.colorLeslie {
   background: rgb(26, 134, 84);
   color: white;
 }
 
 div.faq_container .colorExperience.ui-state-active,
-.museumSectionBreak.colorExperience {
+.museumSectionBreak.colorExperience,
+.colorExperience {
   background: rgb(250,169, 24);
   color: white;
 }
 
 div.faq_container .colorChallenger.ui-state-active,
-.museumSectionBreak.colorChallenger{
+.museumSectionBreak.colorChallenger,
+.colorChallenger {
   background: rgb(42,147,221);
   color: white;
 }
 
 div.faq_container .colorYankee.ui-state-active,
-.museumSectionBreak.colorYankee{
+.museumSectionBreak.colorYankee,
+.colorYankee {
   background: rgb(246, 239, 205);
   color: black;
 }
@@ -131,6 +137,86 @@ body[data-menu-overlay-theme-switcher="true"]:not(.header--menu-open)
 .header-nav-item--folder .header-nav-folder-content {
     left: -1em;
     text-align: left;
+}
+
+/* ----------------------------------------------------------- */
+/* VISIT boxes                                                 */
+/* ----------------------------------------------------------- */
+
+.visitBoxesContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 1em;
+}
+.visitBoxesContainer .flexItem {
+  position: relative;
+  width: 30%;
+  min-width: 300px;
+  max-width: 350px;
+  margin-top: 10px;
+  color: black;
+  padding: 0;
+  text-align: center;
+  margin: 10px;
+  background: #eee;
+  border-radius: 10px;
+}
+.visitBoxesContainer .flexItem .picture img {
+  height: 200px;
+  width: 100%;
+  background: green;
+  object-fit: cover;
+}
+.visitBoxesContainer .flexItem .title {
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+  height: 2em;
+  overflow: hidden;
+}
+.visitBoxesContainer .flexItem .message {
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 40px;
+  line-height: 1.5em;
+  font-size: 1em;
+}
+.visitBoxesContainer .flexItem .goto {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+}
+.visitBoxesContainer .flexItem .goto a {
+  width: auto;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  text-decoration: none;
+}
+.visitBoxesContainer .flexItem .message img {
+  height: 50px;
+  margin: 0 auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+  
+@media (max-width: 640px) {
+  .visitBoxesContainer .flexItem {
+    width: unset;
+    min-width: unset;
+  }
 }
 
 /* ----------------------------------------------------------- */
