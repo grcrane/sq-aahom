@@ -1099,7 +1099,10 @@ button.next.slick-arrow {
 
 @media (max-width: 640px) {
   .theCarousel  div.item {
-      margin: 0;
+    margin: 0;
+  }
+  .theCarousel div.slick-list {
+    margin: 0;
   }
 
   [class*="sqs-col"] .sqs-block {
