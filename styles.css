@@ -51,6 +51,7 @@ div.faq_container .colorYankee.ui-state-active,
 .ui-state-active.colorYankee a:link, 
 .ui-state-active.colorYankee a:visited {
     color: black;
+    text-decoration: none;
 }
 
 .museumSectionBreak {
