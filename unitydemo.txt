@@ -201,3 +201,18 @@ Color is in the class, one of:
 <h4 class="museumSectionBreak colorAahom">
 Directions and Parking
 </h4>
+
+----------------------------------------------------------------------------
+
+slick.js carousel
+
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    createCarousel ('#announcementCarousel');    
+});
+</script>
+<div id="announcementCarousel"></div>
