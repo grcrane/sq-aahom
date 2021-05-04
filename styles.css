@@ -214,9 +214,11 @@ body[data-menu-overlay-theme-switcher="true"]:not(.header--menu-open)
 }
   
 @media (max-width: 640px) {
-  .visitBoxesContainer .flexItem {
+  #page section .visitBoxesContainer .flexItem {
     width: 100%;
     min-width: unset;
+    max-width: unset;
+    margin: 10px 0;
   }
 }
 
