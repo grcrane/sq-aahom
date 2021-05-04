@@ -1103,6 +1103,7 @@ button.next.slick-arrow {
   }
 
   [class*="sqs-col"] .sqs-block {
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
