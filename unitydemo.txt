@@ -1,0 +1,203 @@
+Google Spreadsheets (grcrane319@gmail.com)
+
+Google Scripts (grcrane319@gmail.com)
+
+GitHub (georgecrane@mac.com, grcrane)
+
+Jsdelivr
+
+styles.css
+
+unity.js
+
+
+Spreadsheets:
+
+Donor Wall
+https://docs.google.com/spreadsheets/d/1Euo2kWx3lMC60XIAE7oUgXjEjoXkktFU3cW3YpZKLKw/edit#gid=176165326
+
+Hours/Pricing
+https://docs.google.com/spreadsheets/d/1eBU2TqbjAT0-PUkKVa0J9obsoyIBJ7ib_KJMQLNym8Y/edit#gid=0
+
+Flip Boxes
+https://docs.google.com/spreadsheets/d/1wEfSb4Dnjz-eNEayaNiiws3ta1ZEueiQyG5-BTWSXag/edit#gid=0
+
+Team Members
+https://docs.google.com/spreadsheets/d/1hiPd3cJMf_JOr3Z4RnR3XA6-Z927OSJhxJJgYXix448/edit#gid=0
+
+FAQ’s
+https://docs.google.com/spreadsheets/d/1f3G-ECzjt8p-czZNPyUQGXG8NND016Nue5QypQTf6PQ/edit#gid=0
+
+Summer Camp
+https://docs.google.com/spreadsheets/d/14CwA2z_TuhDNtYTXDFdHJBzuu6qZQUqLk9Ua_nqcPso/edit#gid=1841931395
+
+Control + script
+https://docs.google.com/spreadsheets/d/1gXgwXAcpDbWZ342NgDWs5RjM9FHhpylBhKolq3eOGyg/edit#gid=0
+
+
+----------------------------------------------------------------------------
+
+Sample URL getting team members 
+
+https://docs.google.com/spreadsheets/u/0/d/1hiPd3cJMf_JOr3Z4RnR3XA6-Z927OSJhxJJgYXix448/gviz/tq?sheet=Members&tqx=out:html&headers=1&tq=SELECT A, B, C, D, E, F, G, H, I WHERE F = 'No' AND A IS NOT NULL ORDER BY B, A
+
+Display team members on a page
+
+do_team_members2(file_id = null, sheet = null)   (line 436 unity.js)
+
+<script>
+$( document ).ready(function() {
+    do_team_members2();
+});
+</script>
+<div class="team_container"></div>
+
+---------------------------------------------------------------------------
+
+Sample URL getting faq's
+
+https://docs.google.com/spreadsheets/u/0/d/1f3G-ECzjt8p-czZNPyUQGXG8NND016Nue5QypQTf6PQ/gviz/tq?sheet=FAQS&tqx=out:html&headers=1&tq=SELECT A, B, C, D, E WHERE C != 'Yes'
+
+Display faqs on page
+
+do_faqs2(museums, collapsed = true, file_id = null, sheet = null)
+
+museums can be null or one of:
+	'unity',
+	'aahom',
+	'leslie',
+	'yankee',
+	'experience',
+	'challenger'
+
+collapsed = true, all faq accordian's are initially closed. 
+collapsed = false, first faq item is initially open
+
+<script>
+$( document ).ready(function() { 
+  do_faqs2('aahom',true);
+});
+</script>
+<div class="faq_container">
+</div>
+
+---------------------------------------------------------------------------
+
+Sample Gallery Slideshow 
+
+<script>
+$( document ).ready(function() {
+    doGalleryShow();
+})
+</script>
+
+---------------------------------------------------------------------------
+
+Sample ICon bar, sticky to header image
+
+showIconBar(sticky = true, iconID = 'iconBar')
+If sticky = true then iconbar is attached to bottom of gallery slideshow
+
+<script>
+$( document ).ready(function() {
+   showIconBar(true);
+})
+</script>
+<div id=iconBar></div>
+
+---------------------------------------------------------------------------
+
+Flip Cards 
+
+https://docs.google.com/spreadsheets/u/0/d/1wEfSb4Dnjz-eNEayaNiiws3ta1ZEueiQyG5-BTWSXag/gviz/tq?tqx=out:html&sheet=Cards2&headers=1&tq=SELECT * WHERE A=1 ORDER BY A, B
+
+build_flipcards3(boxNumber = '1', file_id = null, sheet = null)
+
+<script>
+$( document ).ready(function() {
+  build_flipcards3(); 
+});
+</script>
+<div id=flexbox class="v3">
+  <div class="flex-container">
+  </div>
+</div>
+
+---------------------------------------------------------------------------
+
+Hours and Pricing
+
+https://docs.google.com/spreadsheets/u/0/d/1eBU2TqbjAT0-PUkKVa0J9obsoyIBJ7ib_KJMQLNym8Y/gviz/tq?tqx=out:html&sheet=Hours&headers=1&tq=SELECT *  WHERE lower(A) = lower("Leslie")  ORDER BY A,B LIMIT 1
+
+showAddressInfo(museum = null,file_id = null, sheet = null)
+Where museum is one of:
+	'unity',
+	'aahom',
+	'leslie',
+	'yankee',
+	'experience',
+	'challenger'
+
+<script>
+$( document ).ready(function() {
+  showAddressInfo('aahom'); 
+});
+</script>
+<div id="hoursContainer"> 
+</div>
+
+---------------------------------------------------------------------------
+
+Donor Wall
+
+https://docs.google.com/spreadsheets/u/0/d/1Euo2kWx3lMC60XIAE7oUgXjEjoXkktFU3cW3YpZKLKw/gviz/tq?sheet=DonorWall&tqx=out:html&headers=1&tq=SELECT A, B, C, D, E ORDER BY A DESC
+
+do_donor_wall_new(file_id = null, sheet = null)
+
+<script>
+$( document ).ready(function() {
+    do_donor_wall_new();
+});
+</script>
+<h2>Donor Wall</h2>
+<div  class="summary-excerpt" id="donorWall"></div>
+
+---------------------------------------------------------------------------
+
+Filter values
+
+filter_values ()
+
+<script>
+$( document ).ready(function() {
+    // initialize based on current checkboxes
+    filter_values();
+});
+</script>
+<div id="filterContainer">
+<div class="flexBox">
+    <div class="filterGroup">
+        <span>Museum</span>
+        <ul>
+            <li><input type="radio" value="Ann+Arbor" name="museum" checked="checked"><span>Ann Arbor Hands-on</span></li>
+            <li><input type="radio" value="Leslie" name="museum"><span>Leslie Center</span></li>
+            <li><input type="radio" value="Yankee" name="museum"><span>Yankee Air</span></li>
+            <li><input type="radio" value="Experience" name="museum"><span>Experience Center</span></li>
+        </ul>
+    </div>
+ </div>
+</div>
+
+---------------------------------------------------------------------------
+
+Colored divider
+Color is in the class, one of:
+	colorAahom
+	colorLesli
+	colorYankee
+	colorChallenger
+	colorUnity
+
+<h4 class="museumSectionBreak colorAahom">
+Directions and Parking
+</h4>
