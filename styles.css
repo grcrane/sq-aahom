@@ -991,7 +991,7 @@ div.summary-metadata .active.filterCat {
 /* Change previous/next icons                       */
 /* Center carousel heading                          */
 /* ------------------------------------------------ */
-  
+/* using slick instead  5/4/21
 div.sqs-gallery-design-carousel .sqs-gallery-controls 
 .previous::before {
   content: "\E002";
@@ -1037,4 +1037,72 @@ div.sqs-gallery-design-carousel span.summary-header-text {
     font-size: 25px;
     text-align: center;
     width: 100%;
+}
+*/
+
+/* ------------------------------------------------ */
+/* slick.js carousel                                */
+/* ------------------------------------------------ */
+
+div.content-wrapper {
+    overflow: hidden;
+}
+.theCarousel  div.item {
+    margin: 0 10px;
+    position: relative;
+}
+
+.theCarousel div.slick-list {
+    margin: 0 -10px;
+}
+.theCarousel div.item div.title {
+    font-weight: 500;
+    font-size: 1.2em;
+}
+.theCarousel div.item div.classcontent {
+    font-style: italic; 
+}
+.theCarousel div.item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.theCarousel div.classcontent {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+div.slickButtons {
+    position: relative;
+    width: 100%;
+}
+button.slick-arrow {
+    display: inline-block;
+    position: absolute;
+    top: 90px;
+    background: white;
+    z-index: 1;
+    padding: 5px;
+    font-size: 1.5em;
+    border-radius: 10px;
+}
+button.prev.slick-arrow {
+    left: 2%;
+    right: unset;
+}
+button.next.slick-arrow {
+    right: 2%;
+    left: unset;
+}
+
+@media (max-width: 640px) {
+  .theCarousel  div.item {
+      margin: 0;
+  }
+
+  [class*="sqs-col"] .sqs-block {
+    padding: 0;
+  }
 }
