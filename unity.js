@@ -689,3 +689,66 @@ function do_donor_wall_new(file_id = null, sheet = null) {
     $('#donorWall').append(footone).append(notes).append(data).append(link);
 
 }
+
+/* ------------------------------------------------------------------- */
+/* slick.js carousel                                                   */
+/* ------------------------------------------------------------------- */
+
+function createCarousel (id, container = 0) {
+
+    var x = $(id).closest('section').find('div.summary-item-list-container').eq(container);
+
+    var temp = '<div class="slickButtons">\n' +
+        '<button class="prev slick-arrow"> < </button>\n' +
+        '<button class="next slick-arrow"> > </button>\n' +
+        '</div>\n' +
+        '<div class="theCarousel"></div>\n';
+    $(temp).appendTo(id); 
+
+    var theCarousel = $(id).find('.theCarousel');
+
+    $(x).find('.summary-item').each(function(index) {
+        var src = $(this).find('.summary-thumbnail img').data('src');
+        var title = $(this).find('.summary-title a').text();
+        var titlehref = $(this).find('.summary-title a').attr('href');
+        var excerpt = $(this).find('.summary-excerpt').text();
+        var read = $(this).find('.summary-read-more-link').text();
+        var readhref = $(this).find('.summary-read-more-link').attr('href');
+        var temp = '<div class="item">\n' + 
+        '<img src="' + src + '">\n' +
+        '<div class="title"><a href="' + titlehref + '">' + title + '</a></div>\n' +
+        '<div class="classcontent">' + excerpt + '</div>\n' + 
+        '<div class="readmore"><a href="' + readhref + '">' + read + '</a></div>\n' +
+        '</div>';
+        $(temp).appendTo(theCarousel);
+        $(x).remove();
+    })
+   
+    $(theCarousel).slick({
+        dots: true,
+        adaptiveHeight: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        arrows: true,
+      prevArrow: $('.prev'),
+    nextArrow: $('.next'),
+        
+        responsive: [{
+            breakpoint: 500,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            }},
+            {
+            breakpoint: 800,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+            }
+        }]
+    });
+    var w = $(theCarousel).find('div.item img').eq(0).width();
+    //$(theCarousel).find('div.item img').css('height','150px');
+
+}
