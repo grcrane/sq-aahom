@@ -134,7 +134,7 @@ var icons = [
 function showIconBar(sticky = true, iconID = 'iconBar') {
   var temp = '<ul class="iconBarFlex">';
   icons.forEach(function(item,key) {
-    temp += '<li class="flex-item ' + 'logo' + iconFor[key] + '"><img src="' + item + '"></li>\n';
+    temp += '<li class="flex-item ' + 'logo' + iconsFor[key] + '"><img src="' + item + '"></li>\n';
   })
   temp += '</ul>\n';
   $('#' + iconID).html(temp); 
