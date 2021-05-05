@@ -663,7 +663,7 @@ article:first-of-type section:first-of-type div.content-wrapper div.content {
   white-space: nowrap;
   margin-bottom: 17px;
   display: none;
-  width: 96%;
+  width: auto;
   margin: 0 auto;
 }
 
