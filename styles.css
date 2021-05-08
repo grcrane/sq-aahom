@@ -680,43 +680,43 @@ article:first-of-type section:first-of-type div.content-wrapper div.content {
 }
 
 #hoursContainer.museumAahom {
-  border: 5px solid rgb(233, 34, 49);
+  border: 5px solid rgb(23,123,192);
 }
 #hoursContainer.museumAahom > div {
-  background-color: rgba(233, 34, 49,.05);
-  border: 2px solid rgba(233, 34, 49,.5);
+  background-color: rgba(23,123,192,.05);
+  border: 2px solid rgba(23,123,192,.5);
 }
 
 #hoursContainer.museumLeslie {
   border: 5px solid rgb(26, 134, 84);
 }
 #hoursContainer.museumLeslie > div {
-  background-color: rgba(26, 134, 84,.05);
-  border: 2px solid rgba(26, 134, 84,.5);
+  background-color: rgba(9,113,61,.05);
+  border: 2px solid rgba(9,113,61,.5);
 }
 
 #hoursContainer.museumExperience {
-  border: 5px solid rgb(250,169, 24);
+  border: 5px solid rgb(248,197,21);
 }
 #hoursContainer.museumExperience > div {
-  background-color: rgba(250,169, 24,.05);
-  border: 2px solid rgba(250,169, 24,.5);
+  background-color: rgba(248,197,21,.05);
+  border: 2px solid rgba(248,197,21,.5);
 }
 
 #hoursContainer.museumChallenger {
-  border: 5px solid rgb(42,147,221);
+  border: 5px solid rgb(38,169,225);
 }
 #hoursContainer.museumChallenger > div {
-  background-color: rgba(42,147,221,.05);
-  border: 2px solid rgba(42,147,221,.5);
+  background-color: rgba(38,169,225,.05);
+  border: 2px solid rgba(38,169,225,.5);
 }
 
 #hoursContainer.museumYankee {
-  border: 5px solid rgb(246, 239, 205);
+  border: 5px solid rgb(227,25,55);
 }
 #hoursContainer.museumYankee > div {
-  background-color: rgba(246, 239, 205,.05);
-  border: 2px solid rgba(246, 239, 205,.5);
+  background-color: rgba(227,25,55,.05);
+  border: 2px solid rgba(227,25,55,.5);
 }
 
 #hoursContainer p {
