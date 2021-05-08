@@ -732,8 +732,8 @@ function createCarousel (id, container = 0) {
         slidesToShow: 3,
         slidesToScroll: 3,
         arrows: true,
-      prevArrow: $('.prev'),
-    nextArrow: $('.next'),
+      prevArrow: $(id + ' .prev'),
+    nextArrow: $(id + ' .next'),
         
         responsive: [{
             breakpoint: 500,
