@@ -1,4 +1,18 @@
 /*-------------------------------------------------------------*/
+/* Global overrides                                            */
+/*    05/09/2021 - initial                                     */
+/*-------------------------------------------------------------*/
+
+/* ----- Readmore links ----- */
+div.readmore a,
+#tabs a.readmore,
+.sqs-block-html a,
+div.summary-content a.summary-read-more-link {
+    color: blue;
+    text-decoration: underline;
+}
+
+/*-------------------------------------------------------------*/
 /* Museum Colors                                               */
 /*    04/10/2021 - initial                                     */
 /*-------------------------------------------------------------*/
@@ -453,6 +467,22 @@ article:first-of-type section:first-of-type div.content-wrapper div.content {
     font-size: 1em;
   }
 }
+
+/* ------ Challenger logo override ----- */
+#iconBar ul.iconBarFlex li.flex-item.logoChallenger img,
+#iconBarFoot ul.iconBarFlex li.flex-item.logoChallenger img{
+    width: 53px;
+    max-height: 70px;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 780px) {
+  #iconBar ul.iconBarFlex li.flex-item.logoChallenger img,
+  #iconBarFoot ul.iconBarFlex li.flex-item.logoChallenger img {
+      width: unset;
+  }
+}
+
 
 /* ----------------------------------------------------------- */
 /* Flipbox3                                                    */
