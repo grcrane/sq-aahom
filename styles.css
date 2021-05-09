@@ -12,6 +12,17 @@ div.summary-content a.summary-read-more-link {
     text-decoration: underline;
 }
 
+/* ------ All page background ------ */
+#page section.page-section .section-background {
+   background-color: rgba(64, 77, 92,.05);
+}
+#page section  .content {
+    width: 100%;
+}
+div.faq_container .ui-state-active a {
+  color: white;
+}
+
 /*-------------------------------------------------------------*/
 /* Museum Colors                                               */
 /*    04/10/2021 - initial                                     */
