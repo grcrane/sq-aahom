@@ -54,6 +54,96 @@ div.faq_container .colorYankee.ui-state-active,
     text-decoration: none;
 }
 */
+
+/* --------- Unity Colors --------- */
+div.faq_container .colorUnity.ui-state-active,
+.museumSectionBreak.colorUnity,
+.colorUnity,
+#accordion .ui-state-active {
+  background: rgb(64, 77, 92);
+  color: white;
+}
+
+/* --------- AAHOM Colors --------- */
+div.faq_container .colorAahom.ui-state-active,
+.museumSectionBreak.colorAahom,
+.colorAahom,
+#accordion .ui-state-active {
+  background: rgb(23,123,192);
+  color: white;
+}
+#hoursContainer.museumAahom {
+  border: 5px solid rgb(23,123,192);
+}
+#hoursContainer.museumAahom > div {
+  background-color: rgba(23,123,192,.05);
+  border: 2px solid rgba(23,123,192,.5);
+}
+
+/* --------- Leslie Colors --------- */
+div.faq_container .colorLeslie.ui-state-active,
+.museumSectionBreak.colorLeslie,
+.colorLeslie {
+  background: rgb(9,113,61);
+  color: white;
+}
+#hoursContainer.museumLeslie {
+  border: 5px solid rgb(9,113,61);
+}
+#hoursContainer.museumLeslie > div {
+  background-color: rgba(9,113,61,.05);
+  border: 2px solid rgba(9,113,61,.5);
+}
+
+/* --------- Yankee Colors --------- */
+div.faq_container .colorYankee.ui-state-active,
+div.faq_container .ui-state-active a.colorYankee,
+.museumSectionBreak.colorYankee,
+.colorYankee {
+  background: rgb(227,25,55);
+  color: white;
+}
+#hoursContainer.museumYankee {
+  border: 5px solid rgb(227,25,55);
+}
+#hoursContainer.museumYankee > div {
+  background-color: rgba(227,25,55,.05);
+  border: 2px solid rgba(227,25,55,.5);
+}
+
+/* --------- Challenger Colors --------- */
+div.faq_container .colorChallenger.ui-state-active,
+.museumSectionBreak.colorChallenger,
+.colorChallenger {
+  background: rgb(38,169,225);
+  color: white;
+}
+#hoursContainer.museumChallenger {
+  border: 5px solid rgb(38,169,225);
+}
+#hoursContainer.museumChallenger > div {
+  background-color: rgba(38,169,225,.05);
+  border: 2px solid rgba(38,169,225,.5);
+}
+
+/* --------- Experience Colors --------- */
+div.faq_container .colorExperience.ui-state-active,
+div.faq_container .ui-state-active a.colorExperience,
+.museumSectionBreak.colorExperience,
+.colorYankee {
+  background: rgb(248,197,21);
+  color: black;
+}
+#hoursContainer.museumExperience {
+  border: 5px solid rgb(248,197,21);
+  color: black;
+}
+#hoursContainer.museumExperience > div {
+  background-color: rgba(248,197,21,.05);
+  border: 2px solid rgba(248,197,21,.5);
+  color: black;
+}
+
 .museumSectionBreak {
     text-align: center;
     white-space: normal;
