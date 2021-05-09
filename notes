@@ -139,7 +139,16 @@ National Science Foundation
 Anonymous
 The Kresge Foundation
 Institute of Museum and Library Services
-...
+
+/* ---------------------------------------------- */
+/* Section dividers                               */
+/* ---------------------------------------------- */
+
+<h4 class="museumSectionBreak colorUnity">
+Maps and Directions
+</h4>
+
+
 ------------ Spreadsheet formulas --------------------
 
 -- Summer Camp spreadsheet (1/24/21)
