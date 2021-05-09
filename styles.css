@@ -675,6 +675,7 @@ article:first-of-type section:first-of-type div.content-wrapper div.content {
   width: auto;
 }
 
+/*
 #hoursContainer.museumUnity {
   border: 5px solid rgb(64, 77, 92);
 }
@@ -718,6 +719,7 @@ article:first-of-type section:first-of-type div.content-wrapper div.content {
   background-color: rgba(227,25,55,.05);
   border: 2px solid rgba(227,25,55,.5);
 }
+*/
 
 #hoursContainer p {
   white-space: normal;
