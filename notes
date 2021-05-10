@@ -15,29 +15,13 @@ cdn (12/20/20)
 /* flip boxes                                     */
 /* ---------------------------------------------- */
 
-** page code
-
-<style>
- #flexbox.v2 .backContent {
-    font-size: 15px;
-    -webkit-line-clamp: 5;
-  }
- 
- #flexbox.v2 div.centerBack .labelText {
-   left: unset;
-   top: unset;
-   transform: unset;
-  }
-</style>
 <script>
 $( document ).ready(function() {
-  var file_id = '1wEfSb4Dnjz-eNEayaNiiws3ta1ZEueiQyG5-BTWSXag';
-  build_flipcards(file_id); // build the html
-  setup_flipboxes(); // resize and setup flipboxes
+  build_flipcards3(); 
 });
 </script>
-<div id=flexbox class="v2">
-  <div class="flex-container sampleClass">
+<div id=flexbox class="v3">
+  <div class="flex-container">
   </div>
 </div>
 
@@ -49,18 +33,14 @@ https://docs.google.com/spreadsheets/d/1wEfSb4Dnjz-eNEayaNiiws3ta1ZEueiQyG5-BTWS
 /* Banner Gallery Slideshow                       */
 /* ---------------------------------------------- */
 
-** page code
-
 <script>
 $( document ).ready(function() {
     doGalleryShow();
 })
 </script>
 
-** Gallery Section
-
-Include a SquareSpace Gallery Section right after
-header image section.   Configure with images
+NOTE: Include a SquareSpace Gallery Section right after
+header image section.   Configure with images, descriptions, links
 
 /* ---------------------------------------------- */
 /* Accordian                                      */
@@ -147,6 +127,58 @@ Institute of Museum and Library Services
 <h4 class="museumSectionBreak colorUnity">
 Maps and Directions
 </h4>
+
+/* ----------------------------------------------- */
+/* Carousel                                        */
+/* ----------------------------------------------- */
+
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+$(document).ready(function(){
+    createCarousel ('#announcementCarousel');    
+});
+</script>
+<div id="announcementCarousel"></div>
+
+NOTE: create a summary list carousel
+be sure to turn on the readme link
+
+/* ------------------------------------------------ */
+/* Address, hours                                   */
+/* ------------------------------------------------ */
+
+<script>
+$( document ).ready(function() {
+  showAddressInfo('aahom'); 
+});
+</script>
+<div id="hoursContainer"> 
+</div>
+
+NOTE: data comes from spreadsheet
+
+/* ------------------------------------------------ */
+/* Accordian open section                           */
+/* ------------------------------------------------ */
+
+<script>
+$(document).ready(function () {
+$( "#accordion" ).accordion({
+    collapsible: true, active : 1,
+    heightStyle: "content"
+  });
+});
+</script>
+<div id="accordion">
+  <span style="display:inline-block;">
+    Click to view calendar of events
+  </span>
+  <div>
+    Content goes here
+  </div>
+</div>
 
 
 ------------ Spreadsheet formulas --------------------
