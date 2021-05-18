@@ -753,3 +753,66 @@ function createCarousel (id, container = 0) {
     //$(theCarousel).find('div.item img').css('height','150px');
 
 }
+
+/* ----------------------------------------------------------- */
+/* Build a tabbed list of calendars from spreadsheet           */
+/*    05/18/2021 - initial                                     */
+/* ----------------------------------------------------------- */
+
+function build_calendars(
+  active = 0, 
+  file_id = '1i5EjZCpxI4UnvXyMYXCLyLP9tSCNt0PZYemaU6f6XtU', 
+  sheet = 'Calendars') {
+
+  var where = "SELECT B, C, E, F, G WHERE D != 'Yes' AND B IS NOT NULL ORDER BY A, B";
+  var url = 'https://docs.google.com/spreadsheets/u/0/d/'
+    + file_id + '/gviz/tq?tqx=&sheet=' + sheet + 
+    '&headers=1&tq=' + escape(where);
+  var callist = get_spreadsheet(url);
+  var cals = callist.table.rows;
+  var tab = 1; 
+  var tabs = ''; 
+  var tabsdata = '';
+  var iframes = []; 
+  cals.forEach(function(item, key) {
+    var museum = (item.c[0] != null) ? item.c[0].v : '';
+    var name = (item.c[1] != null) ? item.c[1].v : '';
+    var title = (item.c[2] != null) ? item.c[2].v : '';
+    var large = (item.c[3] != null) ? item.c[3].v : '';
+    var small = large.replace(/mode=MONTH/gi,'mode=AGENDA');
+    var after = (item.c[4] != null && item.c[4].v != null) ? item.c[4].v : ''; 
+    var colorClass = "color" + museum.charAt(0).toUpperCase() + museum.slice(1);
+    var ar = [large,small];
+    iframes.push(ar);
+    if ((tab - 1) != active) {
+      large = '';
+      small = '';
+    }
+    tabs = tabs + 
+      '<li><a href="#tabs-' + tab + '" data-tab="' + tab + '" class="' + colorClass + '">' + 
+      name + '</a></li>\n';
+      tabsdata = tabsdata + 
+      '<div id="tabs-' + tab + '">\n' +
+      '<p><strong>' + title + '</strong>\n' + 
+      '<div class="calendarLarge">' + large + '</div>\n' +
+      '<div class="calendarSmall">' + small + '</div>\n' +
+      '</p>' + 
+      after +
+      '</div>\n'; 
+    tab = tab + 1; 
+  })   
+  tabs = '<div id="tabs"><ul>' + tabs + '</ul></div>\n'; 
+  $(tabs).appendTo('#calendarsContainer');
+  $(tabsdata).appendTo('#tabs');
+  $( "#tabs" ).tabs({ active: active});
+  $('#calendarsContainer iframe').width('100%');
+  $('#tabs a').click(function() {
+    var id = $(this).attr("href");
+    var tab = id.substr(6) - 1;
+    var x = $(id).find('.calendarLarge iframe').length;
+    if (!x) {  // if no iframe found, then fill it in
+      $(id).find('.calendarLarge').html(iframes[tab][0]);
+      $(id).find('.calendarSmall').html(iframes[tab][1]);
+    }
+  })
+}
