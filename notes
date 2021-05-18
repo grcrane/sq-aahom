@@ -180,6 +180,29 @@ $( "#accordion" ).accordion({
   </div>
 </div>
 
+/* ------------------------------------------------ */
+/* Calendar tabs in single accordion                */
+/* ------------------------------------------------ */
+
+<script>
+$(document).ready(function() {
+  build_calendars(1); 
+  $('.singleAccordion .toggle a').click(function(e) {
+    e.preventDefault(); 
+    $(this).toggleClass("open");
+    $('.singleAccordion #calendarsContainer').slideToggle('slow');
+    //$('#ui-id-2').trigger('click');
+  });
+})
+</script>
+<div class="singleAccordion">
+  <div class="toggle">
+    <a href=""></i>View Our Calendar of Events</a>
+  </div>
+  <div id="calendarsContainer">
+  </div>
+</div>
+
 
 ------------ Spreadsheet formulas --------------------
 
