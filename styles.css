@@ -1284,11 +1284,12 @@ button.next.slick-arrow {
 }
 
 /*-------------------------------------------------------------*/
-/* Tabbed calendar container                                   */
+/* Tabbed calendar and faq container                           */
 /*    05/18/2021 - initial                                     */
 /*-------------------------------------------------------------*/
 
-#calendarsContainer  li:not(.ui-state-active) a {
+#calendarsContainer  li:not(.ui-state-active) a,
+.faq_container  li:not(.ui-state-active) a {
   background-color: white;
   color: black;
 }
@@ -1297,14 +1298,17 @@ button.next.slick-arrow {
   #calendarsContainer div.calendarLarge {
     display: none;
   }
-  #calendarsContainer .ui-tabs .ui-tabs-nav li {
+  #calendarsContainer .ui-tabs .ui-tabs-nav li,
+  .faq_container .ui-tabs .ui-tabs-nav li {
     width: 100%;
     overflow: hidden;
   }
-  #calendarsContainer .ui-state-default a, .ui-state-default a:link {
+  #calendarsContainer .ui-state-default a, .ui-state-default a:link,
+  .faq_container .ui-state-default a, .ui-state-default a:link {
     width: 100%;
   }
-  #calendarsContainer .ui-tabs .ui-tabs-panel {
+  #calendarsContainer .ui-tabs .ui-tabs-panel,
+  .faq_container .ui-tabs .ui-tabs-panel {
     padding: 10px 0 0 0;
   }
 }
