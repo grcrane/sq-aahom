@@ -1248,3 +1248,68 @@ button.next.slick-arrow {
     padding-right: 0;
   }
 }
+
+/*-------------------------------------------------------------*/
+/* Single Accordion                                            */
+/*    Open/Close a single tab                                  */
+/*    05/18/2021 - initial                                     */
+/*-------------------------------------------------------------*/
+
+.singleAccordion #calendarsContainer {
+  display: none;
+  margin-top: 10px;
+}
+.singleAccordion .toggle {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.2em;
+}
+.singleAccordion .toggle a {
+  border-bottom: 1px solid black;
+}
+
+.singleAccordion .toggle a:before {
+  font-family: 'squarespace-ui-font';
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  vertical-align: middle;
+  speak: none;
+  content: "+ \e015";
+}
+
+.singleAccordion .toggle a.open:before {
+  content: "- \e015";
+}
+
+/*-------------------------------------------------------------*/
+/* Tabbed calendar container                                   */
+/*    05/18/2021 - initial                                     */
+/*-------------------------------------------------------------*/
+
+#calendarsContainer  li:not(.ui-state-active) a {
+  background-color: white;
+  color: black;
+}
+
+@media (max-width: 640px) {
+  #calendarsContainer div.calendarLarge {
+    display: none;
+  }
+  #calendarsContainer .ui-tabs .ui-tabs-nav li {
+    width: 100%;
+    overflow: hidden;
+  }
+  #calendarsContainer .ui-state-default a, .ui-state-default a:link {
+    width: 100%;
+  }
+  #calendarsContainer .ui-tabs .ui-tabs-panel {
+    padding: 10px 0 0 0;
+  }
+}
+@media (min-width: 640px) {
+  #calendarsContainer div.calendarSmall {
+    display: none;
+  }
+}
