@@ -813,6 +813,7 @@ function build_calendars(
     if (!x) {  // if no iframe found, then fill it in
       $(id).find('.calendarLarge').html(iframes[tab][0]);
       $(id).find('.calendarSmall').html(iframes[tab][1]);
+      $('#calendarsContainer iframe').width('100%');
     }
   })
 }
