@@ -528,7 +528,7 @@ article:first-of-type section:first-of-type div.content-wrapper div.content {
     height: unset;
     /*padding-top clamp is (min, preferred, max) */
     padding-top: clamp(200px,30%,300px);
-    max-width: 300px;
+    max-width: unset;
     position: relative;
 }
 
