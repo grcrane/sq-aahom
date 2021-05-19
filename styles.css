@@ -762,14 +762,14 @@ article:first-of-type section:first-of-type div.content-wrapper div.content {
     top: 50%;
     transform: translateY(-50%);
 }
-
+/*
 @media (max-width: 1100px) {
   #flexbox.v3 div.flex-container {
       justify-content: space-around;
   }
 
   }
-
+*/
 @media (max-width: 800px) {
     .flex-container {
         flex-direction: column;
