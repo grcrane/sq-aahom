@@ -203,6 +203,17 @@ $(document).ready(function() {
   </div>
 </div>
 
+/* ------------------------------------------------ */
+/* Calendars with tabs                              */
+/* ------------------------------------------------ */
+
+<script>
+$(document).ready(function() {
+  build_calendars(0); 
+})
+</script>
+<div id="calendarsContainer"></div>
+
 
 ------------ Spreadsheet formulas --------------------
 
