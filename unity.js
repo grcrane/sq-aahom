@@ -338,11 +338,10 @@ function do_faqs2(museums, collapsed = true, file_id = null, sheet = null) {
       'aahom',
       'leslie',
       'yankee',
-      'experience',
       'challenger'];
     var mtitles = [
       'Unity in Learning','Ann Arbor Hands-On',
-      'Leslie Center','Yankee air Museum','Experience Center',
+      'Leslie Center','Yankee air Museum',
       'Challenger Center'];
 
     if (!file_id) {
