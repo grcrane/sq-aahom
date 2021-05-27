@@ -1317,14 +1317,3 @@ button.next.slick-arrow {
     display: none;
   }
 }
-
-/*-------------------------------------------------------------*/
-/* Footer                                                      */
-/*    05/27/2021 - initial                                     */
-/*-------------------------------------------------------------*/
-
-@media (min-width: 640px) {
-  footer section div.content-wrapper div.sqs-row {
-    text-align: center;
-  }
-}
