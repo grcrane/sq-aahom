@@ -1324,7 +1324,7 @@ button.next.slick-arrow {
 /*-------------------------------------------------------------*/
 
 @media (min-width: 640px) {
-  footer .content-wrapper div.sgs-row {
+  footer section div.content-wrapper div.sqs-row {
     text-align: center;
   }
 }
