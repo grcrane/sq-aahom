@@ -22,6 +22,52 @@ donor.js
 
 */ 
 
+function getCookie(name) {
+    
+  // Split cookie string and get all individual name=value pairs in an array
+  console.log(document.cookie);
+  var cookieArr = document.cookie.split(";");
+  console.log(cookieArr);
+  // Loop through the array elements
+  for(var i = 0; i < cookieArr.length; i++) {
+      var cookiePair = cookieArr[i].split("=");
+      
+      /* Removing whitespace at the beginning of the cookie name
+      and compare it with the given string */
+      console.log(cookiePair);
+      console.log(cookiePair[0]);
+      if(name == cookiePair[0].trim()) {
+          // Decode the cookie value and return
+          return decodeURIComponent(cookiePair[1]);
+      }
+  }
+  
+  // Return null if not found
+  return null;
+}
+
+function getCachedSheet(name,url) {
+  var temp = null; 
+  console.log(typeof temp);
+  var useName = name + "Unity";
+  var theCookie = getCookie(useName);
+  if (theCookie) { // cookie still alive
+    temp = JSON.parse(sessionStorage.getItem(useName));
+    if (temp != null) { // found stored data 
+      console.log(typeof temp);
+      return temp;
+    }
+  }
+  // otherwise 
+  
+  if (temp == null) {
+    var retlist = get_spreadsheet(url);
+    sessionStorage.setItem(useName,JSON.stringify(retlist));
+    document.cookie = useName + "=cookieValue; max-age=" + 5*60 + "; path=/;";
+    return retlist; 
+  }
+}
+
 /* ----------------------------------------------------------- */
 /* Process the ajax request to get spreadsheet data            */
 /*    04/10/2021 - initial                                     */
@@ -588,23 +634,6 @@ var formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
 });
-
-function get_spreadsheet(theurl) {
-  var result = "";
-  $.ajax({
-      url: theurl,
-      dataType: 'text',
-      async: false,
-      success: function(data) {
-          i = data.indexOf('(');
-          j = data.lastIndexOf(')');
-          data = data.substr(i + 1, j - 1 - i);
-          var data = JSON.parse(data);
-          result = data;
-      }
-  });
-  return result;
-}
 
 function do_donor_wall_new(file_id = null, sheet = null) {
 
