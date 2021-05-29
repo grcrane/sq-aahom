@@ -592,6 +592,7 @@ var formatter = new Intl.NumberFormat('en-US', {
 
 function get_spreadsheet(theurl) {
   var result = "";
+  console.log('getting:' + url);
   $.ajax({
       url: theurl,
       dataType: 'text',
