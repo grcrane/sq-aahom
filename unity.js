@@ -23,68 +23,12 @@ donor.js
 */ 
 
 /* ----------------------------------------------------------- */
-/* Look for a cookie                                           */
-/*    05/29/2021 - initial                                     */
-/* ----------------------------------------------------------- */
-
-
-function getCookie(name) {
-  
-  // Split cookie string and get all individual name=value pairs in an array
-  console.log(document.cookie);
-  var cookieArr = document.cookie.split(";");
-  console.log(cookieArr);
-  // Loop through the array elements
-  for(var i = 0; i < cookieArr.length; i++) {
-      var cookiePair = cookieArr[i].split("=");
-      
-      /* Removing whitespace at the beginning of the cookie name
-      and compare it with the given string */
-      console.log(cookiePair);
-      console.log(cookiePair[0]);
-      if(name == cookiePair[0].trim()) {
-          // Decode the cookie value and return
-          return decodeURIComponent(cookiePair[1]);
-      }
-  }
-  
-  // Return null if not found
-  return null;
-}
-
-/* ----------------------------------------------------------- */
-/* Get cached data if data exists and cookie is current        */
-/*    05/29/2021 - initial                                     */
-/* ----------------------------------------------------------- */
-
-
-function getCachedSheet(name,url) {
-  var temp = ""; 
-  var useName = name + "Unity";
-  var theCookie = getCookie(useName);
-  if (theCookie) { // cookie still alive
-    var temp = JSON.parse(sessionStorage.getItem(useName));
-    if (temp) { // found stored data 
-      return temp;
-    }
-  }
-  // otherwise 
-  if (temp == null) {
-    var retlist = get_spreadsheet(url);
-    sessionStorage.setItem(useName,JSON.stringify(retlist));
-    document.cookie = useName + "=cookieValue; max-age=" + 5*60 + "; path=/;";
-    return retlist; 
-  }
-}
-
-/* ----------------------------------------------------------- */
 /* Process the ajax request to get spreadsheet data            */
 /*    04/10/2021 - initial                                     */
 /* ----------------------------------------------------------- */
 
 function get_spreadsheet(theurl) {
   var result = "";
-  console.log('getting:' + theurl);
   $.ajax({
       url: theurl,
       dataType: 'text',
@@ -336,39 +280,40 @@ function build_flipcards3(boxNumber = '1', file_id = null, sheet = null) {
 /*    04/10/2021 - initial                                     */
 /*-------------------------------------------------------------*/
 
-function showAddressInfo(
-  museum = null,
-  file_id = '1eBU2TqbjAT0-PUkKVa0J9obsoyIBJ7ib_KJMQLNym8Y', 
-  sheet = 'Hours') {
-
+function showAddressInfo(museum = null,file_id = null, sheet = null) {
+  if (!file_id) {
+    file_id = '1eBU2TqbjAT0-PUkKVa0J9obsoyIBJ7ib_KJMQLNym8Y';
+  }
+  if (!sheet) {
+    sheet = 'Hours';
+  }
+  var where = ''; 
+  if (museum) {
+    where = ' WHERE lower(A) = lower("' + museum + '") ';
+  }
   var url = 'https://docs.google.com/spreadsheets/u/0/d/'
     + file_id + '/gviz/tq?tqx=out:json&sheet=' + sheet + 
-    '&headers=1&tq=' + escape('SELECT * ORDER BY A, B');
+    '&headers=1&tq=' + escape('SELECT * ' + where + ' ORDER BY A, B LIMIT 1');
   var colorClass = "museum" + museum.charAt(0).toUpperCase() + museum.slice(1);
   $('#hoursContainer').html(out).addClass(colorClass); 
-  //var addlist = get_spreadsheet(url);
-  var addlist = getCachedSheet('hours',url); 
+  var addlist = get_spreadsheet(url);
   var adds = addlist.table.rows;
   var out = '<p>No data found</p>'; 
-  for (i = 0; i < adds.length; i++) {
-    if (adds[i] && adds[i].c[0] != null && adds[i].c[0].v == museum) {
-      if (adds[0]) {
-        var item = adds[0];  
-        var namd = item.c[0].v;
-        
-        var add1 = (item.c[1] != null) ? item.c[1].v : 'unknown';
-        var text1 = (item.c[2] != null) ? item.c[2].v : 'unknown';
-        var add2 = (item.c[3] != null) ? item.c[3].v : 'unknown';
-        var text2 = (item.c[4] != null) ? item.c[4].v : 'unknown';
-        var add3 = (item.c[5] != null) ? item.c[5].v : 'unknown';
-        var text3 = (item.c[6] != null) ? item.c[6].v : 'unknown';
-        out = '<div>\n<h3>' + add1 + '</h3>\n' + text1 + '</div>\n';
-        out = out + '<div>\n<h3>' + add2 + '</h3>\n' + text2 + '</div>\n';
-        out = out + '<div>\n<h3>' + add3 + '</h3>\n' + text3 + '</div>\n';
-      } 
-      $('#hoursContainer').html(out).css('display','flex'); 
-    }
-  }
+  if (adds[0]) {
+    var item = adds[0];  
+    var namd = item.c[0].v;
+    
+    var add1 = (item.c[1] != null) ? item.c[1].v : 'unknown';
+    var text1 = (item.c[2] != null) ? item.c[2].v : 'unknown';
+    var add2 = (item.c[3] != null) ? item.c[3].v : 'unknown';
+    var text2 = (item.c[4] != null) ? item.c[4].v : 'unknown';
+    var add3 = (item.c[5] != null) ? item.c[5].v : 'unknown';
+    var text3 = (item.c[6] != null) ? item.c[6].v : 'unknown';
+    out = '<div>\n<h3>' + add1 + '</h3>\n' + text1 + '</div>\n';
+    out = out + '<div>\n<h3>' + add2 + '</h3>\n' + text2 + '</div>\n';
+    out = out + '<div>\n<h3>' + add3 + '</h3>\n' + text3 + '</div>\n';
+  } 
+  $('#hoursContainer').html(out).css('display','flex'); 
   return; 
 }
 
@@ -643,6 +588,23 @@ var formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
 });
+
+function get_spreadsheet(theurl) {
+  var result = "";
+  $.ajax({
+      url: theurl,
+      dataType: 'text',
+      async: false,
+      success: function(data) {
+          i = data.indexOf('(');
+          j = data.lastIndexOf(')');
+          data = data.substr(i + 1, j - 1 - i);
+          var data = JSON.parse(data);
+          result = data;
+      }
+  });
+  return result;
+}
 
 function do_donor_wall_new(file_id = null, sheet = null) {
 
