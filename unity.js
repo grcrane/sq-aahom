@@ -59,19 +59,22 @@ function getCookie(name) {
 
 
 function getCachedSheet(name,url) {
+  var temp = ""; 
   var useName = name + "Unity";
   var theCookie = getCookie(useName);
   if (theCookie) { // cookie still alive
     var temp = JSON.parse(sessionStorage.getItem(useName));
     if (temp) { // found stored data 
-      if (temp) {return temp;}
+      return temp;
     }
   }
   // otherwise 
-  var retlist = get_spreadsheet(url);
-  sessionStorage.setItem(useName,JSON.stringify(retlist));
-  document.cookie = useName + "=cookieValue; max-age=" + 5*60 + "; path=/;";
-  return retlist; 
+  if (temp == null) {
+    var retlist = get_spreadsheet(url);
+    sessionStorage.setItem(useName,JSON.stringify(retlist));
+    document.cookie = useName + "=cookieValue; max-age=" + 5*60 + "; path=/;";
+    return retlist; 
+  }
 }
 
 /* ----------------------------------------------------------- */
