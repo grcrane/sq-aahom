@@ -29,7 +29,7 @@ donor.js
 
 function get_spreadsheet(theurl) {
   var result = "";
-  console.log('getting:' + url);
+  console.log('getting:' + theurl);
   $.ajax({
       url: theurl,
       dataType: 'text',
@@ -592,7 +592,7 @@ var formatter = new Intl.NumberFormat('en-US', {
 
 function get_spreadsheet(theurl) {
   var result = "";
-  console.log('getting:' + url);
+  console.log('getting:' + theurl);
   $.ajax({
       url: theurl,
       dataType: 'text',
