@@ -60,6 +60,7 @@ function getCachedSheet(name,url) {
     document.cookie = useName + "=cookieValue; max-age=" + 5*60 + "; path=/;";
     return retlist; 
   }
+}
 
 /* ----------------------------------------------------------- */
 /* Process the ajax request to get spreadsheet data            */
