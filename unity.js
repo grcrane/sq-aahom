@@ -29,6 +29,7 @@ donor.js
 
 function get_spreadsheet(theurl) {
   var result = "";
+  console.log('getting:' + url);
   $.ajax({
       url: theurl,
       dataType: 'text',
