@@ -47,26 +47,19 @@ function getCookie(name) {
 }
 
 function getCachedSheet(name,url) {
-  var temp = null; 
-  console.log(typeof temp);
   var useName = name + "Unity";
   var theCookie = getCookie(useName);
-  if (theCookie) { // cookie still alive
-    temp = JSON.parse(sessionStorage.getItem(useName));
-    if (temp != null) { // found stored data 
-      console.log(typeof temp);
-      return temp;
-    }
+  var data = sessionStorage.getItem(useName)
+  if (theCookie && data != null) { // cookie still alive
+    var temp = JSON.parse(data); 
+    return temp;
   }
-  // otherwise 
-  
-  if (temp == null) {
+  else {
     var retlist = get_spreadsheet(url);
     sessionStorage.setItem(useName,JSON.stringify(retlist));
     document.cookie = useName + "=cookieValue; max-age=" + 5*60 + "; path=/;";
     return retlist; 
   }
-}
 
 /* ----------------------------------------------------------- */
 /* Process the ajax request to get spreadsheet data            */
