@@ -25,23 +25,18 @@ donor.js
 function getCookie(name) {
     
   // Split cookie string and get all individual name=value pairs in an array
-  console.log(document.cookie);
   var cookieArr = document.cookie.split(";");
-  console.log(cookieArr);
   // Loop through the array elements
   for(var i = 0; i < cookieArr.length; i++) {
       var cookiePair = cookieArr[i].split("=");
       
       /* Removing whitespace at the beginning of the cookie name
       and compare it with the given string */
-      console.log(cookiePair);
-      console.log(cookiePair[0]);
       if(name == cookiePair[0].trim()) {
           // Decode the cookie value and return
           return decodeURIComponent(cookiePair[1]);
       }
   }
-  
   // Return null if not found
   return null;
 }
