@@ -713,62 +713,88 @@ function do_donor_wall_new(file_id = null, sheet = null) {
 /* slick.js carousel                                                   */
 /* ------------------------------------------------------------------- */
 
-function createCarousel (id, container = 0) {
+function showAnnouncements(
+  museum = null,
+  file_id = '1oFRM_HEIcPjLWlyC3QuL_QN67L8kTVujfdG4S3-14X0', 
+  sheet = 'Announce') {
 
-    var x = $(id).closest('section').find('div.summary-item-list-container').eq(container);
+  museum = museum.toLowerCase();
+  var url = 'https://docs.google.com/spreadsheets/u/0/d/'
+    + file_id + '/gviz/tq?tqx=out:json&sheet=' + sheet + 
+    '&headers=1&tq=' + escape('SELECT * Where upper(E) != "YES" ORDER BY A, B');
 
-    var temp = '<div class="slickButtons">\n' +
+  var addlist = get_spreadsheet(url);
+  console.log(addlist);
+  var adds = addlist.table.rows;
+  var out = '<p>No data found</p>'; 
+  var temp = '<div class="slickButtons">\n' +
         '<button class="prev slick-arrow"> < </button>\n' +
         '<button class="next slick-arrow"> > </button>\n' +
         '</div>\n' +
-        '<div class="theCarousel"></div>\n';
-    $(temp).appendTo(id); 
+        '<div class="theCarousel">';
+  $('#announceContainer').html(temp);
+  for (i = 0; i < adds.length; i++) {
+    console.log(adds[i]);
+    
+    var item = adds[i];  
+    var namd = item.c[0].v;
+    
+    var titlehref = "#";
+    var readhref = "#";
+    var read = "Read more";
+    var categories = (item.c[6] != null) ? item.c[6].v : '';
+    var startdate = (item.c[2] != null) ? item.c[2].v : '1950-01-01'; // default start
+    var enddate = (item.c[3] != null) ? item.c[3].v : '2099-01-01'; // default end
+    var title = (item.c[1] != null) ? item.c[1].v : 'unknown';
+    var excerpt = (item.c[7] != null) ? item.c[7].v : 'unknown';
+    var link = (item.c[8] != null) ? item.c[8].v : 'unknown';
+    var src = (item.c[9] != null) ? item.c[9].v + "?format=350" : 'unknown';
 
-    var theCarousel = $(id).find('.theCarousel');
-
-    $(x).find('.summary-item').each(function(index) {
-        var src = $(this).find('.summary-thumbnail img').data('src');
-        var title = $(this).find('.summary-title a').text();
-        var titlehref = $(this).find('.summary-title a').attr('href');
-        var excerpt = $(this).find('.summary-excerpt').text();
-        var read = $(this).find('.summary-read-more-link').text();
-        var readhref = $(this).find('.summary-read-more-link').attr('href');
-        var temp = '<div class="item">\n' + 
-        '<img src="' + src + '">\n' +
-        '<div class="title"><a href="' + titlehref + '">' + title + '</a></div>\n' +
-        '<div class="classcontent">' + excerpt + '</div>\n' + 
-        '<div class="readmore"><a href="' + readhref + '">' + read + '</a></div>\n' +
-        '</div>';
-        $(temp).appendTo(theCarousel);
-        $(x).remove();
-    })
-   
-    $('theCarousel').slick({
-        dots: true,
-        adaptiveHeight: true,
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        arrows: true,
-      prevArrow: $(id + ' .prev'),
-    nextArrow: $(id + ' .next'),
-        
-        responsive: [{
-            breakpoint: 500,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-            }},
-            {
-            breakpoint: 800,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-            }
-        }]
-    });
-    var w = $(theCarousel).find('div.item img').eq(0).width();
-    //$(theCarousel).find('div.item img').css('height','150px');
+    if (src.indexOf('images.squarespace-cdn.com')) {
+      var temp = src.split('?');
+      var src = temp[0] + '?format=350';
+    }
+  
+    var today = new Date();
+    var startcompare = new Date(startdate);
+    var endcompare = new Date(enddate);
+    
+    if (today > startcompare && today < endcompare ) {
+      var temp = '<div class="item">\n' + 
+      '<img src="' + src + '">\n' +
+      '<div class="title"><a href="' + link + '">' + title + '</a></div>\n' +
+      '<div class="classcontent">' + excerpt + '</div>\n' + 
+      '<div class="readmore"><a href="' + link + '">' + read + '</a></div>\n' +
+      '</div>';
+      $(temp).appendTo('#announceContainer .theCarousel'); 
+    }
+       
+}
+  
+$('.theCarousel').slick({
+    dots: true,
+    adaptiveHeight: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    arrows: true,
+  prevArrow: $('#announceContainer' + ' .prev'),
+  nextArrow: $('#announceContainer' + ' .next'),
+    
+    responsive: [{
+        breakpoint: 500,
+        settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+        }},
+        {
+        breakpoint: 800,
+        settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+        }
+    }]
+});
 
 }
 
