@@ -1235,6 +1235,27 @@ button.next.slick-arrow {
     left: unset;
 }
 
+div.theCarousel div.item div.title {
+    font-weight: 500;
+    font-size: 1em;
+    line-height: 1.2em;
+    padding: 5px 0;
+}
+
+.theCarousel div.item div.classcontent {
+    font-style: italic;
+    line-height: 20px;
+    font-weight: unset;
+    font-size: 14px;
+}
+.theCarousel div.readmore {
+    font-size: 14px;
+    font-style: italic;
+}
+.theCarousel div.classcontent p:first-child {
+  margin-top: 0;
+}
+
 @media (max-width: 640px) {
   .theCarousel  div.item {
     margin: 0;
