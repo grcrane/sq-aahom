@@ -455,7 +455,7 @@ article:first-of-type section:first-of-type div.content-wrapper div.content {
 
 #iconBar .iconBarFlex .flex-item img,
 #iconBarFoot .iconBarFlex .flex-item img {
-  width: 150px;
+  width: 200px;
   object-fit:cover;
 }
 
