@@ -129,12 +129,19 @@ Maps and Directions
 </h4>
 
 /* ----------------------------------------------- */
-/* Carousel                                        */
+/* slick carousel includes                         */
+/* For summary block or spreadsheet carousel       */
 /* ----------------------------------------------- */
 
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+/* ----------------------------------------------- */
+/* Carousel                                        */
+/* based on existing summary block                 */
+/* ----------------------------------------------- */
+
 <script>
 $(document).ready(function(){
     createCarousel ('#announcementCarousel');    
@@ -144,6 +151,19 @@ $(document).ready(function(){
 
 NOTE: create a summary list carousel
 be sure to turn on the readme link
+
+/* ----------------------------------------------- */
+/* Carousel                                        */
+/* based on announcement spreadsheet data          */
+/* ----------------------------------------------- */
+
+<script>
+$( document ).ready(function() {
+  showAnnouncements('Leslie'); 
+});
+</script>
+<div id="announceContainer" class="content-wrapper"> 
+</div>
 
 /* ------------------------------------------------ */
 /* Address, hours                                   */
