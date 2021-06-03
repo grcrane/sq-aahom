@@ -483,12 +483,14 @@ article:first-of-type section:first-of-type div.content-wrapper div.content {
 }
 
 /* ------ Challenger logo override ----- */
+/*
 #iconBar ul.iconBarFlex li.flex-item.logoChallenger img,
 #iconBarFoot ul.iconBarFlex li.flex-item.logoChallenger img{
     width: 53px;
     max-height: 70px;
     object-fit: cover;
 }
+*/
 
 @media only screen and (max-width: 780px) {
   #iconBar ul.iconBarFlex li.flex-item.logoChallenger img,
