@@ -832,7 +832,7 @@ function createCarousel (id, container = 0) {
         $(x).remove();
     })
    
-    $('theCarousel').slick({
+    $(theCarousel).slick({
         dots: true,
         adaptiveHeight: true,
         infinite: true,
