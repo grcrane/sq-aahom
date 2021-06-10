@@ -302,7 +302,15 @@ function build_flipcards3(boxNumber = '1', file_id = null, sheet = null) {
     if (item.c[6] != null) {color = item.c[6].v;}
     if (item.c[7] != null) {message = item.c[7].v;}
     for (var i = 8; i < 15; i++) {
-      if (item.c[i] != null) { images.push(item.c[i].v); }
+      if (item.c[i] != null) { 
+        var src = item.c[i].v;
+        if (src.indexOf('images.squarespace-cdn.com') ||
+          src.indexOf('static1.squarespace.com')) {
+          var temp = src.split('?');
+          var src = temp[0] + '?format=300w';
+        }
+        images.push(src); 
+      }
     };
     process_card_info3(link,images, caption, label, message);
   })   
