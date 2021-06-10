@@ -304,8 +304,7 @@ function build_flipcards3(boxNumber = '1', file_id = null, sheet = null) {
     for (var i = 8; i < 15; i++) {
       if (item.c[i] != null) { 
         var src = item.c[i].v;
-        if (src.indexOf('images.squarespace-cdn.com') ||
-          src.indexOf('static1.squarespace.com')) {
+        if (src.indexOf('images.squarespace-cdn.com')) {
           var temp = src.split('?');
           var src = temp[0] + '?format=300w';
         }
@@ -769,8 +768,7 @@ function showAnnouncements(
 
     // valid formats are original, 1500w, 1000w, 750w, 500w, 300w, 100w
 
-    if (src.indexOf('images.squarespace-cdn.com') ||
-      src.indexOf('static1.squarespace.com')) {
+    if (src.indexOf('images.squarespace-cdn.com')) {
       var temp = src.split('?');
       var src = temp[0] + '?format=300w';
     }
