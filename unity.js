@@ -757,11 +757,14 @@ function showAnnouncements(
     var title = (item.c[1] != null) ? item.c[1].v : 'unknown';
     var excerpt = (item.c[7] != null) ? item.c[7].v : 'unknown';
     var link = (item.c[8] != null) ? item.c[8].v : 'unknown';
-    var src = (item.c[9] != null) ? item.c[9].v + "?format=350" : 'unknown';
+    var src = (item.c[9] != null) ? item.c[9].v + "?format=300w" : 'unknown';
 
-    if (src.indexOf('images.squarespace-cdn.com')) {
+    // valid formats are original, 1500w, 1000w, 750w, 500w, 300w, 100w
+
+    if (src.indexOf('images.squarespace-cdn.com') ||
+      src.indexOf('static1.squarespace.com')) {
       var temp = src.split('?');
-      var src = temp[0] + '?format=350';
+      var src = temp[0] + '?format=300w';
     }
   
     var today = new Date();
