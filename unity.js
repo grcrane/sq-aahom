@@ -944,3 +944,30 @@ function build_calendars(
     }
   })
 }
+
+/* ----------------------------------------------------------- */
+/* Sub Menu Bar                                                */
+/*    05/18/2021 - initial                                     */
+/* ----------------------------------------------------------- */
+
+function subMenuBar(act = '') {
+
+  var menu = 
+  '<div class="subMenuBar">\n' +
+  '<nav>\n' +
+  '   <a href="#" class="headerName">For Families and Indiviuals</a>\n' +
+  '   <a name="adventure" href="choose-your-adventure">Choose Adventure</a>\n' +
+  '   <a name="birthdays" href="/birthday-parties">Birthdays Parties</a>\n' +
+  '   <a name="camp" href="/camps">Pick your Camp</a>\n' +
+  '</nav>\n' +
+  '<nav>\n' +
+  '   <a href="#" class="headerName">For Schools and Organizations</a>\n' +
+  '   <a name="outreach" href="/outreach">Outreach</a>\n' +
+  '   <a name="field" href="/field-trips">Field Trips</a>\n' +
+  '   <a name="distance" href="/distance-learning">Distance Learning</a>\n' +
+  '</nav>\n' +
+'</div>\n';
+// Set the appropriate active 
+$('.subMenuBar a[name="' + act + '"' i).addClass('active');
+return menu; 
+}
