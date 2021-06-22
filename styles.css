@@ -1340,3 +1340,52 @@ div.theCarousel div.item div.title {
     display: none;
   }
 }
+
+
+/*-------------------------------------------------------------*/
+/* sub Menu Bar                                                */
+/*    06/21/2021 - initial                                     */
+/*-------------------------------------------------------------*/
+
+.subMenuBar nav {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 768px) {
+  .subMenuBar nav { flex-direction: row; }
+}
+
+.subMenuBar nav a{
+  flex: 1;
+  text-align: center;
+  margin: 0.25em;
+  padding: 0.25em;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  color: #555;
+  background: wheat;
+  border-radius: 5px;
+  flex-grow: 1;
+}
+
+.subMenuBar nav a.active {
+  background: gray;
+  color: white;
+}
+
+.subMenuBar {
+  width: 70%;
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.subMenuBar nav a.headerName {
+  background: #eee;
+  font-weight: bold;
+  flex-grow: 3;
+  cursor: pointer;
+  pointer-events: none;
+  display: none;
+}
