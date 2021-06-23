@@ -950,7 +950,7 @@ function build_calendars(
 /*    05/18/2021 - initial                                     */
 /* ----------------------------------------------------------- */
 
-function subMenuBar(act = '') {
+function subMenuBar(selector, act = '') {
 
   var menu = 
   '<div class="subMenuBar">\n' +
@@ -967,7 +967,10 @@ function subMenuBar(act = '') {
   '   <a name="distance" href="/distance-learning">Distance Learning</a>\n' +
   '</nav>\n' +
 '</div>\n';
+
+// add the menu code
+$(menu).appendTo(selector);
 // Set the appropriate active 
-$('.subMenuBar a[name="' + act + '"' i).addClass('active');
+$(selector + ' .subMenuBar a[name="' + act + '"' i).addClass('active');
 return menu; 
 }
