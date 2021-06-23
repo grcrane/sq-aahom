@@ -286,3 +286,15 @@ $( document ).ready(function() {
     do_camp_list(file_id);
     $( document ).tooltip();
 });
+
+/* -------------------------------------- */
+/* Sub menu Bar                           */
+/* -------------------------------------- */
+
+<script> 
+$(document).ready(function() {
+  subMenuBar('adventure');
+});
+</script>
+<div id="subMenu">
+</div>
