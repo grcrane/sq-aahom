@@ -183,7 +183,9 @@ function showIconBar(sticky = true, iconID = 'iconBar') {
   })
   temp += '</ul>\n';
   $('#' + iconID).html(temp); 
-  if (sticky) {
+
+  var isEditor = window.frameElement ? true : false;
+  if (sticky && isEditor === false) {
     var s = $('article:first-of-type section:first-of-type div.content-wrapper div.content');
     var h = s.height();
     h = parseInt(h) + 100; 
@@ -950,7 +952,7 @@ function build_calendars(
 /*    05/18/2021 - initial                                     */
 /* ----------------------------------------------------------- */
 
-function subMenuBar(act = '') {
+function subMenuBar(act = '', sel = '#subMenu') {
 
   var menu = 
   '<div class="subMenuBar">\n' +
@@ -971,6 +973,6 @@ function subMenuBar(act = '') {
 // add the menu code
 $(menu).appendTo('#subMenu');
 // Set the appropriate active 
-$('#subMenu').find('.subMenuBar a[name="' + act + '"]').addClass('active');
+$(sel).find('.subMenuBar a[name="' + act + '"]').addClass('active');
 return menu; 
 }
