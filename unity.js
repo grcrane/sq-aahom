@@ -950,7 +950,7 @@ function build_calendars(
 /*    05/18/2021 - initial                                     */
 /* ----------------------------------------------------------- */
 
-function subMenuBar(selector, act = '') {
+function subMenuBar(act = '') {
 
   var menu = 
   '<div class="subMenuBar">\n' +
@@ -969,8 +969,8 @@ function subMenuBar(selector, act = '') {
 '</div>\n';
 
 // add the menu code
-$(menu).appendTo(selector);
+$(menu).appendTo('#subMenu');
 // Set the appropriate active 
-$(selector + ' .subMenuBar a[name="' + act + '"' i).addClass('active');
+$('#subMenu').find('.subMenuBar a[name="' + act + '"' i).addClass('active');
 return menu; 
 }
