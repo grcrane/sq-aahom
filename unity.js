@@ -971,6 +971,6 @@ function subMenuBar(act = '') {
 // add the menu code
 $(menu).appendTo('#subMenu');
 // Set the appropriate active 
-$('#subMenu').find('.subMenuBar a[name="' + act + '"]' i).addClass('active');
+$('#subMenu').find('.subMenuBar a[name="' + act + '"] i').addClass('active');
 return menu; 
 }
