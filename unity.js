@@ -185,7 +185,9 @@ function showIconBar(sticky = true, iconID = 'iconBar') {
   $('#' + iconID).html(temp); 
 
   var isEditor = window.frameElement ? true : false;
-  if (sticky && isEditor === false) {
+  //  && isEditor === false
+  // was if (sticky && isEditor === false) {
+  if (sticky) {
     var s = $('article:first-of-type section:first-of-type div.content-wrapper div.content');
     var h = s.height();
     h = parseInt(h) + 100; 
