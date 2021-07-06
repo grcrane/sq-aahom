@@ -563,83 +563,6 @@ function do_team_members2(file_id = null, sheet = null) {
 }
 
 /* ------------------------------------------------------------------- */
-/* Filter checklist values                                             */
-/* ------------------------------------------------------------------- */ 
-
-var catloc =  'div.summary-content ' + 
-    'div.summary-metadata-container ' + 
-    'div.summary-metadata ' + 
-    'span.summary-metadata-item--cats a';
-
-
-function filter_values (selector = '#filterContainer') {
-
-    var catsel = $(selector).closest('div.sgs-block-content').next().find(catloc);
-
-    $(catsel).addClass('filterCat');
-
-    // initialize based on current checkboxes
-    filter_showvals();
-
-    // Process a checkbox selection 
-    $(selector + ' input[type=checkbox], ' +
-    selector + ' input[type=radio]')
-    .on('change', function(e) {
-        filter_showvals(selector);
-    })
-}
-
-function filter_showvals (selector = '#filterContainer') {
-
-    // get an array of checked items
-    var ids = [];
-    var xidsx = [];
-    $(selector + ' input[type=checkbox]:checked, ' +
-        selector + ' input[type=radio]:checked')
-        .each(function() {
-        if(this.value) {ids.push(this.value); }
-    });
-
-    var catsel = $(selector).closest('div.sgs-block-content');
-
-    var catsel = $('#filterContainer').closest('div.sqs-block-content').next();
-    $(catsel).find('a.active').removeClass('active');
-
-    // if we have anything checked then start with everything hidden
-    if (ids.length) {
-        $('div.summary-item').css('display','none');
-    }
-
-    // make sure ids only has unique values
-    var t = [];
-    for(var x = 0; x < ids.length; x++){
-        if(t.indexOf(ids[x]) == -1) {t.push(ids[x]);}
-    }
-    ids = t;
-    
-    var catsel = $('#filterContainer').closest('div.sqs-block-content').next();
-    $(catsel).find('div.summary-item').each(function(index, value) {
-        var xidsx = ids.slice(); // copy the array of checked items
-        $(this).find(catloc).filter(function (index2) {
-          
-            var t = this.href.indexOf('?category=');
-            var i = xidsx.indexOf(this.href.substr(t+10));            
-            if ( i >= 0) {
-                xidsx.splice(i, 1);  
-            }
-            var i = ids.indexOf(this.href.substr(t+10));           
-            if ( i >= 0) {
-                $(this).addClass('active');   
-            }
-        })
-        // if we have found all of the selected items the show   
-        if (xidsx.length == 0) {
-            $('div.summary-item').css('display','block');
-        }
-    });
-}    
-
-/* ------------------------------------------------------------------- */
 /* Donor Wall                                                          */
 /* ------------------------------------------------------------------- */
 
@@ -986,6 +909,87 @@ $(sel).find('.subMenuBar a[name="' + act + '"]').addClass('active');
 return menu; 
 }
 
+/* ------------------------------------------------------------------- */
+/* Filter checklist values                                             */
+/* ------------------------------------------------------------------- */ 
+
+var catloc =  'div.summary-content ' + 
+    'div.summary-metadata-container ' + 
+    'div.summary-metadata ' + 
+    'span.summary-metadata-item--cats a';
+
+function filter_values (selector = '#filterContainer') {
+
+    var catsel = $(selector).parent().parent().next().find(catloc);
+
+    $(catsel).addClass('filterCat');
+
+    // initialize based on current checkboxes
+    filter_showvals();
+
+    // Process a checkbox selection 
+    $(selector + ' input[type=checkbox], ' +
+    selector + ' input[type=radio]')
+    .on('change', function(e) {
+        filter_showvals(selector);
+    })
+}
+
+function filter_showvals (selector = '#filterContainer') {
+
+    // get an array of checked items
+    var ids = [];
+    var xidsx = [];
+    $(selector + ' input[type=checkbox]:checked, ' +
+        selector + ' input[type=radio]:checked')
+        .each(function() {
+        if(this.value) {ids.push(this.value); }
+    });
+
+    var catsel = $(selector).parent().parent().next();
+    console.log('selector=' + selector + ' catsel.length=' + catsel.length);
+
+    //var catsel = $('#filterContainer').closest('div.sqs-block-content').next();
+    $(catsel).find('a.active').removeClass('active');
+
+    // if we have anything checked then start with everything hidden
+
+    if (ids.length) {
+        $('div.summary-item').css('display','none');
+    }
+
+    // make sure ids only has unique values
+    var t = [];
+    for(var x = 0; x < ids.length; x++){
+        if(t.indexOf(ids[x]) == -1) {t.push(ids[x]);}
+    }
+    ids = t;
+    
+    var catsel = $(selector).parent().parent().next();
+    $(catsel).find('div.summary-item').each(function(index, value) {
+        var xidsx = ids.slice(); // copy the array of checked items
+        console.log(xidsx);
+        $(this).find(catloc).filter(function (index2) {
+          
+            var t = this.href.indexOf('?category=');
+            var i = xidsx.indexOf(this.href.substr(t+10).toLowerCase()); 
+            console.log(this.href); 
+            console.log('index2=' + index2 + ' t=' + t + ' i=' + i);          
+            if ( i >= 0) {
+                xidsx.splice(i, 1);  
+            }
+            var i = ids.indexOf(this.href.substr(t+10).toLowerCase());           
+            if ( i >= 0) {
+                $(this).addClass('active');   
+            }
+        })
+        // if we have found all of the selected items the show   
+        if (xidsx.length == 0) {
+            $(this).css('display','block');
+        }
+    });
+}  
+
 /*-------------------------------------------------------------*/
 /* Add filter radio/checkboxes                                 */
 /*    07/03/2021 - initial                                     */
@@ -1035,7 +1039,7 @@ function showFilterSelections(
     }
     var defaultvalue = '';
     if (temp.length > 2) {
-      defaultvalue = temp[2].toLowerCase().replace(' ','+');
+      defaultvalue = temp[2].toLowerCase().replaceAll(' ','+');
     } 
     group = group.toLowerCase();
     
@@ -1052,7 +1056,7 @@ function showFilterSelections(
      
           var item = cats[n];
           var checked = '';
-          var lookup = item.c[1].v.toLowerCase().replace(' ','+'); 
+          var lookup = item.c[1].v.toLowerCase().replaceAll(' ','+'); 
           if (defaultvalue == lookup) {
             checked = ' checked '; 
           }
@@ -1069,4 +1073,4 @@ function showFilterSelections(
   filter_values (selector);
   return; 
 
-}
+}  
