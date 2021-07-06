@@ -1014,9 +1014,10 @@ function showFilterSelections(
   file_id = '1qrUPQu2qs8eOOi-yZwvzOuGseDFjkvj5_mSnoz0tJVc', 
   sheet = 'Categories') {
 
+  var where = "SELECT A,B,C,D,E WHERE D != 'Yes' AND A IS NOT NULL ORDER BY A, B";
   var url = 'https://docs.google.com/spreadsheets/u/0/d/'
     + file_id + '/gviz/tq?tqx=out:json&sheet=' + sheet + 
-    '&headers=1&tq=' + escape('SELECT * ORDER BY A, B');
+    '&headers=1&tq=' + escape(where);
   var catlist = get_spreadsheet(url); 
   var cats = catlist.table.rows;
   allgroups = groups.split(',');
@@ -1037,19 +1038,20 @@ function showFilterSelections(
       defaultvalue = temp[2].toLowerCase().replace(' ','+');
     } 
     group = group.toLowerCase();
-    console.log('group=' + group);
     
     var prettyname = group.charAt(0).toUpperCase() + group.slice(1); 
     out = out + '<div class="filterGroup">\n';
     out = out + '<span>' + prettyname + '</span><ul>\n';
     var colorClass = "group" + group.charAt(0).toUpperCase() + group.slice(1);
+    if (type == 'radio') {
+      if (defaultvalue == '') {checked = ' checked ';}
+      out = out + '<li><input type="' + type + '" value="" name="' + group + '"' + checked + '><span>Any</span></li>\n';
+    }
     for (n = 0; n < cats.length; n++) {
       if (cats[n] && cats[n].c[0].v.toLowerCase() == group) {
      
           var item = cats[n];
-          console.log(item.c[0].v + ' ' + item.c[1].v);
           var checked = '';
-
           var lookup = item.c[1].v.toLowerCase().replace(' ','+'); 
           if (defaultvalue == lookup) {
             checked = ' checked '; 
@@ -1062,9 +1064,9 @@ function showFilterSelections(
     out = out + '</ul></div>\n';
   }
   var out = out + '</div>\n'; 
-  $(selector).html(out); 
-  filter_showvals(); // filter based on currently checked
-  filter_values ();  // set up filter change event
+  $(selector).html(out);
+  filter_showvals(selector); 
+  filter_values (selector);
   return; 
 
 }
