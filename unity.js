@@ -572,33 +572,38 @@ var catloc =  'div.summary-content ' +
     'span.summary-metadata-item--cats a';
 
 
-function filter_values () {
+function filter_values (selector = '#filterContainer') {
 
-    $(catloc).addClass('filterCat');
+    var catsel = $(selector).closest('div.sgs-block-content').next().find(catloc);
+
+    $(catsel).addClass('filterCat');
 
     // initialize based on current checkboxes
     filter_showvals();
 
     // Process a checkbox selection 
-    $('#filterContainer input[type=checkbox], ' +
-    '#filterContainer input[type=radio]')
+    $(selector + ' input[type=checkbox], ' +
+    selector + ' input[type=radio]')
     .on('change', function(e) {
-        filter_showvals();
+        filter_showvals(selector);
     })
 }
 
-function filter_showvals () {
+function filter_showvals (selector = '#filterContainer') {
 
     // get an array of checked items
     var ids = [];
     var xidsx = [];
-    $('#filterContainer input[type=checkbox]:checked, ' +
-        '#filterContainer input[type=radio]:checked')
+    $(selector + ' input[type=checkbox]:checked, ' +
+        selector + ' input[type=radio]:checked')
         .each(function() {
         if(this.value) {ids.push(this.value); }
     });
-   
-    $(catloc).removeClass('active');
+
+    var catsel = $(selector).closest('div.sgs-block-content');
+
+    var catsel = $('#filterContainer').closest('div.sqs-block-content').next();
+    $(catsel).find('a.active').removeClass('active');
 
     // if we have anything checked then start with everything hidden
     if (ids.length) {
@@ -611,23 +616,25 @@ function filter_showvals () {
         if(t.indexOf(ids[x]) == -1) {t.push(ids[x]);}
     }
     ids = t;
-
-    $('div.summary-item').each(function(index, value) {
+    
+    var catsel = $('#filterContainer').closest('div.sqs-block-content').next();
+    $(catsel).find('div.summary-item').each(function(index, value) {
         var xidsx = ids.slice(); // copy the array of checked items
         $(this).find(catloc).filter(function (index2) {
+          
             var t = this.href.indexOf('?category=');
-            var i = xidsx.indexOf(this.href.substr(t+10));
+            var i = xidsx.indexOf(this.href.substr(t+10));            
             if ( i >= 0) {
                 xidsx.splice(i, 1);  
             }
-            var i = ids.indexOf(this.href.substr(t+10));
+            var i = ids.indexOf(this.href.substr(t+10));           
             if ( i >= 0) {
                 $(this).addClass('active');   
             }
         })
-        // if we have found all of the selected items the show
+        // if we have found all of the selected items the show   
         if (xidsx.length == 0) {
-            $(this).css('display','block');
+            $('div.summary-item').css('display','block');
         }
     });
 }    
@@ -977,4 +984,87 @@ $(menu).appendTo('#subMenu');
 // Set the appropriate active 
 $(sel).find('.subMenuBar a[name="' + act + '"]').addClass('active');
 return menu; 
+}
+
+/*-------------------------------------------------------------*/
+/* Add filter radio/checkboxes                                 */
+/*    07/03/2021 - initial                                     */
+/*-------------------------------------------------------------*/
+
+/* Usage
+
+parameter 1 (groups): group<:[radio|checkbox]><:[default]>
+parameter 2 (selector): ie. '#filtercontainer'
+parameter 3 (file_id): Google docs file id 
+parameter 4 (sheet name): Google docs spreadsheet sheet name
+
+Example:
+
+$( document ).ready(function() {
+    showFilterSelections('locations:radio:leslie, ages:checkbox:4th');
+});
+<div id="container">
+  <div id="filterContainer"></div>
+</div>
+
+*/
+
+function showFilterSelections(
+  groups = 'locations, ages', selector = "#filterContainer",
+  file_id = '1qrUPQu2qs8eOOi-yZwvzOuGseDFjkvj5_mSnoz0tJVc', 
+  sheet = 'Categories') {
+
+  var url = 'https://docs.google.com/spreadsheets/u/0/d/'
+    + file_id + '/gviz/tq?tqx=out:json&sheet=' + sheet + 
+    '&headers=1&tq=' + escape('SELECT * ORDER BY A, B');
+  var catlist = get_spreadsheet(url); 
+  var cats = catlist.table.rows;
+  allgroups = groups.split(',');
+  var out = '<div class="flexBox">\n';
+  for (i = 0; i < allgroups.length; i++) { 
+    var group = allgroups[i].trim().toLowerCase();
+    var type = 'checkbox'; // default
+    var temp = group.split(':');
+    var validtypes = ['radio','checkbox'];
+    if (temp.length > 1) {
+      group = temp[0];
+      if (validtypes.indexOf(temp[1]) > -1) {
+        type = temp[1];
+      }
+    }
+    var defaultvalue = '';
+    if (temp.length > 2) {
+      defaultvalue = temp[2].toLowerCase().replace(' ','+');
+    } 
+    group = group.toLowerCase();
+    console.log('group=' + group);
+    
+    var prettyname = group.charAt(0).toUpperCase() + group.slice(1); 
+    out = out + '<div class="filterGroup">\n';
+    out = out + '<span>' + prettyname + '</span><ul>\n';
+    var colorClass = "group" + group.charAt(0).toUpperCase() + group.slice(1);
+    for (n = 0; n < cats.length; n++) {
+      if (cats[n] && cats[n].c[0].v.toLowerCase() == group) {
+     
+          var item = cats[n];
+          console.log(item.c[0].v + ' ' + item.c[1].v);
+          var checked = '';
+
+          var lookup = item.c[1].v.toLowerCase().replace(' ','+'); 
+          if (defaultvalue == lookup) {
+            checked = ' checked '; 
+          }
+          out = out + '<li><input type="' + type + '" value="' + lookup + '" name="' + group + '"' + checked + '><span>' + item.c[2].v + '</span></li>\n';
+          
+        
+      }
+    }
+    out = out + '</ul></div>\n';
+  }
+  var out = out + '</div>\n'; 
+  $(selector).html(out); 
+  filter_showvals(); // filter based on currently checked
+  filter_values ();  // set up filter change event
+  return; 
+
 }
