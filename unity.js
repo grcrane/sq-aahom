@@ -1045,11 +1045,11 @@ function showFilterSelections(
     
     var prettyname = group.charAt(0).toUpperCase() + group.slice(1); 
     out = out + '<div class="filterGroup">\n';
-    out = out + '<span>' + prettyname + '</span><ul>\n';
+    out = out + '<span>' + prettyname + '</span><div class="outer">\n';
     var colorClass = "group" + group.charAt(0).toUpperCase() + group.slice(1);
     if (type == 'radio') {
       if (defaultvalue == '') {checked = ' checked ';}
-      out = out + '<li><input type="' + type + '" value="" name="' + group + '"' + checked + '><span>Any</span></li>\n';
+      out = out + '<div><input type="' + type + '" value="" name="' + group + '"' + checked + '><span>Any</span></div>\n';
     }
     for (n = 0; n < cats.length; n++) {
       if (cats[n] && cats[n].c[0].v.toLowerCase() == group) {
@@ -1060,12 +1060,12 @@ function showFilterSelections(
           if (defaultvalue == lookup) {
             checked = ' checked '; 
           }
-          out = out + '<li><input type="' + type + '" value="' + lookup + '" name="' + group + '"' + checked + '><span>' + item.c[2].v + '</span></li>\n';
+          out = out + '<div><input type="' + type + '" value="' + lookup + '" name="' + group + '"' + checked + '><span>' + item.c[2].v + '</span></div>\n';
           
         
       }
     }
-    out = out + '</ul></div>\n';
+    out = out + '</div></div>\n';
   }
   var out = out + '</div>\n'; 
   $(selector).html(out);
