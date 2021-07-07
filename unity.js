@@ -1018,7 +1018,7 @@ function showFilterSelections(
   file_id = '1qrUPQu2qs8eOOi-yZwvzOuGseDFjkvj5_mSnoz0tJVc', 
   sheet = 'Categories') {
 
-  var where = "SELECT A,B,C,D,E WHERE D != 'Yes' AND A IS NOT NULL ORDER BY A, B";
+  var where = "SELECT A,B,C,D,E WHERE D != 'Yes' AND A IS NOT NULL ORDER BY A";
   var url = 'https://docs.google.com/spreadsheets/u/0/d/'
     + file_id + '/gviz/tq?tqx=out:json&sheet=' + sheet + 
     '&headers=1&tq=' + escape(where);
