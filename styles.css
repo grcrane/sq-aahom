@@ -1073,6 +1073,13 @@ div.team_container .item_box:hover .item_back {
     margin-left: 10px;
 }
 
+#filterContainer .flexBox .filterGroup table tr td span {
+    margin-left: 10px;
+}
+#filterContainer table tr td:not(:first-child) {
+  padding-left: 10px;
+}
+
 div.summary-metadata .filterCat {
     pointer-events: none;
 }
