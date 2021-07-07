@@ -1055,26 +1055,21 @@ div.team_container .item_box:hover .item_back {
 
 }
 
-#filterContainer .flexBox .filterGroup ul {
+#filterContainer .flexBox .filterGroup div.outer {
    /* list-style-type: none; /* Remove bullets */
     padding: 0; 
     margin: 0; 
     margin-bottom: 20px;
     list-style: none;
     margin-left: 0; 
-    padding-left: 1em;
-    text-indent: -2em;
 }
 
-#filterContainer .flexBox .filterGroup ul li {
-     padding-left: 1em;
-}
 #filterContainer {
     margin: 0 auto;
     max-width: 900px;
 }
 
-#filterContainer .flexBox .filterGroup ul li span {
+#filterContainer .flexBox .filterGroup div.outer div span {
     margin-left: 10px;
 }
 
