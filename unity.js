@@ -1014,6 +1014,7 @@ $( document ).ready(function() {
 */
 
 function showFilterSelections(
+
   groups = 'locations, ages', selector = "#filterContainer",
   file_id = '1qrUPQu2qs8eOOi-yZwvzOuGseDFjkvj5_mSnoz0tJVc', 
   sheet = 'Categories') {
@@ -1046,27 +1047,43 @@ function showFilterSelections(
     
     var prettyname = group.charAt(0).toUpperCase() + group.slice(1); 
     out = out + '<div class="filterGroup">\n';
-    out = out + '<span>' + prettyname + '</span><div class="outer">\n';
+    out = out + '<span>' + prettyname + '</span><table class="outer">\n';
     var colorClass = "group" + group.charAt(0).toUpperCase() + group.slice(1);
+    var numcols = 1;
+    if (group == 'ages') {
+      numcols = 2;
+    }
+    var curcol = 0;
+    var tr = '<tr>';
     if (type == 'radio') {
       if (defaultvalue == '') {checked = ' checked ';}
-      out = out + '<div><input type="' + type + '" value="" name="' + group + '"' + checked + '><span>Any</span></div>\n';
+      out = out + tr + '<td><input type="' + type + '" value="" name="' + group + '"' + checked + '><span>Any</span></td>\n';
+      curcol = curcol + 1; 
     }
     for (n = 0; n < cats.length; n++) {
       if (cats[n] && cats[n].c[0].v.toLowerCase() == group) {
-     
+      curcol = curcol + 1;
+
+          if (parseInt(curcol) > parseInt(1) && parseInt(curcol) <= parseInt(numcols)) {
+            tr = ''; 
+            
+          }
+          else {
+            tr = '<tr>';
+            curcol = 1;
+          }
+          if (curcol > numcols) { curcol = 1;}
           var item = cats[n];
           var checked = '';
           var lookup = item.c[1].v.toLowerCase().replaceAll(' ','+'); 
           if (defaultvalue == lookup) {
             checked = ' checked '; 
           }
-          out = out + '<div><input type="' + type + '" value="' + lookup + '" name="' + group + '"' + checked + '><span>' + item.c[2].v + '</span></div>\n';
-          
-        
+
+          out = out + tr + '<td><input type="' + type + '" value="' + lookup + '" name="' + group + '"' + checked + '><span>' + item.c[2].v + '</span></td>\n';     
       }
     }
-    out = out + '</div></div>\n';
+    out = out + '</table></div>\n';
   }
   var out = out + '</div>\n'; 
   $(selector).html(out);
@@ -1074,4 +1091,4 @@ function showFilterSelections(
   filter_values (selector);
   return; 
 
-}  
+} 
