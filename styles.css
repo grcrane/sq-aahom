@@ -31,64 +31,18 @@ div.faq_container .ui-state-active a {
 /*    04/10/2021 - initial                                     */
 /*-------------------------------------------------------------*/
 
-/* For frequently asked questions */
-/*
-div.faq_container .colorUnity.ui-state-active,
-.museumSectionBreak.colorUnity,
-.colorUnity {
-  background: rgb(64, 77, 92);
-  color: white;
-}
-
-div.faq_container .colorAahom.ui-state-active,
-.museumSectionBreak.colorAahom,
-.colorAahom {
-  background: rgb(233, 34, 49);
-  color: white;
-}
-
-div.faq_container .colorLeslie.ui-state-active,
-.museumSectionBreak.colorLeslie,
-.colorLeslie {
-  background: rgb(26, 134, 84);
-  color: white;
-}
-
-div.faq_container .colorExperience.ui-state-active,
-.museumSectionBreak.colorExperience,
-.colorExperience {
-  background: rgb(250,169, 24);
-  color: white;
-}
-
-div.faq_container .colorChallenger.ui-state-active,
-.museumSectionBreak.colorChallenger,
-.colorChallenger {
-  background: rgb(42,147,221);
-  color: white;
-}
-
-div.faq_container .colorYankee.ui-state-active,
-.museumSectionBreak.colorYankee,
-.colorYankee {
-  background: rgb(246, 239, 205);
-  color: black;
-}
-
-.ui-state-active.colorYankee a, 
-.ui-state-active.colorYankee a:link, 
-.ui-state-active.colorYankee a:visited {
-    color: black;
-    text-decoration: none;
-}
-*/
-
 /* --------- Unity Colors --------- */
 div.faq_container .colorUnity.ui-state-active,
 .museumSectionBreak.colorUnity,
 .colorUnity,
-#accordion .ui-state-active {
-  background: rgb(64, 77, 92);
+#accordion .ui-state-active,
+.subMenuBar nav a {
+  background: rgb(77, 54, 59);
+  color: white;
+}
+
+.subMenuBar nav a.active {
+  background: rgb(131, 124,124);
   color: white;
 }
 
@@ -97,30 +51,30 @@ div.faq_container .colorAahom.ui-state-active,
 .museumSectionBreak.colorAahom,
 .colorAahom,
 #accordion .ui-state-active {
-  background: rgb(23,123,192);
+  background: rgb(60,100,168);
   color: white;
 }
 #hoursContainer.museumAahom {
-  border: 5px solid rgb(23,123,192);
+  border: 5px solid rgb(60,100,168);
 }
 #hoursContainer.museumAahom > div {
-  background-color: rgba(23,123,192,.05);
-  border: 2px solid rgba(23,123,192,.5);
+  background-color: rgba(60,100,168,.05);
+  border: 2px solid rgba(60,100,168,.5);
 }
 
 /* --------- Leslie Colors --------- */
 div.faq_container .colorLeslie.ui-state-active,
 .museumSectionBreak.colorLeslie,
 .colorLeslie {
-  background: rgb(9,113,61);
+  background: rgb(109,143,60);
   color: white;
 }
 #hoursContainer.museumLeslie {
-  border: 5px solid rgb(9,113,61);
+  border: 5px solid rgb(109,143,60);
 }
 #hoursContainer.museumLeslie > div {
-  background-color: rgba(9,113,61,.05);
-  border: 2px solid rgba(9,113,61,.5);
+  background-color: rgba(109,143,60,.05);
+  border: 2px solid rgba(109,143,60,.5);
 }
 
 /* --------- Yankee Colors --------- */
@@ -128,30 +82,30 @@ div.faq_container .colorYankee.ui-state-active,
 div.faq_container .ui-state-active a.colorYankee,
 .museumSectionBreak.colorYankee,
 .colorYankee {
-  background: rgb(227,25,55);
+  background: rgb(237,27,48);
   color: white;
 }
 #hoursContainer.museumYankee {
-  border: 5px solid rgb(227,25,55);
+  border: 5px solid rgb(237,27,48);
 }
 #hoursContainer.museumYankee > div {
-  background-color: rgba(227,25,55,.05);
-  border: 2px solid rgba(227,25,55,.5);
+  background-color: rgba(237,27,48,.05);
+  border: 2px solid rgba(237,27,48,.5);
 }
 
 /* --------- Challenger Colors --------- */
 div.faq_container .colorChallenger.ui-state-active,
 .museumSectionBreak.colorChallenger,
 .colorChallenger {
-  background: rgb(38,169,225);
+  background: rgb(237,159,33);
   color: white;
 }
 #hoursContainer.museumChallenger {
-  border: 5px solid rgb(38,169,225);
+  border: 5px solid rgb(237,159,33);
 }
 #hoursContainer.museumChallenger > div {
-  background-color: rgba(38,169,225,.05);
-  border: 2px solid rgba(38,169,225,.5);
+  background-color: rgba(237,159,33,.05);
+  border: 2px solid rgba(237,159,33,.5);
 }
 
 /* --------- Experience Colors --------- */
@@ -1367,15 +1321,17 @@ div.theCarousel div.item div.title {
   border: 1px solid #ddd;
   text-decoration: none;
   color: #555;
-  background: wheat;
+  /*background: wheat;*/
   border-radius: 5px;
   flex-grow: 1;
 }
 
+/*
 .subMenuBar nav a.active {
   background: gray;
   color: white;
 }
+*/
 
 .subMenuBar {
   width: 70%;
