@@ -46,6 +46,11 @@ div.faq_container .colorUnity.ui-state-active,
   color: white;
 }
 
+#filterContainer .flexBox .filterGroup > span {
+    background: rgb(131, 124,124);
+    color: white;
+}
+
 /* --------- AAHOM Colors --------- */
 div.faq_container .colorAahom.ui-state-active,
 .museumSectionBreak.colorAahom,
@@ -999,8 +1004,8 @@ div.team_container .item_box:hover .item_back {
     flex-basis: auto;
 }
 #filterContainer .flexBox .filterGroup > span {
-    background: #EC2625;
-    color: white;
+    /*background: #EC2625;
+    color: white;*/
     width: 100%;
     display: block;
     padding: 5px;
