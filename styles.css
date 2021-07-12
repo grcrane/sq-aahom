@@ -1320,8 +1320,8 @@ div.theCarousel div.item div.title {
   padding: 0.25em;
   border: 1px solid #ddd;
   text-decoration: none;
-  color: #555;
-  /*background: wheat;*/
+  /*color: #555;
+  background: wheat;*/
   border-radius: 5px;
   flex-grow: 1;
 }
