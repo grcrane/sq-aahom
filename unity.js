@@ -1120,7 +1120,7 @@ function showFilterSelections(
     group = group.toLowerCase();
     
     var prettyname = group.charAt(0).toUpperCase() + group.slice(1); 
-    if (lables.length > 2 && typeof(labels[2]) != 'undefined') {
+    if (labels.length > 2 && typeof(labels[2]) != 'undefined') {
       prettyname = labels[2];
     }
     out = out + '<div class="filterGroup">\n';
