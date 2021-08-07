@@ -1119,6 +1119,9 @@ function showFilterSelections(
     group = group.toLowerCase();
     
     var prettyname = group.charAt(0).toUpperCase() + group.slice(1); 
+    if (temp.length > 1) {
+      prettyname = temp[2];
+    }
     out = out + '<div class="filterGroup">\n';
     out = out + '<span>' + prettyname + '</span><table class="outer">\n';
     var colorClass = "group" + group.charAt(0).toUpperCase() + group.slice(1);
