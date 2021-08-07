@@ -997,6 +997,7 @@ div.team_container .item_box:hover .item_back {
     margin-bottom: 15px;
     flex-basis: auto;
     flex-grow: 1;
+    margin-left:  -10px;
 }
 
 #filterContainer .flexBox .filterGroup {
@@ -1023,7 +1024,7 @@ div.team_container .item_box:hover .item_back {
 }
 
 #filterContainer {
-    margin: 0 auto;
+    /*margin: 0 auto;*/
     max-width: 900px;
 }
 
