@@ -1103,6 +1103,7 @@ function showFilterSelections(
   var out = '<div class="flexBox">\n';
   for (i = 0; i < allgroups.length; i++) { 
     var group = allgroups[i].trim().toLowerCase();
+    var labels = allgroups[i].split(':');
     var type = 'checkbox'; // default
     var temp = group.split(':');
     var validtypes = ['radio','checkbox'];
@@ -1119,8 +1120,8 @@ function showFilterSelections(
     group = group.toLowerCase();
     
     var prettyname = group.charAt(0).toUpperCase() + group.slice(1); 
-    if (temp.length > 2 && typeof(temp[2]) != 'undefined') {
-      prettyname = temp[2];
+    if (lables.length > 2 && typeof(labels[2]) != 'undefined') {
+      prettyname = labels[2];
     }
     out = out + '<div class="filterGroup">\n';
     out = out + '<span>' + prettyname + '</span><table class="outer">\n';
