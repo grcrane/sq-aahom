@@ -568,7 +568,7 @@ function do_team_members2(file_id = null, sheet = null) {
         var content = $(this).parent().find('.item_bio').text(); 
         var front = $(this).parent().parent();
         var img = front.find('img').attr('src'); 
-        var name = front.find('.item_name').immediateText();
+        var name = front.find('.item_name').clone().children().remove().end().text();
         var title = front.find('.item_title').text();
         $('#teamDetail').html('<div id="#teamName">' + name + '</div>' +
           '<div id="teamTitle">' + title + '</div>');
