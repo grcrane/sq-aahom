@@ -570,8 +570,9 @@ function do_team_members2(file_id = null, sheet = null) {
         var img = front.find('img').attr('src'); 
         var name = front.find('.item_name').text();
         var title = front.find('.item_title').text();
-
-        $('#teamDetail').html('<img class="item_img" src="' + img + '">');
+        $('#teamDetail').html('<div id="#teamName">' + name + '</div>' +
+          '<div id="teamTitle">' + title + '</div>';
+        $('#teamDetail').append('<img class="item_img" src="' + img + '">');
         $('#teamDetail').append(content); 
         console.log(content);
         console.log(img);
