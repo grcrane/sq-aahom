@@ -526,8 +526,8 @@ function do_team_members2(file_id = null, sheet = null) {
     }
     var out = ''; 
     var teams = teamlist.table.rows;
-    var prevgroup = ''; 
-    $('.team_container').append('<div id="teamDetail"></div>');
+    var prevgroup = '';
+    $('<div id="teamDetail"></div>').insertBefore('.team_container')
     teams.forEach(function(item, key) {
         if (item.c[groupCol] != null) { // ignore blank lines
             if (prevgroup != item.c[groupCol] || prevgroup == '') {
@@ -571,6 +571,8 @@ function do_team_members2(file_id = null, sheet = null) {
         var name = front.find('.item_name').text();
         var title = front.find('.item_title').text();
 
+        $('#teamDetail').append('<img class="item_img" src="' + img + '">');
+        $('#teamDetail').append(content); 
         console.log(content);
         console.log(img);
         console.log(name);
