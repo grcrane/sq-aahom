@@ -565,7 +565,7 @@ function do_team_members2(file_id = null, sheet = null) {
     });
 
     $('.readMoreDetails').on('click',function() {
-        var content = $(this).parent().find('.item_bio').text(); 
+        var content = $(this).parent().find('.item_bio').html(); 
         var front = $(this).parent().parent();
         var img = front.find('img').attr('src'); 
         var name = front.find('.item_name').clone().children().remove().end().text();
