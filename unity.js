@@ -571,7 +571,7 @@ function do_team_members2(file_id = null, sheet = null) {
         var name = front.find('.item_name').text();
         var title = front.find('.item_title').text();
 
-        $('#teamDetail').append('<img class="item_img" src="' + img + '">');
+        $('#teamDetail').html('<img class="item_img" src="' + img + '">');
         $('#teamDetail').append(content); 
         console.log(content);
         console.log(img);
