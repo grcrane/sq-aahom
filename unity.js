@@ -492,6 +492,7 @@ function teamCardResize() {
   var lines = parseInt(height / lineheight);
   //alert(padding + " " + fontsize + ' ' + height + ' ' + lineheight + ' ' + lines); 
   $('div.team_container div.item_box div.item_bio').css("-webkit-line-clamp", lines.toString());
+  $('div.team_container div.item_box div.item_bio').data("lines", lines.toString());
   $('div.team_container div.item_box').css("line-height", lineheight + 'px');
 }
 
@@ -551,6 +552,7 @@ function do_team_members2(file_id = null, sheet = null) {
             if (item.c[bioCol] != null) {
               biotext = item.c[bioCol].v; }
             out = out + '<div class="item_bio">' + biotext + '</div>';
+            out = out + '<button class="readMoreDetails"><i class="arrow"></i></button>';
             out = out + '</div>'; // end back
           out = out + '</div>';     
         }
@@ -560,7 +562,40 @@ function do_team_members2(file_id = null, sheet = null) {
     $( window ).resize(function() {
       teamCardResize();
     });
+
+    $('.readMoreDetails').on('click',function() {
+        var content = $(this).parent().find('.item_bio').text(); 
+        var front = $(this).parent().parent();
+        var img = front.find('img').attr('src'); 
+        var name = front.find('.item_name').text();
+        var title = front.find('.item_title').text();
+
+        console.log(content);
+        console.log(img);
+        console.log(name);
+        console.log(title);
+    });
+    
+    $("div.item_box").mouseenter(function (event) {
+        temp = $(this).find('.item_bio');
+        $(this).find('.readMoreDetails').hide(); 
+        var dataLines = temp.data("lines");
+        var client = temp.prop('clientHeight');
+        var beforeh = parseInt(temp.height());
+        var lineh = parseInt(temp.css('line-height'));
+        var lines = dataLines;
+        temp.css('-webkit-box-orient','unset');
+        var afterh = parseInt(temp.height());
+        if (afterh > beforeh) {
+            console.log('client=' + client + ' datalines=' + dataLines + ' before=' + beforeh + ' after=' + afterh + ' lines=' + lines);
+            lines = lines - 2; 
+            $(this).find('.readMoreDetails').show(); 
+        }
+        temp.css('-webkit-line-clamp',lines.toString());
+        temp.css('-webkit-box-orient','vertical');                                                     
+    });
 }
+
 
 /* ------------------------------------------------------------------- */
 /* Donor Wall                                                          */
