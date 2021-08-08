@@ -1025,6 +1025,14 @@ div.team_container button {
   bottom: 10;
 }
 
+#teamDetail #teamName {
+    font-size:  25px;
+}
+
+#teamDetail #teamTitle {
+    font-style:  italic;
+}
+
 @media (max-width: 800px) {
     div.team_container div.item_box {
         width: 70%;
