@@ -973,6 +973,58 @@ div.team_container .item_box:hover .item_back {
   opacity: 1;
 }
 
+#teamDetail {
+    postion: relative;
+    border: 1px solid black;
+    min-width: 400px;
+    min-height: 400px;
+    z-index: 999;
+    background: #eee;
+    padding:  10px;
+}
+#teamDetail img {
+    float:  left;
+    margin-top:  1em;
+    margin-right:  10px;
+    margin-bottom:  10px;
+  
+}
+
+div.team_container .arrow {
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 4px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+div.team_container .open .arrow {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  margin-top: 5px;
+}
+
+div.team_container button {
+  position:  absolute;
+  background: transparent;
+  border: 2px solid #000;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 10;
+}
+
 @media (max-width: 800px) {
     div.team_container div.item_box {
         width: 70%;
