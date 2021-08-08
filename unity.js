@@ -527,6 +527,7 @@ function do_team_members2(file_id = null, sheet = null) {
     var out = ''; 
     var teams = teamlist.table.rows;
     var prevgroup = ''; 
+    $('.team_container').append('<div id="teamDetail"></div>');
     teams.forEach(function(item, key) {
         if (item.c[groupCol] != null) { // ignore blank lines
             if (prevgroup != item.c[groupCol] || prevgroup == '') {
@@ -575,7 +576,7 @@ function do_team_members2(file_id = null, sheet = null) {
         console.log(name);
         console.log(title);
     });
-    
+
     $("div.item_box").mouseenter(function (event) {
         temp = $(this).find('.item_bio');
         $(this).find('.readMoreDetails').hide(); 
