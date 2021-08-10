@@ -484,6 +484,8 @@ function do_faqs2(museums, collapsed = true, file_id = null, sheet = null) {
 /* ----------------------------------------------------------- */ 
 
 function teamCardResize() {
+
+  //if ($('.team_container').is(':hidden') == true) { return;};
   var fontsize = parseInt($('.item_bio').css('font-size'));
   var height = parseInt($('div.team_container div.item_box div.item_back').css('height'));
   var padding = parseInt($('div.team_container div.item_box div.item_back div.item_bio').css('padding-top'));
@@ -494,6 +496,31 @@ function teamCardResize() {
   $('div.team_container div.item_box div.item_bio').css("-webkit-line-clamp", lines.toString());
   $('div.team_container div.item_box div.item_bio').data("lines", lines.toString());
   $('div.team_container div.item_box').css("line-height", lineheight + 'px');
+
+  var teams = $('.team_container .item_back');
+  teams.each(function(index) {
+    temp = $(this).find('.item_bio');
+    $(this).find('.readMoreDetails').hide(); 
+    var dataLines = temp.data("lines");
+    var client = temp.prop('clientHeight');
+    var beforeh = parseInt(temp.height());
+    var lineh = parseInt(temp.css('line-height'));
+    var lines = dataLines;
+    temp.css('-webkit-box-orient','unset');
+    temp.css('-webkit-line-clamp','unset');
+    temp.css('overflow','unset');
+    var afterh = parseInt(temp.height());
+    console.log('beforeh=' + beforeh + ' afterh=' + afterh);
+    if (afterh > beforeh) {
+        console.log('client=' + client + ' datalines=' + dataLines + ' before=' + beforeh + ' after=' + afterh + ' lines=' + lines);
+        lines = lines - 2; 
+        $(this).find('.readMoreDetails').show(); 
+    }
+    temp.css('-webkit-line-clamp',lines.toString());
+    temp.css('-webkit-box-orient','vertical');  
+    temp.css('overflow','hidden');
+         
+  })
 }
 
 function do_team_members2(file_id = null, sheet = null) {
@@ -507,6 +534,9 @@ function do_team_members2(file_id = null, sheet = null) {
     var imageCol = 6;
     var bioCol = 7;
     var linkCol = 8;
+    var position = $(window).scrollTop(); 
+
+    var topmost = $('section.page-section').eq(1).offset().top;
      
     if (!file_id) {
       file_id = '1hiPd3cJMf_JOr3Z4RnR3XA6-Z927OSJhxJJgYXix448';
@@ -519,7 +549,6 @@ function do_team_members2(file_id = null, sheet = null) {
     + file_id + '/gviz/tq?sheet=' + sheet + '&tqx=out:json&headers=1&tq=' + escape("SELECT A, B, C, D, E, F, G, H, I WHERE F = 'No' ORDER BY B, A");
 
     var teamlist = get_spreadsheet(url);
-    console.log(teamlist);
     if(teamlist.length == 0) {
         $('.team_container').append('<br>Ooops.. unable to read spreadsheet</br>');
         return;
@@ -563,6 +592,9 @@ function do_team_members2(file_id = null, sheet = null) {
     $( window ).resize(function() {
       teamCardResize();
     });
+    $('#teamDetail').hide(); 
+    $('.team_container').show();
+    teamCardResize();
 
     $('.readMoreDetails').on('click',function() {
         var content = $(this).parent().find('.item_bio').html(); 
@@ -574,32 +606,28 @@ function do_team_members2(file_id = null, sheet = null) {
           '<div id="teamTitle">' + title + '</div>');
         $('#teamDetail').append('<img class="item_img" src="' + img + '">');
         $('#teamDetail').append(content); 
-        console.log(content);
-        console.log(img);
-        console.log(name);
-        console.log(title);
-    });
-
-    $("div.item_box").mouseenter(function (event) {
-        temp = $(this).find('.item_bio');
-        $(this).find('.readMoreDetails').hide(); 
-        var dataLines = temp.data("lines");
-        var client = temp.prop('clientHeight');
-        var beforeh = parseInt(temp.height());
-        var lineh = parseInt(temp.css('line-height'));
-        var lines = dataLines;
-        temp.css('-webkit-box-orient','unset');
-        var afterh = parseInt(temp.height());
-        if (afterh > beforeh) {
-            console.log('client=' + client + ' datalines=' + dataLines + ' before=' + beforeh + ' after=' + afterh + ' lines=' + lines);
-            lines = lines - 2; 
-            $(this).find('.readMoreDetails').show(); 
-        }
-        temp.css('-webkit-line-clamp',lines.toString());
-        temp.css('-webkit-box-orient','vertical');                                                     
+        $('#teamDetail').append('<div class="teamDetailClose topClose"><a href="#">X</a></div>');
+        $('#teamDetail').append('<div class="teamDetailClose bottomClose"><a href="#">Close</a></div>');
+        
+        position = $(window).scrollTop(); 
+        $(".teamDetailClose").on('click',function(event) {
+            event.preventDefault();
+            $('#teamDetail').hide(); 
+            $('.team_container').show();
+            //var headerHeight = $('#header').height();
+            //var t = 797 + headerHeight;
+            //$('.team_container').scrollTop(t);
+            $(window).scrollTop(position); 
+            teamCardResize();
+        });
+        $('#teamDetail').show(); 
+        $('.team_container').hide();
+        var headerHeight = $('#header').height();
+        var t = $('#teamDetail').closest('section').offset().top;
+        t = t - headerHeight + 20;
+        $(window).scrollTop(t); 
     });
 }
-
 
 /* ------------------------------------------------------------------- */
 /* Donor Wall                                                          */
