@@ -1021,7 +1021,8 @@ div.team_container .open .arrow {
 div.team_container button {
   position:  absolute;
   background: transparent;
-  border: 2px solid #000;
+  border: 2px solid #eee;
+  background: #eee;
   height: 32px;
   width: 32px;
   border-radius: 50%;
@@ -1035,7 +1036,7 @@ div.team_container button {
   left: 0;
   right: 0;
   margin: auto;
-  bottom: 10;
+  bottom: 5px;
 }
 
 #teamDetail #teamName {
