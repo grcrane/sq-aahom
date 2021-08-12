@@ -1194,7 +1194,7 @@ function showFilterSelections(
     out = out + '<span>' + prettyname + '</span><table class="outer">\n';
     var colorClass = "group" + group.charAt(0).toUpperCase() + group.slice(1);
     var numcols = 1;
-    if (group == 'groups') {
+    if (group == 'grades') {
       numcols = 2;
     }
     var curcol = 0;
