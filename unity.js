@@ -595,7 +595,7 @@ function do_team_members2(file_id = null, sheet = null) {
     $('#teamDetail').hide(); 
     $('.team_container').show();
     teamCardResize();
-
+/*
     $('.readMoreDetails').on('click',function() {
         var content = $(this).parent().find('.item_bio').html(); 
         var front = $(this).parent().parent();
@@ -627,6 +627,42 @@ function do_team_members2(file_id = null, sheet = null) {
         t = t - headerHeight + 20;
         $(window).scrollTop(t); 
     });
+*/
+
+    $('div.item_back').on('click',function() {
+        var content = $(this).find('.item_bio').html(); 
+        var front = $(this).parent();
+        var img = front.find('img').attr('src'); 
+        var name = front.find('.item_name').clone().children().remove().end().text();
+        var title = front.find('.item_title').text();
+        $('#teamDetail').html('<div id="teamName">' + name + '</div>' +
+          '<div id="teamTitle">' + title + '</div>');
+        if (img) {
+            $('#teamDetail').append('<img class="item_img" src="' + img + '">');
+        }
+        $('#teamDetail').append(content); 
+        $('#teamDetail').append('<div class="teamDetailClose topClose"><a href="#">X</a></div>');
+        $('#teamDetail').append('<div class="teamDetailClose bottomClose"><a href="#">Close</a></div>');
+        
+        position = $(window).scrollTop(); 
+        $(".teamDetailClose").on('click',function(event) {
+            event.preventDefault();
+            $('#teamDetail').hide(); 
+            $('.team_container').show();
+            //var headerHeight = $('#header').height();
+            //var t = 797 + headerHeight;
+            //$('.team_container').scrollTop(t);
+            $(window).scrollTop(position); 
+            teamCardResize();
+        });
+        $('#teamDetail').show(); 
+        $('.team_container').hide();
+        var headerHeight = $('#header').height();
+        var t = $('#teamDetail').closest('section').offset().top;
+        t = t - headerHeight + 20;
+        $(window).scrollTop(t); 
+    });
+
 }
 
 /* ------------------------------------------------------------------- */
