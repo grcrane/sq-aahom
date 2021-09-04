@@ -48,7 +48,9 @@ function checkFlexGap() {
   return isSupported;
 }
 
-if (checkFlexGap()) {$('body').addClass('flex-gap');}
+$(document).ready(function() {
+  if (checkFlexGap()) {$('body').addClass('flex-gap');}
+})
 
 function getCookie(name) {
     
