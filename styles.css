@@ -1399,7 +1399,17 @@ div.theCarousel div.item div.title {
 }
 
 @media only screen and (min-width: 768px) {
-  .subMenuBar nav { flex-direction: row; }
+    .subMenuBar nav { 
+        flex-direction: row; 
+    }
+}
+@media only screen and (max-width: 768px) {
+    #subMenu {
+        display: none;
+    }
+    #subMenu.open {
+        display: block;
+    }   
 }
 
 .subMenuBar nav a{
@@ -1435,4 +1445,10 @@ div.theCarousel div.item div.title {
   cursor: pointer;
   pointer-events: none;
   display: none;
+}
+
+div.learnMenuButton {
+    display: block;
+    text-align: center;
+    font-weight: 400;
 }
