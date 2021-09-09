@@ -1090,6 +1090,7 @@ function filter_values (selector = '#filterContainer') {
 
     // Find all of the categories in this section 
     var catsel = $(selector).parent().parent().next().find(catloc);
+    $(selector).closest('section').addClass('filterValuesSection');
 
     // tag them all
     $(catsel).addClass('filterCat');
