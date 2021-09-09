@@ -919,6 +919,7 @@ div.team_container div.item_back {
   height: 100%;
   border-radius: 10px;
   overflow: hidden;
+  cursor:  pointer;
 }
 div.team_container div.item_back {
   background: #45A04D;
