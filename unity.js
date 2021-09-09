@@ -1035,10 +1035,17 @@ function subMenuBar(act = '', sel = '#subMenu') {
   '</nav>\n' +
 '</div>\n';
 
-// add the menu code
-$(menu).appendTo('#subMenu');
-// Set the appropriate active 
-$(sel).find('.subMenuBar a[name="' + act + '"]').addClass('active');
+  // add the menu code
+  $(menu).appendTo('#subMenu');
+  // Set the appropriate active 
+  $(sel).find('.subMenuBar a[name="' + act + '"]').addClass('active');
+  var temp = '<div class="learnMenuButton">' +
+    '<div class="toggle">' +
+    '<a href=""></i>- More Opportunities -</a></div></div>';
+  $(temp).insertBefore('#subMenu');
+  $('.learnMenuButton .toggle a').click(function(e) {
+    e.preventDefault(); 
+    $('#subMenu').toggleClass("open")
 return menu; 
 }
 
