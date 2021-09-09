@@ -1046,6 +1046,7 @@ function subMenuBar(act = '', sel = '#subMenu') {
   $('.learnMenuButton .toggle a').click(function(e) {
     e.preventDefault(); 
     $('#subMenu').toggleClass("open")
+  })
 return menu; 
 }
 
