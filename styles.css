@@ -1132,6 +1132,23 @@ div.summary-metadata .active.filterCat {
     color: red;
 }
 
+/* wrap blog entry boxes with flexbox */
+
+body.flex-gap 
+  .filterValuesSection 
+  .sqs-block-summary-v2 
+  .summary-item-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+}
+body.flex-gap 
+  .filterValuesSection 
+  #block-yui_3_17_2_1_1623937811848_2314 
+  .sqs-gallery-design-autogrid-slide {
+    margin: 0 !important;
+}  
+
 /* ------------------------------------------------ */
 /* Donor wall                                       */
 /* ------------------------------------------------ */
