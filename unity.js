@@ -1260,8 +1260,11 @@ function showFilterSelections(
       defaultvalue = temp[2].toLowerCase().replaceAll(' ','+');
     } 
     group = group.toLowerCase();
+    groupparts = group.split('/');
+    group = groupparts[0];
+    grouplabel = (groupparts[1]) ? groupparts[1] : group;
     
-    var prettyname = group.charAt(0).toUpperCase() + group.slice(1); 
+    var prettyname = grouplabel.charAt(0).toUpperCase() + grouplabel.slice(1); 
     if (labels.length > 2 && typeof(labels[2]) != 'undefined') {
       prettyname = labels[2];
     }
