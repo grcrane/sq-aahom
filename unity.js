@@ -1275,7 +1275,7 @@ function showFilterSelections(
     if (group == 'grades') {
       numcols = 2;
     }
-    numcols = (grouparts[2]) ? groupparts[2] : numcols;
+    numcols = (groupparts[2]) ? groupparts[2] : numcols;
     var curcol = 0;
     var tr = '<tr>';
     if (type == 'radio') {
