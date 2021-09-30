@@ -3,6 +3,10 @@
 /*    05/09/2021 - initial                                     */
 /*-------------------------------------------------------------*/
 
+:root {
+    --global-color-aahom: 60,100,168;
+}
+
 /* ----- Readmore links ----- */
 div.readmore a,
 #tabs a.readmore,
@@ -56,15 +60,15 @@ div.faq_container .colorAahom.ui-state-active,
 .museumSectionBreak.colorAahom,
 .colorAahom,
 #accordion .ui-state-active {
-  background: rgb(60,100,168);
+  background: rgb(var(--global-color-aahom));
   color: white;
 }
 #hoursContainer.museumAahom {
-  border: 5px solid rgb(60,100,168);
+  border: 5px solid rgb(var(--global-color-aahom));
 }
 #hoursContainer.museumAahom > div {
-  background-color: rgba(60,100,168,.05);
-  border: 2px solid rgba(60,100,168,.5);
+  background-color: rgba(var(--global-color-aahom),.05);
+  border: 2px solid rgba(var(--global-color-aahom),.5);
 }
 
 /* --------- Leslie Colors --------- */
