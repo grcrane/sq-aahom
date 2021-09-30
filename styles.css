@@ -1,10 +1,14 @@
 /*-------------------------------------------------------------*/
-/* Global overrides                                            */
+/* CSS Custom Properies                                        */
 /*    05/09/2021 - initial                                     */
 /*-------------------------------------------------------------*/
 
 :root {
     --global-color-aahom: 60,100,168;
+    --global-color-leslie: 109,143,60;
+    --global-color-yankee: 237,27,48;
+    --global-color-challenger: 237,159,33;
+    --global-color-experience: 248,197,21;
 }
 
 /* ----- Readmore links ----- */
@@ -75,15 +79,15 @@ div.faq_container .colorAahom.ui-state-active,
 div.faq_container .colorLeslie.ui-state-active,
 .museumSectionBreak.colorLeslie,
 .colorLeslie {
-  background: rgb(109,143,60);
+  background: rgb(var(--global-color-leslie));
   color: white;
 }
 #hoursContainer.museumLeslie {
-  border: 5px solid rgb(109,143,60);
+  border: 5px solid rgb(var(--global-color-leslie));
 }
 #hoursContainer.museumLeslie > div {
-  background-color: rgba(109,143,60,.05);
-  border: 2px solid rgba(109,143,60,.5);
+  background-color: rgba(var(--global-color-leslie),.05);
+  border: 2px solid rgba(var(--global-color-leslie),.5);
 }
 
 /* --------- Yankee Colors --------- */
@@ -91,30 +95,30 @@ div.faq_container .colorYankee.ui-state-active,
 div.faq_container .ui-state-active a.colorYankee,
 .museumSectionBreak.colorYankee,
 .colorYankee {
-  background: rgb(237,27,48);
+  background: rgb(var(--global-color-yankee));
   color: white;
 }
 #hoursContainer.museumYankee {
-  border: 5px solid rgb(237,27,48);
+  border: 5px solid rgb(var(--global-color-yankee));
 }
 #hoursContainer.museumYankee > div {
-  background-color: rgba(237,27,48,.05);
-  border: 2px solid rgba(237,27,48,.5);
+  background-color: rgba(var(--global-color-yankee),.05);
+  border: 2px solid rgba(var(--global-color-yankee),.5);
 }
 
 /* --------- Challenger Colors --------- */
 div.faq_container .colorChallenger.ui-state-active,
 .museumSectionBreak.colorChallenger,
 .colorChallenger {
-  background: rgb(237,159,33);
+  background: rgb(var(--global-color-challenger));
   color: white;
 }
 #hoursContainer.museumChallenger {
-  border: 5px solid rgb(237,159,33);
+  border: 5px solid rgb(var(--global-color-challenger));
 }
 #hoursContainer.museumChallenger > div {
-  background-color: rgba(237,159,33,.05);
-  border: 2px solid rgba(237,159,33,.5);
+  background-color: rgba(var(--global-color-challenger),.05);
+  border: 2px solid rgba(var(--global-color-challenger),.5);
 }
 
 /* --------- Experience Colors --------- */
@@ -122,16 +126,16 @@ div.faq_container .colorExperience.ui-state-active,
 div.faq_container .ui-state-active a.colorExperience,
 .museumSectionBreak.colorExperience,
 .colorYankee {
-  background: rgb(248,197,21);
+  background: rgb(var(--global-color-experience));
   color: black;
 }
 #hoursContainer.museumExperience {
-  border: 5px solid rgb(248,197,21);
+  border: 5px solid rgb(var(--global-color-experience));
   color: black;
 }
 #hoursContainer.museumExperience > div {
-  background-color: rgba(248,197,21,.05);
-  border: 2px solid rgba(248,197,21,.5);
+  background-color: rgba(var(--global-color-experience),.05);
+  border: 2px solid rgba(var(--global-color-experience),.5);
   color: black;
 }
 
