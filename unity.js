@@ -427,7 +427,7 @@ function do_faqs2(museums, collapsed = true, file_id = null, sheet = null) {
     var mtitles = [
       'Unity in Learning','Ann Arbor Hands-On',
       'Leslie Center','Yankee air Museum',
-      'Challenger Center'];
+      'Challenger Learning Center at SC4'];
 
     if (!file_id) {
       file_id = '1f3G-ECzjt8p-czZNPyUQGXG8NND016Nue5QypQTf6PQ';
