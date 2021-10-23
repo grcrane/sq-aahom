@@ -948,6 +948,23 @@ function createCarousel (id, container = 0) {
 
 }
 
+/* Resize carousel images with screen size to keep aspect ratio right */
+
+jQuery(document).ready(function() {
+  function adjustSlickImageHeight() {
+    var aspect_ratio_box2 = 0.6
+    var box2 = jQuery("div.slick-list div.slick-track div.item img");
+    var w = box2.width();
+    var h = w * aspect_ratio_box2;
+    var topval = (h / 2) - 25;
+    jQuery('button.slick-arrow').css('top',topval + 'px');
+    box2.height(h);
+  }
+  jQuery(window).resize(function() {
+    adjustSlickImageHeight(); 
+  });
+});
+
 /* ----------------------------------------------------------- */
 /* Build a tabbed list of calendars from spreadsheet           */
 /*    05/18/2021 - initial                                     */
