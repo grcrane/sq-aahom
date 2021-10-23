@@ -796,6 +796,24 @@ function do_donor_wall_new(file_id = null, sheet = null) {
 /* slick.js carousel                                                   */
 /* ------------------------------------------------------------------- */
 
+/* Resize carousel images with screen size to keep aspect ratio right */
+
+
+function adjustSlickImageHeight() {
+  var aspect_ratio_box2 = 0.6
+  var box2 = jQuery("div.slick-list div.slick-track div.item img");
+  var w = box2.width();
+  var h = w * aspect_ratio_box2;
+  var topval = (h / 2) - 25;
+  jQuery('button.slick-arrow').css('top',topval + 'px');
+  box2.height(h);
+}
+
+jQuery(window).resize(function() {
+  adjustSlickImageHeight(); 
+});
+
+
 function showAnnouncements(
   museum = null,
   file_id = '1oFRM_HEIcPjLWlyC3QuL_QN67L8kTVujfdG4S3-14X0', 
@@ -946,24 +964,11 @@ function createCarousel (id, container = 0) {
     var w = $(theCarousel).find('div.item img').eq(0).width();
     //$(theCarousel).find('div.item img').css('height','150px');
 
+    adjustSlickImageHeight(); 
+
 }
 
-/* Resize carousel images with screen size to keep aspect ratio right */
 
-jQuery(document).ready(function() {
-  function adjustSlickImageHeight() {
-    var aspect_ratio_box2 = 0.6
-    var box2 = jQuery("div.slick-list div.slick-track div.item img");
-    var w = box2.width();
-    var h = w * aspect_ratio_box2;
-    var topval = (h / 2) - 25;
-    jQuery('button.slick-arrow').css('top',topval + 'px');
-    box2.height(h);
-  }
-  jQuery(window).resize(function() {
-    adjustSlickImageHeight(); 
-  });
-});
 
 /* ----------------------------------------------------------- */
 /* Build a tabbed list of calendars from spreadsheet           */
