@@ -1151,6 +1151,7 @@ function filter_showvals (selector = '#filterContainer') {
             ids.push(this.value);
             var group = $(this).attr('name');
             var cat = this.value;
+            cat = cat.replace("&", "%26");
             selectedcats.push(cat);
             i = mycats.indexOf(cat);
             if (i != -1) {
