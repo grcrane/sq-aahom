@@ -423,11 +423,13 @@ function do_faqs2(museums, collapsed = true, file_id = null, sheet = null) {
       'aahom',
       'leslie',
       'yankee',
-      'challenger'];
+      'challenger',
+      'camp'];
     var mtitles = [
       'Unity in Learning','Ann Arbor Hands-On Museum',
       'Leslie Science & Nature Center','Yankee Air Museum',
-      'Challenger Learning Center at SC4'];
+      'Challenger Learning Center at SC4',
+      'Summer Camps'];
 
     if (!file_id) {
       file_id = '1f3G-ECzjt8p-czZNPyUQGXG8NND016Nue5QypQTf6PQ';
