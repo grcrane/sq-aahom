@@ -1153,7 +1153,9 @@ body.flex-gap
 body.flex-gap 
   .filterValuesSection 
   .sqs-gallery-design-autogrid-slide {
-    margin: 0 !important;
+    /*margin: 0 !important;*/
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }  
 
 /* ------------------------------------------------ */
