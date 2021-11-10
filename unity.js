@@ -1228,7 +1228,7 @@ function filter_showvals (selector = '#filterContainer') {
    then build radio and/or checkboxes based on requested groups
 */
 
-function showFilterSelections(
+ function showFilterSelections(
 
   groups = 'locations, groups', selector = "#filterContainer",
   file_id = '1qrUPQu2qs8eOOi-yZwvzOuGseDFjkvj5_mSnoz0tJVc', 
@@ -1310,7 +1310,11 @@ function showFilterSelections(
     }
     for (n = 0; n < cats.length; n++) {
       if (cats[n] && cats[n].c[0].v.toLowerCase() == group) {
-      curcol = curcol + 1;
+        var item = cats[n];
+        var lookup = item.c[2].v.toLowerCase().replaceAll(' ','+'); 
+        // Only show category if it appears in at least one blog entry
+        if (mycats.indexOf(lookup) !== -1) {
+          curcol = curcol + 1;
 
           if (parseInt(curcol) > parseInt(1) && parseInt(curcol) <= parseInt(numcols)) {
             tr = ''; 
@@ -1321,14 +1325,15 @@ function showFilterSelections(
             curcol = 1;
           }
           if (curcol > numcols) { curcol = 1;}
-          var item = cats[n];
+          //var item = cats[n];
           var checked = '';
           var lookup = item.c[2].v.toLowerCase().replaceAll(' ','+'); 
           if (defaultvalue == lookup) {
             checked = ' checked '; 
           }
 
-          out = out + tr + '<td><input type="' + type + '" value="' + lookup + '" name="' + group + '"' + checked + '><span>' + item.c[3].v + '</span></td>\n';     
+          out = out + tr + '<td><input type="' + type + '" value="' + lookup + '" name="' + group + '"' + checked + '><span>' + item.c[3].v + '</span></td>\n';  
+        }   
       }
     }
     out = out + '</table></div>\n';
