@@ -371,9 +371,10 @@ function showAddressInfo(
   sheet = 'Hours') {
 
   museum = museum.toLowerCase();
+  var qry = "SELECT *  WHERE A = '" + museum + "' ORDER BY A, B";
   var url = 'https://docs.google.com/spreadsheets/u/0/d/'
     + file_id + '/gviz/tq?tqx=out:json&sheet=' + sheet + 
-    '&headers=1&tq=' + escape('SELECT * ORDER BY A, B');
+    '&headers=1&tq=' + escape(qry);
   var colorClass = "museum" + museum.charAt(0).toUpperCase() + museum.slice(1);
   $('#hoursContainer').html(out).addClass(colorClass); 
 
