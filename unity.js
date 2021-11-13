@@ -375,6 +375,7 @@ function showAddressInfo(
   var url = 'https://docs.google.com/spreadsheets/u/0/d/'
     + file_id + '/gviz/tq?tqx=out:json&sheet=' + sheet + 
     '&headers=1&tq=' + escape(qry);
+   // alert(url);
   var colorClass = "museum" + museum.charAt(0).toUpperCase() + museum.slice(1);
   $('#hoursContainer').html(out).addClass(colorClass); 
 
