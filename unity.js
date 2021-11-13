@@ -379,8 +379,6 @@ function showAddressInfo(
   $('#hoursContainer').html(out).addClass(colorClass); 
 
   var addlist = getCachedSheet('hours',url); 
-  console.log('url=' + url);
-  console.log(addlist);
   var adds = addlist.table.rows;
   var out = '<p>No data found</p>'; 
   for (i = 0; i < adds.length; i++) {
