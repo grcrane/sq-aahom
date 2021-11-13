@@ -378,7 +378,8 @@ function showAddressInfo(
   var colorClass = "museum" + museum.charAt(0).toUpperCase() + museum.slice(1);
   $('#hoursContainer').html(out).addClass(colorClass); 
 
-  var addlist = getCachedSheet('hours',url); 
+  //var addlist = getCachedSheet('hours',url); 
+  var addlist = get_spreadsheet(url);
   var adds = addlist.table.rows;
   var out = '<p>No data found</p>'; 
   for (i = 0; i < adds.length; i++) {
